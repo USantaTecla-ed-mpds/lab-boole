@@ -6,4 +6,4 @@ Universo Santa Tecla
 
 * Escribe con un lenguaje de publicación (html/css, svg, ...) un tablero lo "más" parecido posible a la siguiente imagen
 
-![connect4](../docs/images/conecta4.png) 
+![connect4](../docs/images/conecta4.jpg) 

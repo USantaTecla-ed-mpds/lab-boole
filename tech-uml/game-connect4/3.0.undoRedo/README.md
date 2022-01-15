@@ -18,7 +18,7 @@ Universo Santa Tecla
 
 ### requirements 
 
-| * _Funcionalidad: **Básica + Undo/Redo**_<br/>  * _Interfaz: **Gráfica y Texto**_<br/>  * _Distribución: **Standalone**_<br/>  * _Persistencia: **No**_<br/> | ![connect4](../docs/images/conecta4.png) | 
+| * _Funcionalidad: **Básica + Undo/Redo**_<br/>  * _Interfaz: **Gráfica y Texto**_<br/>  * _Distribución: **Standalone**_<br/>  * _Persistencia: **No**_<br/> | ![connect4](../docs/images/conecta4.jpg) | 
 | :------- | :------: |  
 
 ### actorsUseCaseDiagram  
