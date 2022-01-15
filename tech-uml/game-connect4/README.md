@@ -22,7 +22,7 @@ Universo Santa Tecla
 
 ## domainModel  
   
-![connect4](./docs/images/conecta4.jpg)  
+![connect4](docs/images/conecta4.jpg)  
 
 [WIKI](https://es.wikipedia.org/wiki/Conecta_4)
 
