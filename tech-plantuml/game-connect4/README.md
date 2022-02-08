@@ -20,7 +20,7 @@ Universo Santa Tecla
 ### Vocabulary
 
 ![Vocabulario](./docs/images/Vocabulary.png)  
-  
+  > Tablero 4x5 por simplificación
 ### initialState  
   
 ![Estado_inicial]()  
