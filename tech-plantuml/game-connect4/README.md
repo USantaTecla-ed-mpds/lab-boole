@@ -23,11 +23,11 @@ Universo Santa Tecla
   > Tablero 4x5 por simplificación
 ### initialState  
   
-![Estado_inicial]()  
+![Estado_inicial](./docs/images/InitialState.png)  
   
 ### finalState 
 
-![Estado_final]()  
+![Estado_final](./docs/images/FinalStage.png)  
   
 ### instructions  
   
