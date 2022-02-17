@@ -19,14 +19,15 @@ Universo Santa Tecla
 [Youtube](https://www.youtube.com/watch?v=JBSbiilzg9U)
 ### Vocabulary
 
-![Vocabulario]()  
+![Vocabulario](./docs/images/Vocabulary.png)  
+  > Tablero 4x5 por simplificación
 ### initialState  
   
-![Estado_inicial]()  
+![Estado_inicial](./docs/images/InitialState.png)  
   
 ### finalState 
 
-![Estado_final]()  
+![Estado_final](./docs/images/FinalStage.png)  
   
 ### instructions  
   
@@ -34,3 +35,4 @@ Universo Santa Tecla
   
 ![Instrucciones]()  
   
+ 
