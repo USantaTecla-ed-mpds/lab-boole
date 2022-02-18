@@ -1,0 +1,48 @@
+@startuml connect4--vocabulary
+
+
+title Connect4 Vocabulary
+
+class Connect4Game
+class Player
+class Board
+class Cell
+class Checker
+Class Red
+Class Yellow
+class Turn
+class Movement
+class Goal
+class 4InALine
+class HorizontalFigure
+class VerticalFigure
+class DiagonalFigure
+
+Connect4Game *-- "7x6  " Board
+Connect4Game *-- "42" Checker
+Connect4Game *-- "2" Player
+
+Board *-- "42" Cell
+
+Player --> "21" Checker
+Player ..> "3..21" Turn
+Player --> Goal
+
+Turn --> Movement
+Goal <|-- 4InALine
+
+4InALine <|-- HorizontalFigure
+4InALine <|-- VerticalFigure
+4InALine <|-- DiagonalFigure
+
+Checker <|-- Red
+Checker <|-- Yellow
+Movement <-- Checker
+Movement o-- 4InALine
+Cell o-- Checker
+
+
+@enduml
+
+
+' diagram by Oscar Quintero and Borja Coll ;-)
