@@ -1,0 +1,87 @@
+@startuml connect4--initial-state
+
+
+title Connect4. Initial State
+
+object newGame
+note left of newGame
+    status 0 = not started
+    status 1 = started
+    status 2 = paused
+    status 3 = finished
+end note
+
+object goal
+object turn
+object myBoard
+object cell
+object vilma
+object pedro
+object redChecker
+object yellowChecker
+
+
+object newGame {
+    nGame = 0
+    status = 0
+}
+
+object goal {
+    name = '4 in a line'
+    status = false
+    winner = null
+}
+
+object turn {
+    firstPlayer = vilma
+    turn = 0
+    remainingTurns = 42
+}
+
+object myBoard {
+    columns = [A..G]
+    rows = [1..6]
+}
+
+object cell {
+    coordinates = [A..G][1..6]
+    filled = false
+}
+
+object vilma {
+    playerId = 1
+    colorCheckers = 'yellow'
+    checkers = 21
+    usedCheckers = 0
+}
+
+object pedro {
+    playerId = 2
+    colorCheckers = 'red'
+    checkers = 21
+    usedCheckers = 0
+}
+
+object yellowChecker {
+    id = [y1..y21]
+    position = null
+    color = 'yellow'
+}
+
+object redChecker {
+    id = [r1..r21]
+    position = null
+    color = 'red'
+}
+
+newGame -- myBoard
+myBoard -- cell
+
+vilma .. yellowChecker
+pedro .. redChecker
+
+
+@enduml
+
+
+' diagram by Oscar Quintero and Borja Coll ;-)
