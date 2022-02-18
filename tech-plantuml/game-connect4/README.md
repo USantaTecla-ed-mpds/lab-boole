@@ -17,20 +17,39 @@ Universo Santa Tecla
 [WIKI](https://es.wikipedia.org/wiki/Conecta_4)
 
 [Youtube](https://www.youtube.com/watch?v=JBSbiilzg9U)
+
+---
+
+<br>
+
+
+## Artists
+* Oscar Quintero
+* Borja Coll
+
+<br>
+
+## Proposal
+
 ### Vocabulary
 
-![Vocabulario]()  
-### initialState  
-  
-![Estado_inicial]()  
-  
-### finalState 
+![Vocabulario](./docs/images/connect4--vocabulary.svg)
 
-![Estado_final]()  
-  
-### instructions  
-  
-![Instrucciones]()  
-  
-![Instrucciones]()  
+<br>
+
+### initialState
+
+![Estado_inicial](./docs/images/connect4--initial-state.svg)
+
+<br>
+
+### finalState
+
+![Estado_final](./docs/images/connect4--final-state.svg)
+
+<br>
+
+### instructions
+
+
   
