@@ -18,11 +18,11 @@ class HorizontalFigure
 class VerticalFigure
 class DiagonalFigure
 
-Connect4Game *-- "7x6  " Board
-Connect4Game *-- "42" Checker
-Connect4Game *-- "2" Player
+Connect4Game *--> "7x6  " Board
+Connect4Game *--> "42" Checker
+Connect4Game *--> "2" Player
 
-Board *-- "42" Cell
+Board *--> "42" Cell
 
 Player --> "21" Checker
 Player ..> "3..21" Turn
@@ -38,8 +38,8 @@ Goal <|-- 4InALine
 Checker <|-- Red
 Checker <|-- Yellow
 Movement <-- Checker
-Movement o-- 4InALine
-Cell o-- Checker
+Movement o--> 4InALine
+Cell o--> Checker
 
 
 @enduml
