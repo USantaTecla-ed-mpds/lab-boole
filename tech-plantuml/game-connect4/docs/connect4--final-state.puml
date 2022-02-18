@@ -1,0 +1,168 @@
+@startuml connect4--final-state
+
+
+title Connect4. Final State
+
+object newGame
+note left of newGame
+    status 0 = not started
+    status 1 = started
+    status 2 = paused
+    status 3 = finished
+end note
+
+object myBoard
+object vilma
+object pedro
+object goal
+object turn
+
+
+
+object newGame {
+    intent = 1
+    status = 3
+}
+
+object goal {
+    name = '4 in a Line'
+    status = true
+    winner = vilma
+}
+
+object turn {
+    firstPlayer = vilma
+    turn = 7
+    remainingTurns = 35
+}
+
+object myBoard {
+    columns = [A..G]
+    rows = [1..6]
+}
+
+object cellD1 {
+    coordinates = 'D1'
+    filled = 'yellow'
+}
+
+object cellD2 {
+    coordinates = 'D2'
+    filled = 'red'
+}
+
+object cellE1 {
+    coordinates = 'E1'
+    filled = 'yellow'
+}
+
+object cellD3 {
+    coordinates = 'D3'
+    filled = 'red'
+}
+
+object cellC1 {
+    coordinates = 'C1'
+    filled = 'yellow'
+}
+
+object cellB1 {
+    coordinates = 'B1'
+    filled = 'red'
+}
+
+object cellF1 {
+    coordinates = 'F1'
+    filled = 'yellow'
+}
+
+
+object yellowChecker1 {
+    id = 'y1'
+    position = 'D1'
+    color = 'yellow'
+}
+
+object redChecker1 {
+    id = 'r1'
+    position = 'D2'
+    color = 'red'
+}
+
+object yellowChecker2 {
+    id = 'y2'
+    position = 'E1'
+    color = 'yellow'
+}
+
+object redChecker2 {
+    id = 'r2'
+    position = 'D3'
+    color = 'red'
+}
+
+object yellowChecker3 {
+    id = 'y3'
+    position = 'C1'
+    color = 'yellow'
+}
+
+object redChecker3 {
+    id = 'r3'
+    position = 'B1'
+    color = 'red'
+}
+
+object yellowChecker4 {
+    id = 'y4'
+    position = 'F1'
+    color = yellow
+}
+
+
+object vilma {
+    playerId = 1
+    colorCheckers = 'yellow'
+    checkers = 21
+    usedCheckers = 4
+}
+
+object pedro {
+    playerId = 2
+    colorCheckers = 'red'
+    checkers = 21
+    usedCheckers = 3
+}
+
+
+newGame -- myBoard
+
+myBoard -- cellD1
+myBoard -- cellE1
+myBoard -- cellC1
+myBoard -- cellF1
+myBoard -- cellD2
+myBoard -- cellD3
+myBoard -- cellB1
+
+cellD1 -- yellowChecker1
+cellE1 -- yellowChecker2
+cellC1 -- yellowChecker3
+cellF1 -- yellowChecker4
+cellD2 -- redChecker1
+cellD3 -- redChecker2
+cellB1 -- redChecker3
+
+vilma .up.> yellowChecker1
+vilma .up.> yellowChecker2
+vilma .up.> yellowChecker3
+vilma .up.> yellowChecker4
+pedro .up.> redChecker1
+pedro .up.> redChecker2
+pedro .up.> redChecker3
+
+
+@enduml
+
+
+' diagram by Oscar Quintero and Borja Coll ;-)
