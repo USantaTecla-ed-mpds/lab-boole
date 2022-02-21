@@ -37,8 +37,8 @@ object turn {
 }
 
 object myBoard {
-    columns = [A..G]
-    rows = [1..6]
+    columns = 7
+    rows = 6
 }
 
 object cellD1 {
@@ -75,6 +75,10 @@ object cellF1 {
     coordinates = 'F1'
     filled = 'yellow'
 }
+
+note left of cellC1
+    rest of cells with filled=false
+end note
 
 
 object yellowChecker1 {
@@ -135,23 +139,23 @@ object pedro {
 }
 
 
-newGame -- myBoard
+newGame *--> myBoard
 
-myBoard -- cellD1
-myBoard -- cellE1
-myBoard -- cellC1
-myBoard -- cellF1
-myBoard -- cellD2
-myBoard -- cellD3
-myBoard -- cellB1
+myBoard *--> cellD1
+myBoard *--> cellE1
+myBoard *--> cellC1
+myBoard *--> cellF1
+myBoard *--> cellD2
+myBoard *--> cellD3
+myBoard *--> cellB1
 
-cellD1 -- yellowChecker1
-cellE1 -- yellowChecker2
-cellC1 -- yellowChecker3
-cellF1 -- yellowChecker4
-cellD2 -- redChecker1
-cellD3 -- redChecker2
-cellB1 -- redChecker3
+cellD1 o--> yellowChecker1
+cellE1 o--> yellowChecker2
+cellC1 o--> yellowChecker3
+cellF1 o--> yellowChecker4
+cellD2 o--> redChecker1
+cellD3 o--> redChecker2
+cellB1 o--> redChecker3
 
 vilma .up.> yellowChecker1
 vilma .up.> yellowChecker2
