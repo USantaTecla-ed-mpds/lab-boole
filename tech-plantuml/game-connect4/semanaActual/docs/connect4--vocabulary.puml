@@ -9,8 +9,10 @@ class Player
 interface Board
 class Cell
 class Checker
-Class Red
-class Yellow
+enum Color {
+    Red,
+    Yellow
+}
 class Put
 class Goal
 class 4InALine
@@ -21,23 +23,24 @@ class DiagonalFigure
 Connect4 *--> "2 " Player
 Connect4 *--> "7..42 " Turn
 Connect4 *-right-> Board
+Connect4 *--> Goal
 
 Turn --> Player
 Player --> "21 " Checker
 Player --> Board
-Player -down-> Goal
+Player o-down-> Goal
 Player ..> Put
 
 Board *-down-> "7x6" Cell
 Cell o-right-> "0..1" Checker : to put in <
 
-Checker <|-down- Red
-Checker <|-down- Yellow
+Checker *-down-> Color
 Put ..> Checker : using
-Put o-right-> Goal : to achieve
+Put -right-> Goal : to achieve
 
-Goal <|-- 4InALine
+Goal *--> 4InALine
 
+4InALine -left-> "4" Checker
 4InALine <|-down- HorizontalFigure
 4InALine <|-down- VerticalFigure
 4InALine <|-down- DiagonalFigure
