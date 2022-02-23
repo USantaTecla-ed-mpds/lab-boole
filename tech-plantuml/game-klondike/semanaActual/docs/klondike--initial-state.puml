@@ -1,0 +1,50 @@
+@startuml
+
+object klondike
+object pile
+object stock
+object waste
+object foundation1
+object foundation2
+object foundation3
+object foundation4
+
+object tableau1
+object tableau2
+object tableau3
+
+object card1 {
+    rank = A
+    suit = spades
+    color = black
+    upturn = true
+}
+
+object tableau1 {
+    nCards = 1
+}
+
+object tableau2 {
+    nCards = 2
+}
+
+object tableau3 {
+    nCards = 3
+}
+
+klondike *--> pile
+pile *--> stock
+pile *--> waste
+
+pile *--> foundation1
+pile *--> foundation2
+pile *--> foundation3
+pile *--> foundation4
+
+pile *--> tableau1
+pile *--> tableau2
+pile *--> tableau3
+tableau1 o--> card1
+
+
+@enduml

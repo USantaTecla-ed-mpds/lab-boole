@@ -1,0 +1,106 @@
+@startuml klondike--vocabulary
+
+title Klondike Vocabulary
+
+class Klondike
+class Player
+
+abstract Pile
+    class Stock
+    class Waste
+    class Foundation
+    class Tableau
+
+class Deck
+
+class Card {
+    faceup = boolean
+}
+enum Rank {
+    Ace,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Ten,
+    Jack,
+    Queen,
+    King
+}
+
+abstract Suit
+    class Spades
+    class Hearts
+    class Diamonds
+    class Clubs
+
+enum Color {
+    Red,
+    Black
+}
+
+abstract Action
+    class Move
+    class TurnOver
+
+class Goal
+
+class Spades {
+    color = black
+}
+
+class Clubs {
+    color = black
+}
+
+class Diamonds {
+    color = red
+}
+
+class Hearts {
+    color = red
+}
+
+
+
+Klondike *--> Player
+Klondike *--> "4" Pile
+Klondike *--> Deck
+Klondike *--> Goal
+
+Player ..> Action
+Player o--> Goal
+Player ..> Deck
+Goal *--> FoundationComplete
+FoundationComplete --> "4" Foundation
+FoundationComplete ---> "4" Suit
+
+Action -left-> Goal
+Action <|-down-- Move
+Action <|-down-- TurnOver
+Move --> "1..12" Card
+TurnOver --> Card
+
+Pile o--> Card
+Pile <|-down- Stock
+Pile <|-down- Waste
+Pile <|-down- "4" Foundation
+Pile <|-down- "7" Tableau
+
+Deck *---> "4 " Suit
+Suit *--> "13" Card
+Card --> Rank
+
+Suit --> Color
+Suit <|-- Hearts
+Suit <|-- Spades
+Suit <|-- Diamonds
+Suit <|-- Clubs
+
+
+
+@enduml
