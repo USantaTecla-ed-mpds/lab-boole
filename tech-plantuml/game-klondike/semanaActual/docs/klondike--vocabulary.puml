@@ -5,7 +5,7 @@ title Klondike Vocabulary
 class Klondike
 class Player
 
-abstract Pile
+class Pile
     class Stock
     class Waste
     class Foundation
@@ -32,7 +32,7 @@ enum Rank {
     King
 }
 
-abstract Suit
+class Suit
     class Spades
     class Hearts
     class Diamonds
@@ -77,7 +77,7 @@ Player o--> Goal
 Player ..> Deck
 Goal *--> FoundationComplete
 FoundationComplete --> "4" Foundation
-FoundationComplete ---> "4" Suit
+FoundationComplete *---> "4" Suit
 
 Action -left-> Goal
 Action <|-down-- Move
