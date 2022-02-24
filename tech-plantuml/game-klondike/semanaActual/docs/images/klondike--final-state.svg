@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="338px" preserveAspectRatio="none" style="width:851px;height:338px;background:#FFFFFF;" version="1.1" viewBox="0 0 851 338" width="851px" zoomAndPan="magnify"><defs><filter height="300%" id="f9sqes6u8j3i8" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="165" x="335.75" y="18.6855">Klondike. Final State</text><rect fill="#FEFECE" filter="url(#f9sqes6u8j3i8)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="78" x="355" y="29.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="64" x="362" y="44.0977">myKlondike</text><line style="stroke:#A80036;stroke-width:1.5;" x1="356" x2="432" y1="48.7344" y2="48.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="53" x="361" y="63.1152">nGame = 1</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="44" x="361" y="75.6934">status = 3</text><rect fill="#FEFECE" filter="url(#f9sqes6u8j3i8)" height="39.6719" style="stroke:#A80036;stroke-width:1.5;" width="68" x="587" y="35.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="24" x="609" y="50.0977">goal</text><line style="stroke:#A80036;stroke-width:1.5;" x1="588" x2="654" y1="54.7344" y2="54.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="593" y="69.1152">status = true</text><rect fill="#FEFECE" filter="url(#f9sqes6u8j3i8)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="83" x="468.5" y="29.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="51" x="484.5" y="44.0977">thePlayer</text><line style="stroke:#A80036;stroke-width:1.5;" x1="469.5" x2="550.5" y1="48.7344" y2="48.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="27" x="474.5" y="63.1152">id = 1</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="71" x="474.5" y="75.6934">name = 'Diego'</text><rect fill="#FEFECE" filter="url(#f9sqes6u8j3i8)" height="39.6719" style="stroke:#A80036;stroke-width:1.5;" width="64" x="7" y="147.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="50" x="14" y="162.0977">stockPile</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="70" y1="166.7344" y2="166.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="50" x="13" y="181.1152">nCards = 0</text><rect fill="#FEFECE" filter="url(#f9sqes6u8j3i8)" height="39.6719" style="stroke:#A80036;stroke-width:1.5;" width="68" x="106" y="147.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="54" x="113" y="162.0977">wastePile</text><line style="stroke:#A80036;stroke-width:1.5;" x1="107" x2="173" y1="166.7344" y2="166.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="50" x="112" y="181.1152">nCards = 0</text><rect fill="#FEFECE" filter="url(#f9sqes6u8j3i8)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="100" x="209" y="141.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="86" x="216" y="156.0977">foundationPile1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="210" x2="308" y1="160.7344" y2="160.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="66" x="215" y="175.1152">suite = spades</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="61" x="215" y="187.6934">color = black</text><path d="M196.5,253.6406 L196.5,329.0469 A0,0 0 0 0 196.5,329.0469 L321.5,329.0469 A0,0 0 0 0 321.5,329.0469 L321.5,263.6406 L311.5,253.6406 L263,253.6406 L259,193.8106 L255,253.6406 L196.5,253.6406 A0,0 0 0 0 196.5,253.6406 " fill="#FBFB77" filter="url(#f9sqes6u8j3i8)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M311.5,253.6406 L311.5,263.6406 L321.5,263.6406 L311.5,253.6406 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="71" x="202.5" y="272.1357">For all piles:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="71" x="202.5" y="288.4873">nCards = 13</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="76" x="202.5" y="304.8389">firstRank = A</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="104" x="202.5" y="321.1904">order = ascending</text><rect fill="#FEFECE" filter="url(#f9sqes6u8j3i8)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="100" x="344" y="141.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="86" x="351" y="156.0977">foundationPile2</text><line style="stroke:#A80036;stroke-width:1.5;" x1="345" x2="443" y1="160.7344" y2="160.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="62" x="350" y="175.1152">suite = hearts</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="51" x="350" y="187.6934">color = red</text><rect fill="#FEFECE" filter="url(#f9sqes6u8j3i8)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="100" x="479" y="141.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="86" x="486" y="156.0977">foundationPile3</text><line style="stroke:#A80036;stroke-width:1.5;" x1="480" x2="578" y1="160.7344" y2="160.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="59" x="485" y="175.1152">suite = clubs</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="61" x="485" y="187.6934">color = black</text><rect fill="#FEFECE" filter="url(#f9sqes6u8j3i8)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="100" x="614" y="141.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="86" x="621" y="156.0977">foundationPile4</text><line style="stroke:#A80036;stroke-width:1.5;" x1="615" x2="713" y1="160.7344" y2="160.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="80" x="620" y="175.1152">suite = diamonds</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="51" x="620" y="187.6934">color = red</text><rect fill="#FEFECE" filter="url(#f9sqes6u8j3i8)" height="39.6719" style="stroke:#A80036;stroke-width:1.5;" width="83" x="749.5" y="147.6406"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="69" x="756.5" y="162.0977">tableauPile1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="750.5" x2="831.5" y1="166.7344" y2="166.7344"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="50" x="755.5" y="181.1152">nCards = 0</text><path d="M739.5,269.6406 L739.5,312.3438 A0,0 0 0 0 739.5,312.3438 L842.5,312.3438 A0,0 0 0 0 842.5,312.3438 L842.5,279.6406 L832.5,269.6406 L795,269.6406 L791,187.8906 L787,269.6406 L739.5,269.6406 A0,0 0 0 0 739.5,269.6406 " fill="#FBFB77" filter="url(#f9sqes6u8j3i8)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M832.5,269.6406 L832.5,279.6406 L842.5,279.6406 L832.5,269.6406 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="82" x="745.5" y="288.1357">7 equal empty</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="73" x="745.5" y="304.4873">tableau piles</text><!--MD5=[2222e3c4ee03d88807c6978b7888f86b]
+link myKlondike to thePlayer--><path codeLine="61" d="M445.42,55.6406 C445.42,55.6406 452.24,55.6406 455.09,55.6406 " fill="none" id="myKlondike-thePlayer" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="468.42,55.6406,459.42,51.6406,463.42,55.6406,459.42,59.6406,468.42,55.6406" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="463.42" x2="455.42" y1="55.6406" y2="55.6406"/><polygon fill="#A80036" points="433.42,55.6406,439.42,59.6406,445.42,55.6406,439.42,51.6406,433.42,55.6406" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[b8c679d54058b3938de06682113bf7ea]
+link myKlondike to tableauPile1--><path codeLine="62" d="M444.3586,79.3363 C444.3586,79.3363 449.17,81.0506 451,81.6406 C572.54,120.8206 610.21,103.2206 732,141.6406 C733.7,142.1806 735.42,142.7406 737.15,143.3406 " fill="none" id="myKlondike-tableauPile1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="749.47,147.8806,742.4103,141.0132,744.7789,146.1503,739.6418,148.5189,749.47,147.8806" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="744.7789" x2="737.275" y1="146.1503" y2="143.3806"/><polygon fill="#A80036" points="433.15,75.0506,437.3258,80.9297,444.3586,79.3363,440.1829,73.4572,433.15,75.0506" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[d5c8ba7e2b2502fdde6b5ae1f3d7a78f]
+link myKlondike to stockPile--><path codeLine="63" d="M342.827,67.5394 C342.827,67.5394 174.64,107.9006 88,141.6406 C86.45,142.2406 84.88,142.8806 83.31,143.5506 " fill="none" id="myKlondike-stockPile" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="71.26,149.0306,81.1085,148.9416,75.8105,146.9587,77.7934,141.6608,71.26,149.0306" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="75.8105" x2="83.095" y1="146.9587" y2="143.6406"/><polygon fill="#A80036" points="354.54,64.9306,347.8139,62.3307,342.827,67.5394,349.5531,70.1393,354.54,64.9306" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[d189ae714aeafe633e603490a88e0d3f]
+link myKlondike to wastePile--><path codeLine="64" d="M343.6657,76.7605 C343.6657,76.7605 242.08,118.4506 191,141.6406 C189.37,142.3806 187.72,143.1406 186.06,143.9106 " fill="none" id="myKlondike-wastePile" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="174.16,149.5506,184.0058,149.3066,178.6773,147.4074,180.5766,142.0789,174.16,149.5506" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="178.6773" x2="185.91" y1="147.4074" y2="143.9806"/><polygon fill="#A80036" points="354.79,72.2606,347.7279,70.8025,343.6657,76.7605,350.7278,78.2187,354.79,72.2606" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[190ff11e45e698f436a8805859cdaacf]
+link myKlondike to foundationPile1--><path codeLine="66" d="M353.7191,89.4507 C353.7191,89.4507 317.01,119.3706 300.36,132.9406 " fill="none" id="myKlondike-foundationPile1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="289.83,141.5206,299.3344,138.9386,293.7069,138.3631,294.2824,132.7356,289.83,141.5206" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="293.7069" x2="299.905" y1="138.3631" y2="133.3106"/><polygon fill="#A80036" points="363.03,81.8806,355.8512,82.562,353.7191,89.4507,360.8979,88.7693,363.03,81.8806" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[97347a5d81823933db27a4d86dc9af60]
+link myKlondike to foundationPile2--><path codeLine="67" d="M394,93.8806 C394,93.8806 394,117.5306 394,128.1906 " fill="none" id="myKlondike-foundationPile2" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="394,141.5206,398,132.5206,394,136.5206,390,132.5206,394,141.5206" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="394" x2="394" y1="136.5206" y2="128.5206"/><polygon fill="#A80036" points="394,81.8806,390,87.8806,394,93.8806,398,87.8806,394,81.8806" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[0466bd360d05d3bbbe254bab23232054]
+link myKlondike to foundationPile3--><path codeLine="68" d="M434.2809,89.4507 C434.2809,89.4507 470.99,119.3706 487.64,132.9406 " fill="none" id="myKlondike-foundationPile3" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="498.17,141.5206,493.7176,132.7356,494.2931,138.3631,488.6656,138.9386,498.17,141.5206" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="494.2931" x2="488.095" y1="138.3631" y2="133.3106"/><polygon fill="#A80036" points="424.97,81.8806,427.1021,88.7693,434.2809,89.4507,432.1488,82.562,424.97,81.8806" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[600e3cb037d6e232bd9ff5530574542f]
+link myKlondike to foundationPile4--><path codeLine="69" d="M444.1963,78.7656 C444.1963,78.7656 449.1,80.8506 451,81.6406 C501.47,102.7706 559.14,125.7106 601.73,142.4306 " fill="none" id="myKlondike-foundationPile4" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="613.88,147.1906,606.9605,140.1821,609.2248,145.3659,604.041,147.6303,613.88,147.1906" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="609.2248" x2="601.78" y1="145.3659" y2="142.4456"/><polygon fill="#A80036" points="433.17,74.0306,437.1048,80.0736,444.1963,78.7656,440.2615,72.7227,433.17,74.0306" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[492b8b7c68097e4b23b551afd9b2d6a6]
+@startuml klondike- -final-state
+
+title Klondike. Final State
+
+object myKlondike {
+    nGame = 1
+    status = 3
+}
+
+object goal {
+    status = true
+}
+
+object thePlayer {
+    id = 1
+    name = 'Diego'
+}
+object stockPile
+
+object stockPile {
+    nCards = 0
+}
+object wastePile {
+    nCards = 0
+}
+
+object foundationPile1 {
+    suite = spades
+    color = black
+}
+
+note bottom of foundationPile1
+    For all piles:
+    nCards = 13
+    firstRank = A
+    order = ascending
+end note
+
+object foundationPile2 {
+    suite = hearts
+    color = red
+}
+object foundationPile3 {
+    suite = clubs
+    color = black
+}
+object foundationPile4 {
+    suite = diamonds
+    color = red
+}
+
+object tableauPile1 {
+    nCards = 0
+}
+note bottom of tableauPile1
+    7 equal empty
+    tableau piles
+end note
+
+
+
+myKlondike *-> thePlayer
+myKlondike *- -> tableauPile1
+myKlondike *- -> stockPile
+myKlondike *- -> wastePile
+
+myKlondike *- -> foundationPile1
+myKlondike *- -> foundationPile2
+myKlondike *- -> foundationPile3
+myKlondike *- -> foundationPile4
+
+
+
+@enduml
+
+PlantUML version 1.2022.0(Tue Jan 11 17:16:42 CET 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: es
+Country: ES
+--></g></svg>
