@@ -81,7 +81,7 @@ object yellowChecker1 {
     color = 'yellow'
 }
 
-note left of yellowChecker1
+note bottom of yellowChecker1
     21 equal yellow checkers
     With diferent id, from y1 to y21
 end note
@@ -92,7 +92,7 @@ object redChecker1 {
     color = 'red'
 }
 
-note right of redChecker1
+note bottom of redChecker1
     21 equal red checkers
     With diferent id, from r1 to r21
 end note
