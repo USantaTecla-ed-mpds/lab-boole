@@ -1,0 +1,74 @@
+@startuml klondike--final-state
+
+title Klondike. Final State
+
+object myKlondike {
+    nGame = 1
+    status = 3
+}
+
+object goal {
+    status = true
+}
+
+object thePlayer {
+    id = 1
+    name = 'Diego'
+}
+object stockPile
+
+object stockPile {
+    nCards = 0
+}
+object wastePile {
+    nCards = 0
+}
+
+object foundationPile1 {
+    suite = spades
+    color = black
+}
+
+note bottom of foundationPile1
+    For all piles:
+    nCards = 13
+    firstRank = A
+    order = ascending
+end note
+
+object foundationPile2 {
+    suite = hearts
+    color = red
+}
+object foundationPile3 {
+    suite = clubs
+    color = black
+}
+object foundationPile4 {
+    suite = diamonds
+    color = red
+}
+
+object tableauPile1 {
+    nCards = 0
+}
+note bottom of tableauPile1
+    7 equal empty
+    tableau piles
+end note
+
+
+
+myKlondike *-> thePlayer
+myKlondike *--> tableauPile1
+myKlondike *--> stockPile
+myKlondike *--> wastePile
+
+myKlondike *--> foundationPile1
+myKlondike *--> foundationPile2
+myKlondike *--> foundationPile3
+myKlondike *--> foundationPile4
+
+
+
+@enduml

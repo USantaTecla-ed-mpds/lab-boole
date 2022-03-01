@@ -1,0 +1,53 @@
+@startuml connect4--vocabulary
+
+
+title Connect4 Vocabulary
+
+class Connect4
+class Turn
+class Player
+interface Board
+class Cell
+class Checker
+enum Color {
+    Red,
+    Yellow
+}
+class Put
+class Goal
+class 4InALine
+class HorizontalFigure
+class VerticalFigure
+class DiagonalFigure
+
+Connect4 *--> "2 " Player
+Connect4 *--> "7..42 " Turn
+Connect4 *-right-> Board
+Connect4 *--> Goal
+
+Turn --> Player
+Player --> "21 " Checker
+Player --> Board
+Player o-down-> Goal
+Player ..> Put
+
+Board *-down-> "7x6" Cell
+Cell o-right-> "0..1" Checker : to put in <
+
+Checker *-down-> Color
+Put ..> Checker : using
+Put -right-> Goal : to achieve
+
+Goal *--> 4InALine
+
+4InALine -left-> "4" Checker
+4InALine <|-down- HorizontalFigure
+4InALine <|-down- VerticalFigure
+4InALine <|-down- DiagonalFigure
+
+
+
+@enduml
+
+
+' diagram by Oscar Quintero and Borja Coll ;-)

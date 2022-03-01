@@ -18,24 +18,38 @@ Universo Santa Tecla
 
 [Youtube](https://www.youtube.com/watch?v=JBSbiilzg9U)
 
-### vocabulary
+---
 
-![Vocabulario]()  
-  
-### initialState  
-  
-![Estado_inicial]()  
-  
-### finalState 
-
-![Estado_final]()  
-  
-### instructions  
-  
-![Instrucciones]()  
-  
-![Instrucciones]()  
+<br>
 
 
+## Artists
+* Oscar Quintero
+* Borja Coll
+
+<br>
+
+## Proposal
+
+### Vocabulary
+
+![Vocabulario](./docs/images/connect4--vocabulary.svg)
+
+<br>
+
+### initialState
+
+![Estado_inicial](./docs/images/connect4--initial-state.svg)
+
+<br>
+
+### finalState
+
+![Estado_final](./docs/images/connect4--final-state.svg)
+
+<br>
+
+### instructions
 
 
+  

@@ -1,0 +1,110 @@
+@startuml connect4--initial-state
+
+
+title Connect4. Initial State
+
+object newGame
+note left of newGame
+    status 0 = not started
+    status 1 = started
+    status 2 = paused
+    status 3 = finished
+end note
+
+object goal
+object turn
+object myBoard
+object cellA1
+object player1
+object player2
+object redChecker1
+object yellowChecker1
+
+
+object newGame {
+    nGame = 0
+    status = 0
+}
+
+object goal {
+    name = '4 in a line'
+    status = false
+    winner = null
+}
+
+object turn {
+    firstPlayer = player1
+    turn = 0
+    remainingTurns = 42
+}
+
+object myBoard {
+    columns = 7
+    rows = 6
+}
+
+note left of myBoard
+    7 columns, from A (left) to G (right)
+    6 rows, from 1 (bottom) to 6 (top)
+end note
+
+object cellA1 {
+    coordinates = A1
+    filled = false
+}
+
+note left of cellA1
+    42 equal cells with:
+    coordinates: [A1]..[G6],
+    filled = false
+end note
+
+object player1 {
+    id = 1
+    name = 'vilma'
+    color = 'yellow'
+    checkers = 21
+    usedCheckers = 0
+}
+
+object player2 {
+    id = 2
+    name = 'pedro'
+    color = 'red'
+    checkers = 21
+    usedCheckers = 0
+}
+
+object yellowChecker1 {
+    id = y1
+    position = null
+    color = 'yellow'
+}
+
+note bottom of yellowChecker1
+    21 equal yellow checkers
+    With diferent id, from y1 to y21
+end note
+
+object redChecker1 {
+    id = r1
+    position = null
+    color = 'red'
+}
+
+note bottom of redChecker1
+    21 equal red checkers
+    With diferent id, from r1 to r21
+end note
+
+newGame *--> myBoard
+myBoard *--> cellA1
+
+player1 ..> yellowChecker1
+player2 ..> redChecker1
+
+
+@enduml
+
+
+' diagram by Oscar Quintero and Borja Coll ;-)

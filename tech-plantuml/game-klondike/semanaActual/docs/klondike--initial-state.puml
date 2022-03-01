@@ -1,0 +1,68 @@
+@startuml klondike--initial-state
+
+title Klondike. Initial State
+
+object myKlondike {
+    nGame = 0
+    status = 0
+}
+
+object goal {
+    status = false
+}
+
+object thePlayer {
+    id = 1
+    name = 'Diego'
+}
+
+object stockPile
+object wastePile
+
+object stockPile {
+    nCards = 23
+    faceup = false
+}
+object wastePile {
+    nCards = 0
+}
+object foundationPile1 {
+    nCards = 0
+}
+note bottom of foundationPile1
+    4 equal 
+    foundation piles
+end note
+
+object tableauPile1
+note bottom of tableauPile1
+    7 total tableau piles
+    Last card face up in each pile
+    0, 1, 2, 3, 4, 5 & 6 face down cards in each pile, 
+    repectively, from 1 to 7 pile
+end note
+
+object tableauPile2
+
+object tableauPile1 {
+    nCards = 1
+    card1 = { order:1, rank:2, suite:clubs, color:black, faceup:true }
+}
+object tableauPile2 {
+    nCards = 2
+    card1 = { order:1, rank:8, suite:hearts, color:red, faceup:false }
+    card2 = { order:2, rank:4, suite:spades, color:black, faceup:true }
+}
+
+
+
+myKlondike *-> thePlayer
+myKlondike *--> stockPile
+myKlondike *--> wastePile
+myKlondike *--> foundationPile1
+myKlondike *--> tableauPile1
+myKlondike *--> tableauPile2
+
+
+
+@enduml
