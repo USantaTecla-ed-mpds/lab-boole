@@ -2,13 +2,23 @@
 
 title Klondike Vocabulary
 
-class Klondike
-class Player
+class Klondike {
+    nGame = integer
+    status = integer
+}
+class Player {
+    id = integer
+    name = string
+}
 
-class Pile
+class Pile {
+    nCards = integer
+}
     class Stock
     class Waste
-    class Foundation
+    class Foundation {
+        suit = string
+    }
     class Tableau
 
 class Deck
@@ -47,7 +57,9 @@ abstract Action
     class Move
     class TurnOver
 
-class Goal
+class Goal {
+    status = boolean
+}
 
 class Spades {
     color = black
