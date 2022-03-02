@@ -25,7 +25,7 @@ object wastePile {
 }
 
 object foundationPile1 {
-    suite = spades
+    suit = spades
     color = black
 }
 
@@ -37,15 +37,15 @@ note bottom of foundationPile1
 end note
 
 object foundationPile2 {
-    suite = hearts
+    suit = hearts
     color = red
 }
 object foundationPile3 {
-    suite = clubs
+    suit = clubs
     color = black
 }
 object foundationPile4 {
-    suite = diamonds
+    suit = diamonds
     color = red
 }
 

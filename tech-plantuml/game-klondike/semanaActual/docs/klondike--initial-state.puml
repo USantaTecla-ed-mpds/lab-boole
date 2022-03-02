@@ -21,7 +21,6 @@ object wastePile
 
 object stockPile {
     nCards = 23
-    faceup = false
 }
 object wastePile {
     nCards = 0
