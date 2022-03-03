@@ -1,4 +1,5 @@
 @startuml klondike--initial-state
+skinparam handwritten true
 
 title Klondike. Initial State
 

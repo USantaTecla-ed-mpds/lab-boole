@@ -1,4 +1,5 @@
 @startuml klondike--vocabulary
+skinparam handwritten true
 
 title Klondike Vocabulary
 

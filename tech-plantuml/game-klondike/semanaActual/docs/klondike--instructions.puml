@@ -1,0 +1,44 @@
+@startuml klondike--instructions
+skinparam handwritten true
+!theme mars
+
+title Klondike Instructions
+
+state ShuffledDeck
+state GamePrepared : 7 tableau piles prepared \n rest of cards facedown in stock pile
+state CheckCardMovement <<choice>>
+state CheckFoundation <<choice>>
+state CheckRaiseCard <<choice>>
+state CardMovedToFoundation
+state CardMovedToTableau
+state CardRaisedToWaste
+state CardRaisedInTableau
+state FoundationComplete
+
+
+[*] --> ShuffledDeck : shuffle
+ShuffledDeck --> GamePrepared : put cards to tableus and stock piles
+GamePrepared --> CheckCardMovement : move card
+
+CheckCardMovement --> CardMovedToFoundation : [if you can move \n card to a foundation]
+CheckCardMovement --> CardMovedToTableau : [else if you can move \n card to a tableau]
+CheckCardMovement --> CardRaisedToWaste : [else raise card from stock \n and move to waste]
+
+CardMovedToFoundation --> CheckFoundation
+CardMovedToTableau -down-> CheckRaiseCard
+CheckRaiseCard --> CardRaisedInTableau : [if you can raise a \n card in tableau]
+CheckRaiseCard --> CheckCardMovement : [else move another card]
+
+CardRaisedInTableau --> CheckCardMovement : move card
+CardRaisedToWaste --> CheckCardMovement
+
+CheckFoundation --> FoundationComplete : [if all foundations \n are complete]
+CheckFoundation --> CheckCardMovement : [else move card]
+
+FoundationComplete --> [*] : game is complete
+
+
+@enduml
+
+
+

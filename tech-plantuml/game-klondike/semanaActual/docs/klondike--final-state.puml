@@ -1,4 +1,5 @@
 @startuml klondike--final-state
+skinparam handwritten true
 
 title Klondike. Final State
 
