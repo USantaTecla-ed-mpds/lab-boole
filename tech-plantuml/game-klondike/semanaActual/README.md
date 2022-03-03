@@ -25,13 +25,14 @@ Universo Santa Tecla
 
 ## Artists
 * Oscar Quintero
+* Fernando Cortés
 * Borja Coll
 
 <br>
 
 ## Proposal
 
-### Vocabulary
+### vocabulary
 
 ![Vocabulario](./docs/images/klondike--vocabulary.svg)
 
@@ -51,5 +52,7 @@ Universo Santa Tecla
 
 ### instructions
 
+![Instrucciones](./docs/images/klondike--instructions.svg)
 
+<br>
   
