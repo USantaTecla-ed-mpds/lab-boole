@@ -1,15 +1,3 @@
-# game-connect4.0.0.dataLanguages
-Universo Santa Tecla  
-[uSantaTecla@gmail.com](mailto:uSantaTecla@gmail.com)  
-  
-## requirements 
-
-## Artists
-* Oscar Quintero
-* Fernando Cortés
-* Borja Coll
-
-```
 ---
 players:
 - name: Player 1
@@ -39,4 +27,7 @@ history:
   column: B
   row: 1
 winner: Player 1
-```
+
+
+
+

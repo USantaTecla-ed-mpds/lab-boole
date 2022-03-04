@@ -4,3 +4,65 @@ Universo Santa Tecla
   
 ## requirements 
 
+## Artists
+* Oscar Quintero
+* Fernando Cortés
+* Borja Coll
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<connect4>
+    <players>
+        <player>
+            <name>Player 1</name>
+            <color>red</color>
+        </player>
+        <player>
+            <name>Player 2</name>
+            <color>yellow</color>
+        </player>
+    </players>
+
+    <history>
+        <move>
+            <player>Player 1</player>
+            <column>D</column>
+            <row>1</row>
+        </move>
+        <move>
+            <player>Player 2</player>
+            <column>D</column>
+            <row>2</row>
+        </move>
+        <move>
+            <player>Player 1</player>
+            <column>C</column>
+            <row>1</row>
+        </move>
+        <move>
+            <player>Player 2</player>
+            <column>D</column>
+            <row>3</row>
+        </move>
+        <move>
+            <player>Player 1</player>
+            <column>E</column>
+            <row>1</row>
+        </move>
+        <move>
+            <player>Player 2</player>
+            <column>F</column>
+            <row>1</row>
+        </move>
+        <move>
+            <player>Player 1</player>
+            <column>B</column>
+            <row>1</row>
+        </move>
+    </history>
+
+    <finalState>
+        <winner>Player 1</winner>
+    </finalState>
+</connect4>
+```
