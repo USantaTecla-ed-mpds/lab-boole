@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <klondike>
-    <player>
-        <playerId> 1291 </playerId>
+    <player id="1291">
         <playerName> Setillo </playerName>
     </player>
 
@@ -71,8 +70,7 @@
     </cards>
     
     <actions>
-        <action>
-            <actionId> 0 </actionId>
+        <action id="0">
             <actionName id="moveWasteToFoundation"/>
             <movement>
                 <card idref="c1"/>
@@ -80,8 +78,8 @@
                 <to idref="fClubs"/>
             </movement>
         </action>
-       <action>
-            <actionId> 1 </actionId>
+
+       <action id="1">
             <actionName idref="moveTableauToTableau"/>
             <movement>
                 <card idref="s11"/>
@@ -89,8 +87,8 @@
                 <to idref="t1"/>
             </movement>
         </action>
-       <action>
-            <actionId> 1 </actionId>
+
+       <action id"2">
             <actionName idref="moveStockToWaste"/>
             <movement>
                 <card idref="h2"/>
@@ -101,8 +99,7 @@
 
         ...
 
-        <action>
-            <actionId> n-1 </actionId>
+        <action id="n-1">
             <actionName idref="moveTableauToFoundation"/>
             <movement>
                 <card idref="d12"/>
@@ -114,19 +111,18 @@
 
         ...
 
-        <action>
-            <actionId> n </actionId>
-            <gameCompleted/>
+        <action id="n">
             <actionName idref="moveTableauToFoundation"/>
             <movement>
                 <card idref="h12"/>
                 <from idref="t4"/>
                 <to idref="fHearts"/>
-                <foundationCompleted idref="fDiamonds"/> 
-                <foundationCompleted idref="fSpaces"/> 
-                <foundationCompleted idref="fClubs"/> 
-                <foundationCompleted idref="fHearts"/> 
             </movement>
+            <foundationCompleted idref="fDiamonds"/> 
+            <foundationCompleted idref="fSpaces"/> 
+            <foundationCompleted idref="fClubs"/> 
+            <foundationCompleted idref="fHearts"/> 
+            <gameCompleted/>
         </action>
 
     </actions>
