@@ -1,0 +1,53 @@
+@startuml klondike--instructions
+skinparam handwritten true
+!theme mars
+
+title Klondike Instructions
+
+state GamePrepared
+
+state CheckPossibleMovements <<choice>>
+state CheckFoundation <<choice>>
+state CheckTableau <<choice>>
+state CheckRaiseCard <<choice>>
+state CheckFoundationComplete <<choice>>
+state CheckSwipeCard <<choice>>
+
+state CardMovedToFoundation
+state CardMovedToTableau
+state CardMovedToWaste
+state CardRaisedInTableau
+
+state StockRecovered
+state FoundationComplete
+
+
+[*] --> GamePrepared : shuffle deck \n / put cards to tableaus \n / put cards to stock pile
+GamePrepared --> CheckPossibleMovements : init game / check \n possible movement
+
+CheckPossibleMovements --> CheckFoundation : check movement \n to foundation
+CheckFoundation --> CardMovedToFoundation : [ if you can move \n card to a foundation ] \n / move card
+CardMovedToFoundation --> CheckFoundationComplete
+CheckFoundationComplete --> FoundationComplete
+
+CheckFoundationComplete --> CheckPossibleMovements
+
+CheckFoundation --> CheckTableau : check movement \n to tableau
+CheckTableau --> CardMovedToTableau : [ if you can move \n card to a tableau ] \n / move card
+
+CardMovedToTableau --> CheckSwipeCard : [if card can be raised]
+CheckSwipeCard --> CardRaisedInTableau : raise card
+CheckSwipeCard --> CheckTableau : else
+CardRaisedInTableau --> CheckPossibleMovements
+
+CheckTableau --> CheckRaiseCard : check \n raise card
+CheckRaiseCard -->CardMovedToWaste : [ if you can raise \n card from stock ] \n / raise card \n / move card to waste
+CheckRaiseCard --> StockRecovered : [ else ] / recover stock
+StockRecovered --> CardMovedToWaste : move card
+
+CardMovedToWaste --> CheckPossibleMovements
+
+FoundationComplete --> [*] : win the game
+
+
+@enduml

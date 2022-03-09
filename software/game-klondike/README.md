@@ -33,7 +33,7 @@ Universo Santa Tecla
   
 ### instructions  
   
-![Instrucciones]()  
+![Instrucciones](./docs/images/klondike--instructions.svg)  
   
 ![Instrucciones]()  
   
