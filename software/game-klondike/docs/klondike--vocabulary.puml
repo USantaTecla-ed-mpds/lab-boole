@@ -56,8 +56,13 @@ Klondike *--> "13x4          " Card
 Klondike *--> "13" Pile
 
 Player ..> Action
-Player *--> Goal
+Player --> Goal
 Goal -> "4" Foundation
+
+note right of Goal {
+    A full suit in ascending order,
+    for each foundation.
+}
 
 Action <- Goal
 Action <|-- Move
@@ -74,9 +79,9 @@ Stock      o--> "0..24 " Card
 Waste      o--> "0..n" Card
 Tableau    o--> "0..13    " Card
 Foundation o--> "      0..13" Card
-Foundation *--> Suit
+Foundation --> Suit
 
-Card --> Rank
+Card *--> Rank
 Card *-right-> Suit
 
 Suit *-> Color
