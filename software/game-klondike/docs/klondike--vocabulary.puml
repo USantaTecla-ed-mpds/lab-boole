@@ -52,8 +52,9 @@ class TurnOver
 
 
 Klondike *--> Player
-Klondike *--> "13x4          " Card
-Klondike *--> "13" Pile
+Klondike *-right->  Board
+Board    *--> "13x4" Card
+Klondike *-->  Goal
 
 Player ..> Action
 Player --> Goal
@@ -64,25 +65,34 @@ note right of Goal {
     for each foundation.
 }
 
-Action <- Goal
+
 Action <|-- Move
 Action <|-- TurnOver
 Action -> Card
-Action --> Pile
+Move --> Pile : origin
+Move --> Pile : destination
+TurnOver --> Stock 
+TurnOver --> Tableau 
 
 Pile <|-down-- Stock
 Pile <|-down-- Waste
-Pile <|-down-- "7" Tableau
-Pile <|-down-- "4" Foundation
+Pile <|-down-- Tableau
+Pile <|-down-- Foundation
 
-Stock      o--> "0..24 " Card 
-Waste      o--> "0..n" Card
-Tableau    o--> "0..13    " Card
-Foundation o--> "      0..13" Card
+Board *--> Stock
+Board *--> Waste
+Board *--> "7" Foundation
+Board *--> "4" Tableau
+
+
+Stock      o--> "0..24" Card 
+Waste      o--> "0..24" Card
+Tableau    o--> "0..13 " Card
+Foundation o--> "     0..13" Card
 Foundation --> Suit
 
 Card *--> Rank
-Card *-right-> Suit
+Card "1" *-right-> "1" Suit
 
 Suit *-> Color
 Suit  <|-- Hearts
@@ -96,7 +106,5 @@ Diamonds *--> Red
 Hearts   *--> Red
 Clubs    *--> Black
 Spades   *--> Black
-
-
 
 @enduml

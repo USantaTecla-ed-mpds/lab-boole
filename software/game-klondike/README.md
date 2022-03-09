@@ -21,15 +21,15 @@ Universo Santa Tecla
 
 ### vocabulary
 
-![Vocabulario]()  
+![Vocabulario](./docs/images/klondike--vocabulary.svg)  
   
 ### initialState  
   
-![Estado_inicial]()  
+![Estado_inicial](./docs/images/klondike--initial-state.puml)  
   
 ### finalState 
 
-![Estado_final]()  
+![Estado_final](./docs/images/klondike--final-state.puml)  
   
 ### instructions  
   
