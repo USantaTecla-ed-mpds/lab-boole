@@ -25,7 +25,7 @@ Universo Santa Tecla
   
 ### initialState  
   
-![Estado_inicial](./docs/images/klondike--initial-state.puml)  
+![Estado_inicial](./docs/images/klondike--initial-state.svg)  
   
 ### finalState 
 

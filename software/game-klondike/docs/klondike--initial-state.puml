@@ -3,22 +3,27 @@ skinparam handwritten true
 
 title Klondike. Initial State
 
-object myKlondike {
-    nGame = 0
-    status = 0
+object "Klondike:myKlondike" as myKlondike{
+    nGame = 1
+    status = 1
 }
 
-object goal {
+object "Goal:goal" as goal {
     status = false
 }
 
-object thePlayer {
+object "Player:setilloPlayer" as player {
     id = 1
-    name = 'Diego'
+    name = 'Setillo'
 }
 
-object stockPile
-object wastePile
+object "Board:klondikeBoard" as board {
+
+}
+
+
+object "Stock:stockPile" as stockPile
+object "Waste:wastePile" as wastePile
 
 object stockPile {
     nCards = 23
@@ -26,43 +31,99 @@ object stockPile {
 object wastePile {
     nCards = 0
 }
-object foundationPile1 {
+
+
+object "Foundation:diamondsFoundation" as diamondsFoundation {
     nCards = 0
 }
-note bottom of foundationPile1
-    4 equal 
-    foundation piles
-end note
 
-object tableauPile1
-note bottom of tableauPile1
+
+object "Foundation:clubsFoundation" as clubsFoundation {
+    nCards = 0
+}
+
+object "Card:card1" as card1 {  
+    rank  = Nine
+    faceUp = false
+}
+
+object "Card:card23" as card23 {
+        rank  = Ace
+        faceUp = false
+}
+
+object "Card:card24" as card24 {
+        rank = King
+        faceUp = true
+}
+
+object "Card:card25" as card25 {
+        rank = Two    
+        faceUp = true
+}
+
+object "Card:card30" as card30 {  
+    rank  = Four
+    faceUp = false
+}
+
+note bottom of tableauPile7
     7 total tableau piles
     Last card face up in each pile
     0, 1, 2, 3, 4, 5 & 6 face down cards in each pile, 
     repectively, from 1 to 7 pile
 end note
 
-object tableauPile2
+note bottom of clubsFoundation
+    4 total foundations piles
+    with no card
+end note
+
 
 object tableauPile1 {
     nCards = 1
-    card1 = { order:1, rank:2, suite:clubs, color:black, faceup:true }
 }
-object tableauPile2 {
-    nCards = 2
-    card1 = { order:1, rank:8, suite:hearts, color:red, faceup:false }
-    card2 = { order:2, rank:4, suite:spades, color:black, faceup:true }
+object tableauPile7 {
+    nCards = 7
 }
 
+object "Diamonds:diamondsSuite" as diamond {
+    color = red
+}
+object "Hearst:heartsSuite" as hearts {
+    color = red
+}
+object "Clubs:clubsSuite" as clubs {
+    color = black
+}
 
+object "Spaces:spacesSuite" as spaces{
+    color = black
+}
 
-myKlondike *-> thePlayer
-myKlondike *--> stockPile
-myKlondike *--> wastePile
-myKlondike *--> foundationPile1
-myKlondike *--> tableauPile1
-myKlondike *--> tableauPile2
+myKlondike *--> player
+myKlondike *--> goal
+myKlondike *--> board
 
+player --> goal
 
+board *--> stockPile
+board *--> wastePile
+board *--> clubsFoundation
+board *--> diamondsFoundation
+board *--> tableauPile1
+board *--> tableauPile7
 
+stockPile o--> card1
+stockPile o--> card30
+stockPile o--> card23
+tableauPile1 o--> card24
+
+tableauPile7 o--> card25
+
+card1  *--> diamond
+card23 *--> hearts
+card25 *--> hearts
+card24 *--> clubs
+card30 *--> spaces
 @enduml
