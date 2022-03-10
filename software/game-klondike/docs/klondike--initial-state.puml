@@ -1,7 +1,7 @@
 @startuml klondike--initial-state
 skinparam handwritten true
 
-title Klondike. Initial State
+title Klondike. Initial State \n
 
 object "Klondike:myKlondike" as myKlondike{
     nGame = 1
@@ -67,7 +67,7 @@ object "Card:card30" as card30 {
     faceUp = false
 }
 
-note bottom of tableauPile7
+note top of tableauPile7
     7 total tableau piles
     Last card face up in each pile
     0, 1, 2, 3, 4, 5 & 6 face down cards in each pile, 
@@ -103,7 +103,7 @@ object "Spaces:spacesSuite" as spaces{
 
 myKlondike *--> player
 myKlondike *--> goal
-myKlondike *--> board
+myKlondike *-down-> board
 
 player --> goal
 
@@ -117,13 +117,17 @@ board *--> tableauPile7
 stockPile o--> card1
 stockPile o--> card30
 stockPile o--> card23
-tableauPile1 o--> card24
 
-tableauPile7 o--> card25
+together {
+    tableauPile1 o--> card24
+    tableauPile7 o--> card25
+}
 
 card1  *--> diamond
 card23 *--> hearts
 card25 *--> hearts
 card24 *--> clubs
 card30 *--> spaces
+
+
 @enduml

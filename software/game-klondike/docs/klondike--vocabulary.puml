@@ -1,7 +1,7 @@
 @startuml klondike--vocabulary
 skinparam handwritten true
 
-title Klondike Vocabulary
+title Klondike Vocabulary \n
 
 class Klondike
 class Player
@@ -40,10 +40,14 @@ abstract Color
 class Red
 class Black
 
-class Spades
-class Clubs
-class Diamonds
-class Hearts
+together {
+    class Spades
+    class Clubs
+}
+together {
+    class Diamonds
+    class Hearts
+}
 
 abstract Action
 class Move
@@ -61,14 +65,16 @@ Player --> Goal
 Goal -> "4" Foundation
 
 note right of Goal {
-    A full suit in ascending order,
-    for each foundation.
+    One full suit in 
+    ascending order, 
+    from Ace to King,
+    in each foundation.
 }
 
 
 Action <|-- Move
 Action <|-- TurnOver
-Action -> Card
+Action --> Card
 Move --> Pile : origin
 Move --> Pile : destination
 TurnOver --> Stock 
@@ -94,12 +100,13 @@ Foundation --> Suit
 Card *--> Rank
 Card "1" *-right-> "1" Suit
 
-Suit *-> Color
+Suit *-d-> Color
 Suit  <|-- Hearts
-Suit  <|-- Spades
 Suit  <|-- Diamonds
-Suit  <|-- Clubs
 Color <|-- Red
+
+Suit  <|-- Spades
+Suit  <|-- Clubs
 Color <|-- Black
 
 Diamonds *--> Red
