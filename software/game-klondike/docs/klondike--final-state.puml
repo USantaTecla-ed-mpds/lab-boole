@@ -1,22 +1,29 @@
 @startuml klondike--final-state
 skinparam handwritten true
 
-title Klondike. Final State
+title Klondike. Initial State
 
-object myKlondike {
+object "Klondike:myKlondike" as myKlondike{
     nGame = 1
-    status = 3
+    status = 1
 }
 
-object goal {
+object "Goal:goal" as goal {
     status = true
 }
 
-object thePlayer {
+object "Player:setilloPlayer" as player {
     id = 1
-    name = 'Diego'
+    name = 'Setillo'
 }
-object stockPile
+
+object "Board:klondikeBoard" as board {
+
+}
+
+
+object "Stock:stockPile" as stockPile
+object "Waste:wastePile" as wastePile
 
 object stockPile {
     nCards = 0
@@ -25,51 +32,115 @@ object wastePile {
     nCards = 0
 }
 
-object foundationPile1 {
-    suit = spades
-    color = black
+
+object "Foundation:diamondsFoundation" as diamondsFoundation {
+    nCards = 13
+}
+object "Foundation:heartsFoundation" as heartsFoundation {
+    nCards = 13
 }
 
-note bottom of foundationPile1
-    For all piles:
+object "Foundation:spacesFoundation" as spacesFoundation {
     nCards = 13
-    firstRank = A
-    order = ascending
+}
+
+object "Foundation:clubsFoundation" as clubsFoundation {
+    nCards = 13
+}
+
+object "Card:card1" as card1 {  
+    rank  = King
+    faceUp = true
+}
+
+object "Card:card23" as card23 {
+        rank  = Ace
+        faceUp = true
+}
+
+object "Card:card24" as card24 {
+        rank = King
+        faceUp = true
+}
+
+object "Card:card25" as card25 {
+        rank = King    
+        faceUp = true
+}
+
+object "Card:card30" as card30 {  
+    rank  = King
+    faceUp = true
+}
+
+note bottom of tableauPile7
+    7 total tableau piles
+    Last card face up in each pile
+    0, 1, 2, 3, 4, 5 & 6 face down cards in each pile, 
+    repectively, from 1 to 7 pile
 end note
 
-object foundationPile2 {
-    suit = hearts
-    color = red
-}
-object foundationPile3 {
-    suit = clubs
-    color = black
-}
-object foundationPile4 {
-    suit = diamonds
-    color = red
-}
+note bottom of clubsFoundation
+    4 total foundations piles
+    with all cards
+end note
+
 
 object tableauPile1 {
     nCards = 0
 }
-note bottom of tableauPile1
-    7 equal empty
-    tableau piles
-end note
+object tableauPile7 {
+    nCards = 0
+}
 
+object "Diamonds:diamondsSuite" as diamond {
+    color = red
+}
+object "Hearst:heartsSuite" as hearts {
+    color = red
+}
+object "Clubs:clubsSuite" as clubs {
+    color = black
+}
 
+object "Spaces:spacesSuite" as spaces{
+    color = black
+}
 
-myKlondike *-> thePlayer
-myKlondike *--> tableauPile1
-myKlondike *--> stockPile
-myKlondike *--> wastePile
+object "Move:moveN" as moveN {
+ 
+} 
 
-myKlondike *--> foundationPile1
-myKlondike *--> foundationPile2
-myKlondike *--> foundationPile3
-myKlondike *--> foundationPile4
+myKlondike *--> player
+myKlondike *--> goal
+myKlondike *--> board
 
+player --> goal
 
+board *--> stockPile
+board *--> wastePile
+board *--> clubsFoundation
+board *--> diamondsFoundation
+board *--> heartsFoundation
+board *--> spacesFoundation
+board *--> tableauPile1
+board *--> tableauPile7
 
+diamondsFoundation o--> card1
+spacesFoundation o--> card30
+heartsFoundation o--> card23
+clubsFoundation o--> card24
+
+heartsFoundation o--> card25
+
+card1  *--> diamond
+card23 *--> hearts
+card25 *--> hearts
+card24 *--> clubs
+card30 *--> spaces
+
+player ..> moveN
+moveN --> card1
+moveN --> tableauPile7 : origin
+moveN --> diamondsFoundation : destination
 @enduml

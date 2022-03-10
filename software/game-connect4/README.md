@@ -12,29 +12,45 @@ Universo Santa Tecla
 
 ## domainModel  
 
-![connect4](../game-connect4/docs/images/conecta4.jpg)  
+![connect4](./docs/images/conecta4.jpg)  
 
 [WIKI](https://es.wikipedia.org/wiki/Conecta_4)
 
 [Youtube](https://www.youtube.com/watch?v=JBSbiilzg9U)
 
+---
 
-### vocabulary
+<br>
 
-![Vocabulario]()  
-  
-### initialState  
-  
-![Estado_inicial]()  
-  
-### finalState 
 
-![Estado_final]()  
+## Artists
+* Oscar Quintero
+* Borja Coll
+* Fernando Cortés
+
+<br>
+
+## Proposal
+
+### Vocabulary
+
+![Vocabulario](./docs/images/connect4--vocabulary.svg)
+
+<br>
+
+### initialState
+
+![Estado_inicial](./docs/images/connect4--initial-state.svg)
+
+<br>
+
+### finalState
+
+![Estado_final](./docs/images/connect4--final-state.svg)
+
+<br>
+
+### instructions
+
+
   
-### instructions  
-  
-![Instrucciones]()  
-  
-![Instrucciones]()  
-  
- 

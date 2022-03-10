@@ -18,6 +18,15 @@ Universo Santa Tecla
 
 [Youtube](https://www.youtube.com/watch?v=yjgQXcFVBQY)
 
+<br>
+
+
+## Artists
+* Oscar Quintero
+* Borja Coll
+* Fernando Cortés
+
+<br>
 
 ### vocabulary
 
@@ -29,7 +38,7 @@ Universo Santa Tecla
   
 ### finalState 
 
-![Estado_final](./docs/images/klondike--final-state.puml)  
+![Estado_final](./docs/images/klondike--final-state.svg)  
   
 ### instructions  
   
