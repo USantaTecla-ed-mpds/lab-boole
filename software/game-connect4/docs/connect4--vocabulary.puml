@@ -4,7 +4,7 @@
 title Connect4 Vocabulary \n
 
 class Connect4
-abstract Turn
+class Turn
 class Player
 class Board
 class Cell
