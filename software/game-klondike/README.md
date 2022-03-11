@@ -43,6 +43,5 @@ Universo Santa Tecla
 ### instructions  
   
 ![Instrucciones](./docs/images/klondike--instructions.svg)  
-  
-![Instrucciones]()  
+
   
