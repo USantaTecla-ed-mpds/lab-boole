@@ -13,34 +13,32 @@ enum Color {
     Red,
     Yellow
 }
-class Put
+class Insertion
 class Goal
-
 class 4InLineHorizontal
 class 4InLineVertical
 class 4InLineDiagonal
 
-Connect4 *-d-> "2 " Player
-Connect4 *--> "7..42" Turn
+Connect4 *--> Turn
+Connect4 *--> "    2" Player
 Connect4 *--> Board
-Connect4 *--> Goal
 
-Turn --> Player
-Player --> "21" Checker
-Player o--> Goal
-Player ..> Put
+Turn --> " 2" Player
+Player ---> "21" Checker
+Player --> Goal
+Player ..> "3..21" Insertion
+Player -l-> Board
 
-Board *---> "7x6" Cell
-Cell o--> "0..1  " Checker
-
+Board *-d-> "7x6" Cell
+Cell o-r-> "0..1" Checker
 Cell --> Column
 Cell --> Row
 
-Checker *-d-> Color
-Put --> Checker
-Put --> Column
+Checker *--> Color
+Insertion ---> Checker
+Insertion --> Column
 
-Goal ---> "4" Checker
+Goal --> "  4" Checker
 Goal <|-down- 4InLineHorizontal
 Goal <|-down- 4InLineVertical
 Goal <|-down- 4InLineDiagonal
