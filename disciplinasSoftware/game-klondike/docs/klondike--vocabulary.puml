@@ -1,0 +1,117 @@
+@startuml klondike--vocabulary
+skinparam handwritten true
+
+title Klondike Vocabulary \n
+
+class Klondike
+class Player
+class Goal
+abstract Pile
+class Stock
+class Waste
+class Foundation
+class Tableau
+class Card {
+    faceUp: boolean
+}
+enum Rank {
+    Ace,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Ten,
+    Jack,
+    Queen,
+    King
+}
+
+abstract Suit
+class Spades
+class Hearts
+class Diamonds
+class Clubs
+
+abstract Color
+class Red
+class Black
+
+together {
+    class Spades
+    class Clubs
+}
+together {
+    class Diamonds
+    class Hearts
+}
+
+abstract Action
+class Move
+class TurnOver
+
+
+
+Klondike *--> Player
+Klondike *-right->  Board
+Board    *--> "13x4" Card
+Klondike *-->  Goal
+
+Player ..> Action
+Player --> Goal
+Goal -> "4" Foundation
+
+note right of Goal {
+    One full suit in 
+    ascending order, 
+    from Ace to King,
+    in each foundation.
+}
+
+
+Action <|-- Move
+Action <|-- TurnOver
+Action --> Card
+Move --> Pile : origin
+Move --> Pile : destination
+TurnOver --> Stock 
+TurnOver --> Tableau 
+
+Pile <|-down-- Stock
+Pile <|-down-- Waste
+Pile <|-down-- Tableau
+Pile <|-down-- Foundation
+
+Board *--> Stock
+Board *--> Waste
+Board *--> "7" Foundation
+Board *--> "4" Tableau
+
+
+Stock      o--> "0..24" Card 
+Waste      o--> "0..24" Card
+Tableau    o--> "0..13 " Card
+Foundation o--> "     0..13" Card
+Foundation --> Suit
+
+Card *--> Rank
+Card "1" *-right-> "1" Suit
+
+Suit *-d-> Color
+Suit  <|-- Hearts
+Suit  <|-- Diamonds
+Color <|-- Red
+
+Suit  <|-- Spades
+Suit  <|-- Clubs
+Color <|-- Black
+
+Diamonds *--> Red
+Hearts   *--> Red
+Clubs    *--> Black
+Spades   *--> Black
+
+@enduml

@@ -1,0 +1,133 @@
+@startuml klondike--initial-state
+skinparam handwritten true
+
+title Klondike. Initial State \n
+
+object "Klondike:myKlondike" as myKlondike{
+    nGame = 1
+    status = 1
+}
+
+object "Goal:goal" as goal {
+    status = false
+}
+
+object "Player:setilloPlayer" as player {
+    id = 1
+    name = 'Setillo'
+}
+
+object "Board:klondikeBoard" as board {
+
+}
+
+
+object "Stock:stockPile" as stockPile
+object "Waste:wastePile" as wastePile
+
+object stockPile {
+    nCards = 23
+}
+object wastePile {
+    nCards = 0
+}
+
+
+object "Foundation:diamondsFoundation" as diamondsFoundation {
+    nCards = 0
+}
+
+
+object "Foundation:clubsFoundation" as clubsFoundation {
+    nCards = 0
+}
+
+object "Card:card1" as card1 {  
+    rank  = Nine
+    faceUp = false
+}
+
+object "Card:card23" as card23 {
+        rank  = Ace
+        faceUp = false
+}
+
+object "Card:card24" as card24 {
+        rank = King
+        faceUp = true
+}
+
+object "Card:card25" as card25 {
+        rank = Two    
+        faceUp = true
+}
+
+object "Card:card30" as card30 {  
+    rank  = Four
+    faceUp = false
+}
+
+note top of tableauPile7
+    7 total tableau piles
+    Last card face up in each pile
+    0, 1, 2, 3, 4, 5 & 6 face down cards in each pile, 
+    repectively, from 1 to 7 pile
+end note
+
+note bottom of clubsFoundation
+    4 total foundations piles
+    with no card
+end note
+
+
+object tableauPile1 {
+    nCards = 1
+}
+object tableauPile7 {
+    nCards = 7
+}
+
+object "Diamonds:diamondsSuite" as diamond {
+    color = red
+}
+object "Hearst:heartsSuite" as hearts {
+    color = red
+}
+object "Clubs:clubsSuite" as clubs {
+    color = black
+}
+
+object "Spaces:spacesSuite" as spaces{
+    color = black
+}
+
+myKlondike *--> player
+myKlondike *--> goal
+myKlondike *-down-> board
+
+player --> goal
+
+board *--> stockPile
+board *--> wastePile
+board *--> clubsFoundation
+board *--> diamondsFoundation
+board *--> tableauPile1
+board *--> tableauPile7
+
+stockPile o--> card1
+stockPile o--> card30
+stockPile o--> card23
+
+together {
+    tableauPile1 o--> card24
+    tableauPile7 o--> card25
+}
+
+card1  *--> diamond
+card23 *--> hearts
+card25 *--> hearts
+card24 *--> clubs
+card30 *--> spaces
+
+
+@enduml

@@ -1,0 +1,46 @@
+@startuml klondike--instructions
+
+skinparam handwritten true
+skinparam nodesep 50
+skinparam ranksep 50
+!theme mars
+
+title Klondike Instructions \n
+
+state GamePrepared
+state _CheckPossibleMovement <<choice>>
+state _CheckMoveToFoundation <<choice>>
+state _CheckMoveToTableau <<choice>>
+state _CheckRaiseCardFromStock <<choice>>
+state _CheckRaiseInTableau <<choice>>
+state _CheckFoundationComplete <<choice>>
+state CardMovedToFoundation
+state CardMovedToTableau
+state CardMovedToWaste
+state CardRaisedInTableau
+state StockRecovered
+state FoundationComplete
+
+
+[*]                         -r-> GamePrepared : shuffle deck \n / put cards to tableaus \n / put rest of cards to stock pile
+GamePrepared                --> _CheckPossibleMovement : check \n possible movement
+_CheckPossibleMovement      -[#green,bold]-> _CheckMoveToFoundation : check movement \n to a foundation
+_CheckMoveToFoundation      --> CardMovedToFoundation : [ if card can be \n moved to a foundation ] \n / move card
+CardMovedToFoundation       --> _CheckFoundationComplete : check if \n foundation is \n complete
+_CheckFoundationComplete    ---> FoundationComplete : [ if foundation is \n complete ] \n / sing the victory ;)
+_CheckFoundationComplete    --> _CheckPossibleMovement : [ else ]
+_CheckMoveToFoundation      --> _CheckMoveToTableau : [ else ] \n / check movement \n to tableau
+_CheckMoveToTableau         --> CardMovedToTableau : [ if card can be \n moved to a tableau ] \n / move card
+CardMovedToTableau          --> _CheckRaiseInTableau : check if a \n card can be \n raised in tableau
+_CheckRaiseInTableau        --> CardRaisedInTableau : [ if card can be \n raised in tableau ] \n / raise card
+_CheckRaiseInTableau        --> _CheckPossibleMovement : [ else ]
+CardRaisedInTableau         --> _CheckPossibleMovement
+_CheckMoveToTableau         --> _CheckRaiseCardFromStock : [ else ] \n / check if a \n card can be \n raised from \n stock
+_CheckRaiseCardFromStock    --> CardMovedToWaste : [ if card can be \n raised from stock ] \n / raise card \n / put card to waste
+_CheckRaiseCardFromStock    --> StockRecovered : [ else ] \n / recover stock
+StockRecovered              ---> CardMovedToWaste : raise card \n / put card to waste
+CardMovedToWaste            --> _CheckPossibleMovement : [ else ]
+FoundationComplete          -[#green,bold]-> [*] : you win the game
+
+
+@enduml
