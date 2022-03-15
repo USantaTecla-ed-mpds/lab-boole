@@ -1,0 +1,30 @@
+@startuml connect4--instructions
+
+skinparam nodesep 50
+skinparam ranksep 50
+!theme mars
+
+title Connect4 Instructions \n
+
+
+state GamePrepared
+state _CheckPlayerInsertion <<choice>>
+state CheckerInserted
+state _Check4InLine <<choice>>
+state TurnChanged
+state 4CheckersInLine
+
+
+[*]                     --r-> GamePrepared : clear the board \n / select first player
+GamePrepared            ---> _CheckPlayerInsertion : init game \n / first player check \n possible insertion
+_CheckPlayerInsertion   --r-> CheckerInserted : [ if there are possible insertion ] \n / player insert a checker
+CheckerInserted         ---> _Check4InLine : player check if \n has 4 checkers in line
+
+_Check4InLine           --l-> TurnChanged : [ else ] \n / change player turn
+TurnChanged             --u-> _CheckPlayerInsertion : player check \n possible insertion
+
+_Check4InLine           ---> 4CheckersInLine : [ if player has \n 4 checkers in line ]
+4CheckersInLine         --> [*] : game over
+
+
+@enduml

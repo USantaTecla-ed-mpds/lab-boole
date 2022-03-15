@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="764px" preserveAspectRatio="none" style="width:1065px;height:764px;background:#FFFFFF;" version="1.1" viewBox="0 0 1065 764" width="1065px" zoomAndPan="magnify"><defs><filter height="300%" id="fprzptfu35591" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="173" x="437.25" y="18.6855">Connect4. Final State</text><text fill="#000000" font-family="sans-serif" font-size="18" lengthAdjust="spacing" textLength="0" x="528.75" y="41.3262"/><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="71" x="567.5" y="62.7813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="57" x="574.5" y="77.2383">newGame</text><line style="stroke:#A80036;stroke-width:1.5;" x1="568.5" x2="637.5" y1="81.875" y2="81.875"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="53" x="573.5" y="96.2559">nGame = 1</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="44" x="573.5" y="108.834">status = 3</text><path d="M386,51.2813 L386,126.6875 A0,0 0 0 0 386,126.6875 L532,126.6875 A0,0 0 0 0 532,126.6875 L532,92.7813 L567.29,88.7813 L532,84.7813 L532,61.2813 L522,51.2813 L386,51.2813 A0,0 0 0 0 386,51.2813 " fill="#FBFB77" filter="url(#fprzptfu35591)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M522,51.2813 L522,61.2813 L532,61.2813 L522,51.2813 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="125" x="392" y="69.7764">status 0 = not started</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="103" x="392" y="86.1279">status 1 = started</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="105" x="392" y="102.4795">status 2 = paused</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="107" x="392" y="118.8311">status 3 = finished</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="70" x="568" y="186.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="49" x="578.5" y="200.7383">myBoard</text><line style="stroke:#A80036;stroke-width:1.5;" x1="569" x2="637" y1="205.375" y2="205.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="58" x="574" y="219.7559">columns = 7</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="38" x="574" y="232.334">rows = 6</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="89.9844" style="stroke:#A80036;stroke-width:1.5;" width="94" x="682" y="535.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="40" x="709" y="549.7383">player1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="683" x2="775" y1="554.375" y2="554.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="27" x="688" y="568.7559">id = 1</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="69" x="688" y="581.334">name = 'vilma'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="70" x="688" y="593.9121">color = 'yellow'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="65" x="688" y="606.4902">checkers = 21</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="82" x="688" y="619.0684">usedCheckers = 4</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="89.9844" style="stroke:#A80036;stroke-width:1.5;" width="94" x="207" y="535.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="40" x="234" y="549.7383">player2</text><line style="stroke:#A80036;stroke-width:1.5;" x1="208" x2="300" y1="554.375" y2="554.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="27" x="213" y="568.7559">id = 2</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="70" x="213" y="581.334">name = 'pedro'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="55" x="213" y="593.9121">color = 'red'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="65" x="213" y="606.4902">checkers = 21</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="82" x="213" y="619.0684">usedCheckers = 3</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="64.8281" style="stroke:#A80036;stroke-width:1.5;" width="106" x="333" y="685.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="24" x="374" y="699.7383">goal</text><line style="stroke:#A80036;stroke-width:1.5;" x1="334" x2="438" y1="704.375" y2="704.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="94" x="339" y="718.7559">name = '4 in a Line'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="56" x="339" y="731.334">status = true</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="78" x="339" y="743.9121">winner = player1</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="110" x="674" y="691.7813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="21" x="718.5" y="706.2383">turn</text><line style="stroke:#A80036;stroke-width:1.5;" x1="675" x2="783" y1="710.875" y2="710.875"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="36" x="680" y="725.2559">turn = 7</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="98" x="680" y="737.834">remainingTurns = 35</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="96" x="686" y="298.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="35" x="716.5" y="312.7383">cellD1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="687" x2="781" y1="317.375" y2="317.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="84" x="692" y="331.7559">coordinates = 'D1'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="70" x="692" y="344.334">filled = 'yellow'</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="96" x="138" y="298.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="35" x="168.5" y="312.7383">cellD2</text><line style="stroke:#A80036;stroke-width:1.5;" x1="139" x2="233" y1="317.375" y2="317.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="84" x="144" y="331.7559">coordinates = 'D2'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="55" x="144" y="344.334">filled = 'red'</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="96" x="817" y="298.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="34" x="848" y="312.7383">cellE1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="818" x2="912" y1="317.375" y2="317.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="84" x="823" y="331.7559">coordinates = 'E1'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="70" x="823" y="344.334">filled = 'yellow'</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="96" x="269" y="298.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="35" x="299.5" y="312.7383">cellD3</text><line style="stroke:#A80036;stroke-width:1.5;" x1="270" x2="364" y1="317.375" y2="317.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="84" x="275" y="331.7559">coordinates = 'D3'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="55" x="275" y="344.334">filled = 'red'</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="96" x="555" y="298.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="35" x="585.5" y="312.7383">cellC1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="556" x2="650" y1="317.375" y2="317.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="84" x="561" y="331.7559">coordinates = 'C1'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="70" x="561" y="344.334">filled = 'yellow'</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="96" x="7" y="298.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="34" x="38" y="312.7383">cellB1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="8" x2="102" y1="317.375" y2="317.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="84" x="13" y="331.7559">coordinates = 'B1'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="55" x="13" y="344.334">filled = 'red'</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="52.25" style="stroke:#A80036;stroke-width:1.5;" width="95" x="951.5" y="298.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="33" x="982.5" y="312.7383">cellF1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="952.5" x2="1045.5" y1="317.375" y2="317.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="83" x="957.5" y="331.7559">coordinates = 'F1'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="70" x="957.5" y="344.334">filled = 'yellow'</text><path d="M400.5,302.7813 L400.5,345.4844 A0,0 0 0 0 400.5,345.4844 L519.5,345.4844 A0,0 0 0 0 519.5,345.4844 L519.5,328.2813 L554.88,324.2813 L519.5,320.2813 L519.5,312.7813 L509.5,302.7813 L400.5,302.7813 A0,0 0 0 0 400.5,302.7813 " fill="#FBFB77" filter="url(#fprzptfu35591)" style="stroke:#A80036;stroke-width:1.0;"/><path d="M509.5,302.7813 L509.5,312.7813 L519.5,312.7813 L509.5,302.7813 " fill="#FBFB77" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="98" x="406.5" y="321.2764">rest of cells with:</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="69" x="406.5" y="337.6279">filled = false</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="64.8281" style="stroke:#A80036;stroke-width:1.5;" width="101" x="678.5" y="410.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="87" x="685.5" y="424.7383">yellowChecker1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="679.5" x2="778.5" y1="429.375" y2="429.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="36" x="684.5" y="443.7559">id = 'y1'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="66" x="684.5" y="456.334">position = 'D1'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="70" x="684.5" y="468.9121">color = 'yellow'</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="64.8281" style="stroke:#A80036;stroke-width:1.5;" width="85" x="146.5" y="410.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="71" x="153.5" y="424.7383">redChecker1</text><line style="stroke:#A80036;stroke-width:1.5;" x1="147.5" x2="230.5" y1="429.375" y2="429.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="34" x="152.5" y="443.7559">id = 'r1'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="66" x="152.5" y="456.334">position = 'D2'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="55" x="152.5" y="468.9121">color = 'red'</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="64.8281" style="stroke:#A80036;stroke-width:1.5;" width="101" x="814.5" y="410.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="87" x="821.5" y="424.7383">yellowChecker2</text><line style="stroke:#A80036;stroke-width:1.5;" x1="815.5" x2="914.5" y1="429.375" y2="429.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="36" x="820.5" y="443.7559">id = 'y2'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="66" x="820.5" y="456.334">position = 'E1'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="70" x="820.5" y="468.9121">color = 'yellow'</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="64.8281" style="stroke:#A80036;stroke-width:1.5;" width="85" x="269.5" y="410.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="71" x="276.5" y="424.7383">redChecker2</text><line style="stroke:#A80036;stroke-width:1.5;" x1="270.5" x2="353.5" y1="429.375" y2="429.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="34" x="275.5" y="443.7559">id = 'r2'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="66" x="275.5" y="456.334">position = 'D3'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="55" x="275.5" y="468.9121">color = 'red'</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="64.8281" style="stroke:#A80036;stroke-width:1.5;" width="101" x="542.5" y="410.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="87" x="549.5" y="424.7383">yellowChecker3</text><line style="stroke:#A80036;stroke-width:1.5;" x1="543.5" x2="642.5" y1="429.375" y2="429.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="36" x="548.5" y="443.7559">id = 'y3'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="66" x="548.5" y="456.334">position = 'C1'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="70" x="548.5" y="468.9121">color = 'yellow'</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="64.8281" style="stroke:#A80036;stroke-width:1.5;" width="85" x="21.5" y="410.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="71" x="28.5" y="424.7383">redChecker3</text><line style="stroke:#A80036;stroke-width:1.5;" x1="22.5" x2="105.5" y1="429.375" y2="429.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="34" x="27.5" y="443.7559">id = 'r3'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="66" x="27.5" y="456.334">position = 'B1'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="55" x="27.5" y="468.9121">color = 'red'</text><rect fill="#FEFECE" filter="url(#fprzptfu35591)" height="64.8281" style="stroke:#A80036;stroke-width:1.5;" width="101" x="950.5" y="410.2813"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacing" textLength="87" x="957.5" y="424.7383">yellowChecker4</text><line style="stroke:#A80036;stroke-width:1.5;" x1="951.5" x2="1050.5" y1="429.375" y2="429.375"/><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="36" x="956.5" y="443.7559">id = 'y4'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="65" x="956.5" y="456.334">position = 'F1'</text><text fill="#000000" font-family="sans-serif" font-size="10" lengthAdjust="spacing" textLength="66" x="956.5" y="468.9121">color = yellow</text><!--MD5=[bcb87cb6f330d87db57a981b8131f444]
+link newGame to myBoard--><path codeLine="143" d="M603,126.9512 C603,126.9512 603,158.7313 603,173.0912 " fill="none" id="newGame-myBoard" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="603,186.1413,607,177.1413,603,181.1413,599,177.1413,603,186.1413" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="603" x2="603" y1="181.1413" y2="173.1413"/><polygon fill="#A80036" points="603,114.9512,599,120.9512,603,126.9512,607,120.9512,603,114.9512" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[29c52c2502d6819d5ffc069994ea64e8]
+link myBoard to cellD1--><path codeLine="145" d="M642.2351,246.2436 C642.2351,246.2436 677.84,276.1213 693.92,289.6213 " fill="none" id="myBoard-cellD1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="704.09,298.1613,699.7753,289.3078,700.2629,294.9436,694.6271,295.4312,704.09,298.1613" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="700.2629" x2="694.13" y1="294.9436" y2="289.8063"/><polygon fill="#A80036" points="633.05,238.5213,635.0684,245.4441,642.2351,246.2436,640.2166,239.3207,633.05,238.5213" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[97501f5c6a2543fdf208ba892602f475]
+link myBoard to cellE1--><path codeLine="146" d="M649.1256,232.6438 C649.1256,232.6438 757.63,278.2013 804.64,297.9413 " fill="none" id="myBoard-cellE1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="816.8,303.0413,810.0483,295.8708,812.1893,301.1069,806.9533,303.2479,816.8,303.0413" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="812.1893" x2="804.82" y1="301.1069" y2="298.0163"/><polygon fill="#A80036" points="638.06,228.0013,642.0453,234.011,649.1256,232.6438,645.1403,226.634,638.06,228.0013" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[e68aba6ba95821ba789e8c6892253033]
+link myBoard to cellC1--><path codeLine="147" d="M603,250.5213 C603,250.5213 603,274.1713 603,284.8313 " fill="none" id="myBoard-cellC1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="603,298.1613,607,289.1613,603,293.1613,599,289.1613,603,298.1613" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="603" x2="603" y1="293.1613" y2="285.1613"/><polygon fill="#A80036" points="603,238.5213,599,244.5213,603,250.5213,607,244.5213,603,238.5213" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[11e7fe8ffa1e15e2d6b474e89e3519e7]
+link myBoard to cellF1--><path codeLine="148" d="M649.9647,223.9009 C649.9647,223.9009 832.72,267.5613 931,298.2813 C933.58,299.0913 936.2,299.9313 938.85,300.8113 " fill="none" id="myBoard-cellF1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="951.28,305.0613,944.0554,298.3676,946.5483,303.4455,941.4703,305.9384,951.28,305.0613" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="946.5483" x2="938.98" y1="303.4455" y2="300.8563"/><polygon fill="#A80036" points="638.27,221.2112,643.2208,226.4543,649.9647,223.9009,645.0139,218.6578,638.27,221.2112" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[73461758ec640bf6e49be43a5cdff709]
+link myBoard to cellD2--><path codeLine="149" d="M555.8502,222.6202 C555.8502,222.6202 357.91,264.9713 251,298.2813 C249.53,298.7413 248.04,299.2113 246.55,299.7013 " fill="none" id="myBoard-cellD2" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="234.03,304.0113,243.8418,304.8645,238.7578,302.384,241.2382,297.3,234.03,304.0113" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="238.7578" x2="246.32" y1="302.384" y2="299.7813"/><polygon fill="#A80036" points="567.61,220.2313,560.9338,217.5058,555.8502,222.6202,562.5264,225.3456,567.61,220.2313" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[6c4fe742aa921deea437a5e97597ef29]
+link myBoard to cellD3--><path codeLine="150" d="M556.7319,231.0843 C556.7319,231.0843 430.41,279.6613 377.3,300.0913 " fill="none" id="myBoard-cellD3" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="365,304.8213,374.8361,305.323,369.6666,303.026,371.9636,297.8565,365,304.8213" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="369.6666" x2="377.135" y1="303.026" y2="300.1513"/><polygon fill="#A80036" points="567.93,226.7713,560.8933,225.1951,556.7319,231.0843,563.7686,232.6605,567.93,226.7713" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[7df7af5544aa7062677b314c933e1119]
+link myBoard to cellB1--><path codeLine="151" d="M556.0117,218.4988 C556.0117,218.4988 276.14,254.9513 120,298.2813 C118.63,298.6613 117.25,299.0613 115.86,299.4713 " fill="none" id="myBoard-cellB1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="103.28,303.5413,113.0741,304.5785,108.0375,302.003,110.6129,296.9664,103.28,303.5413" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="108.0375" x2="115.65" y1="302.003" y2="299.5413"/><polygon fill="#A80036" points="567.93,217.1013,561.505,213.8272,556.0117,218.4988,562.4367,221.7728,567.93,217.1013" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[3d87169a39abc935b38f3ba9ec8d80a3]
+link cellD1 to yellowChecker1--><path codeLine="153" d="M732.4056,362.5502 C732.4056,362.5502 731.41,385.6813 730.94,396.5613 " fill="none" id="cellD1-yellowChecker1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="730.37,409.8813,734.7521,401.061,730.5843,404.8858,726.7595,400.7181,730.37,409.8813" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="730.5843" x2="730.925" y1="404.8858" y2="396.8963"/><polygon fill="#FFFFFF" points="732.92,350.5613,728.6665,356.3843,732.4056,362.5502,736.6591,356.7272,732.92,350.5613" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[0f179c52457ad752ab69e80658371963]
+link cellE1 to yellowChecker2--><path codeLine="154" d="M865,362.5613 C865,362.5613 865,385.6813 865,396.5613 " fill="none" id="cellE1-yellowChecker2" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="865,409.8813,869,400.8813,865,404.8813,861,400.8813,865,409.8813" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="865" x2="865" y1="404.8813" y2="396.8813"/><polygon fill="#FFFFFF" points="865,350.5613,861,356.5613,865,362.5613,869,356.5613,865,350.5613" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[883cf4f9a9297c2965ef287c432fceca]
+link cellC1 to yellowChecker3--><path codeLine="155" d="M599.8018,362.5171 C599.8018,362.5171 597.79,385.9413 596.85,396.9313 " fill="none" id="cellC1-yellowChecker3" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="595.74,409.8813,600.4972,401.2575,596.1689,404.8997,592.5267,400.5713,595.74,409.8813" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="596.1689" x2="596.85" y1="404.8997" y2="396.9313"/><polygon fill="#FFFFFF" points="600.83,350.5613,596.3306,356.1965,599.8018,362.5171,604.3012,356.8819,600.83,350.5613" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[9ba2875b939987f4a149e4ff127b3310]
+link cellF1 to yellowChecker4--><path codeLine="156" d="M999.6278,362.5596 C999.6278,362.5596 1000.04,385.6813 1000.22,396.5613 " fill="none" id="cellF1-yellowChecker4" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="1000.45,409.8813,1004.3011,400.8165,1000.3676,404.8819,996.3022,400.9484,1000.45,409.8813" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="1000.3676" x2="1000.23" y1="404.8819" y2="396.8863"/><polygon fill="#FFFFFF" points="999.43,350.5613,995.5294,356.6264,999.6278,362.5596,1003.5283,356.4945,999.43,350.5613" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[ee80ede3435b921d51424927def2f1dc]
+link cellD2 to redChecker1--><path codeLine="157" d="M186.9535,362.5574 C186.9535,362.5574 187.56,385.6813 187.84,396.5613 " fill="none" id="cellD2-redChecker1" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="188.18,409.8813,191.9511,400.783,188.0535,404.8828,183.9536,400.9853,188.18,409.8813" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="188.0535" x2="187.845" y1="404.8828" y2="396.8863"/><polygon fill="#FFFFFF" points="186.65,350.5613,182.803,356.6605,186.9535,362.5574,190.8005,356.4582,186.65,350.5613" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[cc4130258430ce995c192cac9ee2a0d4]
+link cellD3 to redChecker2--><path codeLine="158" d="M315.4056,362.5502 C315.4056,362.5502 314.41,385.6813 313.94,396.5613 " fill="none" id="cellD3-redChecker2" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="313.37,409.8813,317.7521,401.061,313.5843,404.8858,309.7595,400.7181,313.37,409.8813" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="313.5843" x2="313.925" y1="404.8858" y2="396.8963"/><polygon fill="#FFFFFF" points="315.92,350.5613,311.6665,356.3843,315.4056,362.5502,319.6591,356.7272,315.92,350.5613" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[bf6d1e648d22e5bde5f679756baf1ea6]
+link cellB1 to redChecker3--><path codeLine="159" d="M57.8734,362.5257 C57.8734,362.5257 59.67,385.6813 60.51,396.5613 " fill="none" id="cellB1-redChecker3" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="61.54,409.8813,64.8356,400.6001,61.1553,404.8961,56.8593,401.2157,61.54,409.8813" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="61.1553" x2="60.535" y1="404.8961" y2="396.9213"/><polygon fill="#FFFFFF" points="56.95,350.5613,53.4236,356.8513,57.8734,362.5257,61.3998,356.2357,56.95,350.5613" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[b39d51557d6662a7f013e9743153a243]
+reverse link yellowChecker1 to player1--><path codeLine="161" d="M729,480.6613 C729,497.4813 729,517.5313 729,535.1413 " fill="none" id="yellowChecker1-backto-player1" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="729,475.5513,725,484.5513,729,480.5513,733,484.5513,729,475.5513" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[fb2884f44273caf122ef4ee75ed51341]
+reverse link yellowChecker2 to player1--><path codeLine="162" d="M829.29,479.3613 C812.14,496.4412 791.44,517.0713 773.3,535.1413 " fill="none" id="yellowChecker2-backto-player1" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="833.11,475.5513,823.9105,479.0682,829.5673,479.0796,829.5559,484.7365,833.11,475.5513" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[ea39d9603ca80a04eedbd5423bfa2cb1]
+reverse link yellowChecker3 to player1--><path codeLine="163" d="M628.71,479.3613 C645.86,496.4412 666.56,517.0713 684.7,535.1413 " fill="none" id="yellowChecker3-backto-player1" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="624.89,475.5513,628.4441,484.7365,628.4327,479.0796,634.0895,479.0682,624.89,475.5513" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[4e3ecb52c81e7b33567c6bff26c72129]
+reverse link yellowChecker4 to player1--><path codeLine="164" d="M945.72,471.3213 C895.84,496.1713 823.24,532.3313 776.07,555.8313 " fill="none" id="yellowChecker4-backto-player1" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="950.48,468.9513,940.6407,469.3859,946.005,471.1816,944.2093,476.5459,950.48,468.9513" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[08a922c1e333ffb6519c2e9f9e0a6705]
+reverse link redChecker1 to player2--><path codeLine="165" d="M206.48,480.2213 C214.59,497.1313 224.3,517.3813 232.83,535.1413 " fill="none" id="redChecker1-backto-player2" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="204.24,475.5513,204.5113,485.3964,206.3958,480.0626,211.7295,481.9472,204.24,475.5513" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[37e12a6a105e45e19dd5e748ff5512ec]
+reverse link redChecker2 to player2--><path codeLine="166" d="M296.4,480.2213 C289.16,497.1313 280.5,517.3813 272.89,535.1413 " fill="none" id="redChecker2-backto-player2" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="298.4,475.5513,291.1882,482.2587,296.4373,480.1499,298.5461,485.399,298.4,475.5513" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[40e6c691a1d53af2828b5ba88d757948]
+reverse link redChecker3 to player2--><path codeLine="167" d="M110.89,477.2213 C140.1,498.0513 177.57,524.7713 206.84,545.6413 " fill="none" id="redChecker3-backto-player2" style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:7.0,7.0;"/><polygon fill="#A80036" points="106.64,474.1913,111.6302,482.6823,110.7058,477.1015,116.2866,476.1771,106.64,474.1913" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[b231dbe45ded54d9257d846980f9c486]
+link player1 to goal--><path codeLine="169" d="M670.5111,604.3947 C670.5111,604.3947 513.98,666.2213 451.16,691.0413 " fill="none" id="player1-goal" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="439.03,695.8313,448.8705,696.2368,443.6788,693.9904,445.9252,688.7987,439.03,695.8313" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="443.6788" x2="451.125" y1="693.9904" y2="691.0513"/><polygon fill="#FFFFFF" points="681.67,599.9813,674.6194,598.4684,670.5111,604.3947,677.5617,605.9076,681.67,599.9813" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[de24130057c6526be58451581e535e1a]
+link player2 to goal--><path codeLine="170" d="M305.5925,634.2479 C305.5925,634.2479 333.7,663.0913 346.08,675.8013 " fill="none" id="player2-goal" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="355.23,685.1913,351.8162,675.953,351.7415,681.6093,346.0851,681.5346,355.23,685.1913" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="351.7415" x2="346.16" y1="681.6093" y2="675.8863"/><polygon fill="#FFFFFF" points="297.22,625.6513,298.5407,632.7404,305.5925,634.2479,304.2718,627.1587,297.22,625.6513" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[29d30e369bbe2d06423cd6f9b2440606]
+link player1 to turn--><path codeLine="171" d="M729,625.6513 C729,645.5113 729,668.4313 729,686.3213 " fill="none" id="player1-to-turn" style="stroke:#A80036;stroke-width:1.0;"/><polygon fill="#A80036" points="729,691.7013,733,682.7013,729,686.7013,725,682.7013,729,691.7013" style="stroke:#A80036;stroke-width:1.0;"/><!--MD5=[3e26559c43eaced7191ffb73d944ca7c]
+@startuml connect4- -final-state
+
+
+title Connect4. Final State \n
+
+object newGame
+note left of newGame
+    status 0 = not started
+    status 1 = started
+    status 2 = paused
+    status 3 = finished
+end note
+
+object myBoard
+object player1
+object player2
+object goal
+object turn
+
+
+
+object newGame {
+    nGame = 1
+    status = 3
+}
+
+object goal {
+    name = '4 in a Line'
+    status = true
+    winner = player1
+}
+
+object turn {
+    turn = 7
+    remainingTurns = 35
+}
+
+object myBoard {
+    columns = 7
+    rows = 6
+}
+
+object cellD1 {
+    coordinates = 'D1'
+    filled = 'yellow'
+}
+
+object cellD2 {
+    coordinates = 'D2'
+    filled = 'red'
+}
+
+object cellE1 {
+    coordinates = 'E1'
+    filled = 'yellow'
+}
+
+object cellD3 {
+    coordinates = 'D3'
+    filled = 'red'
+}
+
+object cellC1 {
+    coordinates = 'C1'
+    filled = 'yellow'
+}
+
+object cellB1 {
+    coordinates = 'B1'
+    filled = 'red'
+}
+
+object cellF1 {
+    coordinates = 'F1'
+    filled = 'yellow'
+}
+
+note left of cellC1
+    rest of cells with:
+    filled = false
+end note
+
+
+object yellowChecker1 {
+    id = 'y1'
+    position = 'D1'
+    color = 'yellow'
+}
+
+object redChecker1 {
+    id = 'r1'
+    position = 'D2'
+    color = 'red'
+}
+
+object yellowChecker2 {
+    id = 'y2'
+    position = 'E1'
+    color = 'yellow'
+}
+
+object redChecker2 {
+    id = 'r2'
+    position = 'D3'
+    color = 'red'
+}
+
+object yellowChecker3 {
+    id = 'y3'
+    position = 'C1'
+    color = 'yellow'
+}
+
+object redChecker3 {
+    id = 'r3'
+    position = 'B1'
+    color = 'red'
+}
+
+object yellowChecker4 {
+    id = 'y4'
+    position = 'F1'
+    color = yellow
+}
+
+
+object player1 {
+    id = 1
+    name = 'vilma'
+    color = 'yellow'
+    checkers = 21
+    usedCheckers = 4
+}
+
+object player2 {
+    id = 2
+    name = 'pedro'
+    color = 'red'
+    checkers = 21
+    usedCheckers = 3
+}
+
+
+newGame *- -> myBoard
+
+myBoard *- -> cellD1
+myBoard *- -> cellE1
+myBoard *- -> cellC1
+myBoard *- -> cellF1
+myBoard *- -> cellD2
+myBoard *- -> cellD3
+myBoard *- -> cellB1
+
+cellD1 o- -> yellowChecker1
+cellE1 o- -> yellowChecker2
+cellC1 o- -> yellowChecker3
+cellF1 o- -> yellowChecker4
+cellD2 o- -> redChecker1
+cellD3 o- -> redChecker2
+cellB1 o- -> redChecker3
+
+player1 .up.> yellowChecker1
+player1 .up.> yellowChecker2
+player1 .up.> yellowChecker3
+player1 .up.> yellowChecker4
+player2 .up.> redChecker1
+player2 .up.> redChecker2
+player2 .up.> redChecker3
+
+player1 o- -> goal
+player2 o- -> goal
+player1 - -> turn
+
+
+@enduml
+
+PlantUML version 1.2022.0(Tue Jan 11 17:16:42 CET 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: es
+Country: ES
+--></g></svg>
