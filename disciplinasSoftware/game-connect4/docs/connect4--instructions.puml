@@ -1,30 +1,36 @@
 @startuml connect4--instructions
 
-skinparam nodesep 50
-skinparam ranksep 50
+skinparam linetype ortho
+skinparam nodesep 180
+skinparam ranksep 90
 !theme mars
 
-title Connect4 Instructions \n
+title Connect4 Instructions
 
 
+state _InitGame <<choice>>
 state GamePrepared
 state _CheckPlayerInsertion <<choice>>
 state CheckerInserted
 state _Check4InLine <<choice>>
 state TurnChanged
 state 4CheckersInLine
+state TiedGame
 
 
-[*]                     --r-> GamePrepared : clear the board \n / select first player
-GamePrepared            ---> _CheckPlayerInsertion : init game \n / first player check \n possible insertion
-_CheckPlayerInsertion   --r-> CheckerInserted : [ if there are possible insertion ] \n / player insert a checker
-CheckerInserted         ---> _Check4InLine : player check if \n has 4 checkers in line
+[*]                     -d-> _InitGame
+_InitGame               --r-> GamePrepared : clear board \n / select first player
+GamePrepared            ---> _CheckPlayerInsertion : start game \n / first player check \n possible insertion
+_CheckPlayerInsertion   --r-> CheckerInserted : [ if possible insertion ] \n / insert checker
+CheckerInserted         ---> _Check4InLine : check \n 4 checkers in line
 
-_Check4InLine           --l-> TurnChanged : [ else ] \n / change player turn
-TurnChanged             --u-> _CheckPlayerInsertion : player check \n possible insertion
+_Check4InLine           --l-> TurnChanged : [ else ] \n / change turn
+TurnChanged             --u-> _CheckPlayerInsertion : check \n possible insertion
+_CheckPlayerInsertion   --l-> TiedGame : [ else ]
+TiedGame                --u-> _InitGame : reset game
 
-_Check4InLine           ---> 4CheckersInLine : [ if player has \n 4 checkers in line ]
-4CheckersInLine         --> [*] : game over
+_Check4InLine           --r-> 4CheckersInLine : [ if 4 checkers in line ]
+4CheckersInLine         --d-> [*] : end game \n / player wins
 
 
 @enduml
