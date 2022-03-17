@@ -4,20 +4,21 @@
 
 title Connect4 Instructions \n
 
-state C1 <<choice>>
+state A as " "
 state InsertA as " "
 state InsertB as " "
 state InsertA2 as " "
 state InsertB2 as " "
 
-[*]      --> C1 
-C1       --> InsertA : Player A insert
-InsertA  --> InsertB : Player B insert
-InsertB  --> C1 : [ totalCheckers < 6 ]
-InsertB  --> InsertA2 : Player A insert
+[*]      --> A 
+A        --> InsertA : Player A \n insert
+InsertA  --> InsertB : Player B \n insert
+InsertB  --> A : [ insertedCheckers < 6 ]
+InsertB  --> InsertA2 : Player A \n insert
 InsertA2 --> [*] : [ is4InLine ]
-InsertA2 --> InsertB2 : Player B insert
+InsertA2 --> InsertB2 : Player B \n insert
+InsertB2 --> InsertA2 : Player A \n insert
+InsertB2 --> [*] : [ isTiedGame]
 InsertB2 --> [*] : [ is4InLine ]
-InsertB2 --> InsertA2 : Player A insert
 
 @enduml
