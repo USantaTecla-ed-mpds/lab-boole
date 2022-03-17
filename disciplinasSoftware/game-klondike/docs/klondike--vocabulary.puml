@@ -51,13 +51,13 @@ together {
 
 abstract Action
 class Move
-class TurnOver
+class Raise
 
 
 
 Klondike *--> Player
 Klondike *-right->  Board
-Board    *--> "13x4" Card
+Board    --> "   13x4" Card
 Klondike *-->  Goal
 
 Player ..> Action
@@ -73,12 +73,12 @@ note right of Goal {
 
 
 Action <|-- Move
-Action <|-- TurnOver
+Action <|-- Raise
 Action --> Card
 Move --> Pile : origin
 Move --> Pile : destination
-TurnOver --> Stock 
-TurnOver --> Tableau 
+Raise --> Stock 
+Raise --> Tableau 
 
 Pile <|-down-- Stock
 Pile <|-down-- Waste
@@ -88,17 +88,17 @@ Pile <|-down-- Foundation
 Board *--> Stock
 Board *--> Waste
 Board *--> "7" Foundation
-Board *--> "4" Tableau
+Board *--> "4   " Tableau
 
 
 Stock      o--> "0..24" Card 
 Waste      o--> "0..24" Card
-Tableau    o--> "0..13 " Card
-Foundation o--> "     0..13" Card
+Tableau    o--> "0..13   " Card
+Foundation o--> "       0..13" Card
 Foundation --> Suit
 
 Card *--> Rank
-Card "1" *-right-> "1" Suit
+Card *-right-> Suit
 
 Suit *-d-> Color
 Suit  <|-- Hearts
