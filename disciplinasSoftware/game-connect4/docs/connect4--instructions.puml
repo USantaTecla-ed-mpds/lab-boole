@@ -5,7 +5,7 @@ skinparam nodesep 140
 skinparam ranksep 60
 !theme mars
 
-title Connect4 Instructions
+title Connect4 Instructions \n
 
 
 state GamePrepared
@@ -19,16 +19,16 @@ state TiedGame
 
 [*]                     ---> GamePrepared : clear board \n / select first player
 GamePrepared            ---> _CheckPlayerInsertion : start game \n / first player check \n possible insertion
-_CheckPlayerInsertion   -r--> CheckerInserted : [ if possible insertion ] \n / insert checker
-CheckerInserted         --d-> _Check4InLine : check \n 4 checkers in line
+_CheckPlayerInsertion   ---> CheckerInserted : [ if possible insertion ] \n / insert checker
+CheckerInserted         ---> _Check4InLine : check \n 4 checkers in line
 
-_Check4InLine           -l-> TurnChanged : [ else ] \n / change turn
-TurnChanged             -u-> _CheckPlayerInsertion : check \n possible insertion
+_Check4InLine           -r-> TurnChanged : [ else ] \n / change turn
 _CheckPlayerInsertion   -l-> TiedGame : [ else ]
-TiedGame                --d-> [*] : end game \n / players tie
+TurnChanged             -l-> _CheckPlayerInsertion : check \n possible insertion
+TiedGame                -d-> [*] : end game \n / players tie
 
-_Check4InLine           ----> 4CheckersInLine : [ if 4 checkers in line ]
-4CheckersInLine         --l-> [*] : end game \n / a player wins
+_Check4InLine           --> 4CheckersInLine : [ if 4 checkers in line ]
+4CheckersInLine         --l-> [*] : end game \n / player wins
 
 
 @enduml
