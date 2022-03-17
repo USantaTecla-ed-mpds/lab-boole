@@ -1,34 +1,23 @@
 @startuml connect4--instructions
 
-skinparam linetype ortho
-skinparam nodesep 140
-skinparam ranksep 60
 !theme mars
 
 title Connect4 Instructions \n
 
+state C1 <<choice>>
+state InsertA as " "
+state InsertB as " "
+state InsertA2 as " "
+state InsertB2 as " "
 
-state GamePrepared
-state _CheckPlayerInsertion <<choice>>
-state CheckerInserted
-state _Check4InLine <<choice>>
-state TurnChanged
-state 4CheckersInLine
-state TiedGame
-
-
-[*]                     ---> GamePrepared : clear board \n / select first player
-GamePrepared            ---> _CheckPlayerInsertion : start game \n / first player check \n possible insertion
-_CheckPlayerInsertion   ---> CheckerInserted : [ if possible insertion ] \n / insert checker
-CheckerInserted         ---> _Check4InLine : check \n 4 checkers in line
-
-_Check4InLine           -r-> TurnChanged : [ else ] \n / change turn
-_CheckPlayerInsertion   -l-> TiedGame : [ else ]
-TurnChanged             -l-> _CheckPlayerInsertion : check \n possible insertion
-TiedGame                -d-> [*] : end game \n / players tie
-
-_Check4InLine           --> 4CheckersInLine : [ if 4 checkers in line ]
-4CheckersInLine         --l-> [*] : end game \n / player wins
-
+[*]      --> C1 
+C1       --> InsertA : Player A insert
+InsertA  --> InsertB : Player B insert
+InsertB  --> C1 : [ totalCheckers < 6 ]
+InsertB  --> InsertA2 : Player A insert
+InsertA2 --> [*] : [ is4InLine ]
+InsertA2 --> InsertB2 : Player B insert
+InsertB2 --> [*] : [ is4InLine ]
+InsertB2 --> InsertA2 : Player A insert
 
 @enduml
