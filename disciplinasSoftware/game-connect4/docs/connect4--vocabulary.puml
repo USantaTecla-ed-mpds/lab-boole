@@ -26,9 +26,9 @@ Connect4 *-d-> "2" Player
 Connect4 *--> Board
 
 Turn --> "2   " Player
-Player -d-> " 21  " Checker
+Player -d-> " (7x6) / 2" Checker
 Player --> Goal
-Player ..> "3..21 " Insertion
+Player ..> "3..(7x6) / 2 " Insertion
 Player -r-> Board
 
 Board *-d-> "7x6 " Cell
