@@ -1,0 +1,32 @@
+@startuml klondike--instructions
+!theme mars
+
+title Klondike Instructions \n
+
+state CardInStock as " "
+state CardInWaste as " "
+state CardInTableu as " "
+state CardInTableu1 as " "
+state CardInFoundation as " "
+state StockReseted as " "
+state CanMove <<choice>>
+
+
+[*]              --> CardInStock
+CardInStock      --> CardInWaste       : move \n from stock \n to waste
+CardInWaste      --> StockReseted : [ isStock \n Empty ]
+StockReseted     --> CardInStock : reset stock
+CardInWaste      --> CardInTableu      : move \n waste to \n tableu
+CardInWaste      --> CardInFoundation  : move \n waste to \n foundation
+CardInTableu     --> CardInFoundation  : move \n tableu to \n foundation
+CardInTableu     --> CardInTableu1     : raise card \n from tableu
+CardInTableu1    --> CardInTableu      : move \n tableu to \n tableu
+CardInFoundation --> CardInTableu      : move \n foundation to \n tableu
+CardInFoundation --> [*] :[ allFoundationsCompleted ]
+CardInFoundation --> CanMove         
+CanMove          --> [*]  
+CanMove          --> CardInWaste : [ canMoveCard ]     
+
+@enduml
+
+' diagram Oscar Quintero, Borja Coll, Fernando Cortés and David Corrales ;-)

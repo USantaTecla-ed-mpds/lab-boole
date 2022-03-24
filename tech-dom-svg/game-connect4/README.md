@@ -27,7 +27,7 @@ Universo Santa Tecla
 * Oscar Quintero
 * Borja Coll
 * Fernando Cortés
-* David
+* David Corrales
 
 <br>
 
