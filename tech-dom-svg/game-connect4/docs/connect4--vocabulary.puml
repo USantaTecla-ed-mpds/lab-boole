@@ -1,0 +1,53 @@
+@startuml connect4--vocabulary
+
+skinparam nodesep 60
+skinparam ranksep 70
+
+title Connect4 Vocabulary \n
+
+class Connect4
+class Turn
+class Player
+class Board
+class Cell
+class Checker
+enum Color {
+    Red,
+    Yellow
+}
+class Insertion
+class Goal
+class 4InLineHorizontal
+class 4InLineVertical
+class 4InLineDiagonal
+
+Connect4 *--> Turn
+Connect4 *-d-> "2" Player
+Connect4 *--> Board
+
+Turn --> "2   " Player
+Player -d-> " (7x6) / 2" Checker
+Player --> Goal
+Player ..> "3..(7x6) / 2 " Insertion
+Player -r-> Board
+
+Board *-d-> "7x6 " Cell
+Cell o--> "0..1" Checker
+Cell -d-> Column
+Cell --> Row
+
+Checker *--> Color
+Insertion --> Checker
+Insertion -r--> Cell
+
+Goal -r-> "4" Checker
+Goal <|-down- 4InLineHorizontal
+Goal <|-down- 4InLineVertical
+Goal <|-down- 4InLineDiagonal
+
+
+
+@enduml
+
+
+' diagram Oscar Quintero, Borja Coll, Fernando Cortés and David Corrales ;-)

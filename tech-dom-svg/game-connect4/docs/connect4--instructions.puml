@@ -1,0 +1,28 @@
+@startuml connect4--instructions
+
+!theme mars
+title Connect4 Instructions \n
+
+state A <<choice>>
+state InsertA as " "
+state InsertB as " "
+state InsertA2 as " "
+state InsertB2 as " "
+
+[*]      --> A 
+A        --> InsertA : Yellow \n insert
+InsertA  --> InsertB : Red \n insert
+InsertB  --> A : [ insertedCheckers < 6 ]
+InsertB  --> InsertA2 : Yellow \n insert
+
+InsertA2 --> [*] : [ is4InLine ]
+InsertA2 --> [*] : [ isTiedGame]
+InsertA2 --> InsertB2 : Red \n insert
+
+InsertB2 --> InsertA2 : Yellow \n insert
+InsertB2 --> [*] : [ isTiedGame]
+InsertB2 --> [*] : [ is4InLine ]
+
+@enduml
+
+' diagram Oscar Quintero, Borja Coll, Fernando Cortés and David Corrales ;-)
