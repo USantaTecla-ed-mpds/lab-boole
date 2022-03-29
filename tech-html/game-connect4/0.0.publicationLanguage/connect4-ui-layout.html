@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Connect4 Online Game">
+    <meta name="author" content="lab-boole">
+    <title>Connect4</title>
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header__logo">Connect<span class="header__logo-span">4</span></h1>
+    </header>
+
+    <nav class="nav">
+        <ul class="nav__list">
+            <li class="nav__item">
+                <button id="new-game" class="nav__button">
+                    <svg class="nav__button-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4C7.57999 4 4.00999 7.58 4.00999 12C4.00999 16.42 7.57999 20 12 20C15.73 20 18.84 17.45 19.73 14H17.65C16.83 16.33 14.61 18 12 18C8.68999 18 5.99999 15.31 5.99999 12C5.99999 8.69 8.68999 6 12 6C13.66 6 15.14 6.69 16.22 7.78L13 11H20V4L17.65 6.35Z" fill="#57C3FF"/>
+                    </svg>
+                    <span class="nav__button--txt">New Game</span>
+                </button>
+            </li>
+            <li class="nav__item">
+                <button id="options-game" class="nav__button">
+                    <svg class="nav__button-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.3" d="M18.5978 8.6L17.9367 7.39L16.7372 7.9L15.7361 8.33L14.8767 7.63C14.5083 7.33 14.1211 7.09 13.715 6.92L12.7139 6.49L12.5628 5.36L12.3833 4H11.0611L10.8817 5.35L10.7306 6.48L9.72944 6.92C9.34222 7.09 8.955 7.33 8.54889 7.65L7.69889 8.33L6.70722 7.91L5.50778 7.39L4.84666 8.6L5.86666 9.44L6.70722 10.14L6.575 11.27C6.54666 11.57 6.52778 11.8 6.52778 12C6.52778 12.2 6.54666 12.43 6.575 12.73L6.70722 13.86L5.86666 14.56L4.84666 15.4L5.50778 16.61L6.70722 16.1L7.70833 15.67L8.56778 16.37C8.93611 16.67 9.32333 16.91 9.72944 17.08L10.7306 17.51L10.8817 18.64L11.0611 20H12.3739L12.5533 18.65L12.7044 17.52L13.7056 17.09C14.0928 16.92 14.48 16.68 14.8861 16.36L15.7361 15.68L16.7183 16.1L17.9178 16.61L18.5789 15.4L17.5589 14.56L16.7183 13.86L16.8506 12.73C16.8883 12.42 16.8978 12.21 16.8978 12C16.8978 11.79 16.8789 11.57 16.8506 11.27L16.7183 10.14L17.5589 9.44L18.5978 8.6V8.6ZM11.7222 16C9.635 16 7.94444 14.21 7.94444 12C7.94444 9.79 9.635 8 11.7222 8C13.8094 8 15.5 9.79 15.5 12C15.5 14.21 13.8094 16 11.7222 16Z" fill="#2D363C"/>
+                        <path d="M18.7394 12.98C18.7772 12.66 18.8055 12.34 18.8055 12C18.8055 11.66 18.7772 11.34 18.7394 11.02L20.7322 9.37C20.9117 9.22 20.9589 8.95 20.8455 8.73L18.9567 5.27C18.8717 5.11 18.7111 5.02 18.5411 5.02C18.4844 5.02 18.4278 5.03 18.3805 5.05L16.0289 6.05C15.5378 5.65 15.0089 5.32 14.4328 5.07L14.0739 2.42C14.0455 2.18 13.8472 2 13.6111 2H9.83333C9.59721 2 9.39888 2.18 9.37055 2.42L9.01166 5.07C8.43555 5.32 7.90666 5.66 7.41555 6.05L5.06388 5.05C5.00721 5.03 4.95055 5.02 4.89388 5.02C4.73333 5.02 4.57277 5.11 4.48777 5.27L2.59888 8.73C2.4761 8.95 2.53277 9.22 2.71221 9.37L4.70499 11.02C4.66721 11.34 4.63888 11.67 4.63888 12C4.63888 12.33 4.66721 12.66 4.70499 12.98L2.71221 14.63C2.53277 14.78 2.48555 15.05 2.59888 15.27L4.48777 18.73C4.57277 18.89 4.73333 18.98 4.90333 18.98C4.95999 18.98 5.01666 18.97 5.06388 18.95L7.41555 17.95C7.90666 18.35 8.43555 18.68 9.01166 18.93L9.37055 21.58C9.39888 21.82 9.59721 22 9.83333 22H13.6111C13.8472 22 14.0455 21.82 14.0739 21.58L14.4328 18.93C15.0089 18.68 15.5378 18.34 16.0289 17.95L18.3805 18.95C18.4372 18.97 18.4939 18.98 18.5505 18.98C18.7111 18.98 18.8717 18.89 18.9567 18.73L20.8455 15.27C20.9589 15.05 20.9117 14.78 20.7322 14.63L18.7394 12.98V12.98ZM16.8694 11.27C16.9072 11.58 16.9167 11.79 16.9167 12C16.9167 12.21 16.8978 12.43 16.8694 12.73L16.7372 13.86L17.5778 14.56L18.5978 15.4L17.9367 16.61L16.7372 16.1L15.755 15.68L14.905 16.36C14.4989 16.68 14.1117 16.92 13.7244 17.09L12.7233 17.52L12.5722 18.65L12.3833 20H11.0611L10.8817 18.65L10.7305 17.52L9.72944 17.09C9.32333 16.91 8.94555 16.68 8.56777 16.38L7.70833 15.68L6.70721 16.11L5.50777 16.62L4.84666 15.41L5.86666 14.57L6.70721 13.87L6.57499 12.74C6.54666 12.43 6.52777 12.2 6.52777 12C6.52777 11.8 6.54666 11.57 6.57499 11.27L6.70721 10.14L5.86666 9.44L4.84666 8.6L5.50777 7.39L6.70721 7.9L7.68944 8.32L8.53944 7.64C8.94555 7.32 9.33277 7.08 9.71999 6.91L10.7211 6.48L10.8722 5.35L11.0611 4H12.3739L12.5533 5.35L12.7044 6.48L13.7055 6.91C14.1117 7.09 14.4894 7.32 14.8672 7.62L15.7267 8.32L16.7278 7.89L17.9272 7.38L18.5883 8.59L17.5778 9.44L16.7372 10.14L16.8694 11.27ZM11.7222 8C9.63499 8 7.94444 9.79 7.94444 12C7.94444 14.21 9.63499 16 11.7222 16C13.8094 16 15.5 14.21 15.5 12C15.5 9.79 13.8094 8 11.7222 8ZM11.7222 14C10.6833 14 9.83333 13.1 9.83333 12C9.83333 10.9 10.6833 10 11.7222 10C12.7611 10 13.6111 10.9 13.6111 12C13.6111 13.1 12.7611 14 11.7222 14Z" fill="#57C3FF"/>
+                    </svg>
+                    <span class="nav__button--txt">Options</span>
+                </button>
+            </li>
+            <li class="nav__item">
+                <button id="exit-game" class="nav__button">
+                    <svg class="nav__button-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="#57C3FF"/>
+                    </svg>
+                    <span class="nav__button--txt">Exit Game</span>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="main">
+        <section class="board">
+            <div class="board__row" id="board__row-6">
+                <article class="board__cell" id="cell-a6">
+                    <input type="checkbox" name="checker--a6" id="checker--a6">
+                    <label for="checker--a6" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-b6">
+                    <input type="checkbox" name="checker--b6" id="checker--b6">
+                    <label for="checker--b6" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-c6">
+                    <input type="checkbox" name="checker--c6" id="checker--c6">
+                    <label for="checker--c6" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-d6">
+                    <input type="checkbox" name="checker--d6" id="checker--d6">
+                    <label for="checker--d6" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-e6">
+                    <input type="checkbox" name="checker--e6" id="checker--e6">
+                    <label for="checker--e6" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-f6">
+                    <input type="checkbox" name="checker--f6" id="checker--f6">
+                    <label for="checker--f6" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-g6">
+                    <input type="checkbox" name="checker--g6" id="checker--g6">
+                    <label for="checker--g6" class="board__checker"></label>
+                </article>
+            </div>
+
+            <div class="board__row" id="board__row-5">
+                <article class="board__cell" id="cell-a5">
+                    <input type="checkbox" name="checker--a5" id="checker--a5">
+                    <label for="checker--a5" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-b5">
+                    <input type="checkbox" name="checker--b5" id="checker--b5">
+                    <label for="checker--b5" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-c5">
+                    <input type="checkbox" name="checker--c5" id="checker--c5">
+                    <label for="checker--c5" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-d5">
+                    <input type="checkbox" name="checker--d5" id="checker--d5">
+                    <label for="checker--d5" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-e5">
+                    <input type="checkbox" name="checker--e5" id="checker--e5">
+                    <label for="checker--e5" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-f5">
+                    <input type="checkbox" name="checker--f5" id="checker--f5">
+                    <label for="checker--f5" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-g5">
+                    <input type="checkbox" name="checker--g5" id="checker--g5">
+                    <label for="checker--g5" class="board__checker"></label>
+                </article>
+            </div>
+
+            <div class="board__row" id="board__row-4">
+                <article class="board__cell" id="cell-a4">
+                    <input type="checkbox" name="checker--a4" id="checker--a4">
+                    <label for="checker--a4" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-b4">
+                    <input type="checkbox" name="checker--b4" id="checker--b4">
+                    <label for="checker--b4" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-c4">
+                    <input type="checkbox" name="checker--c4" id="checker--c4">
+                    <label for="checker--c4" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-d4">
+                    <input type="checkbox" name="checker--d4" id="checker--d4">
+                    <label for="checker--d4" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-e4">
+                    <input type="checkbox" name="checker--e4" id="checker--e4">
+                    <label for="checker--e4" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-f4">
+                    <input type="checkbox" name="checker--f4" id="checker--f4">
+                    <label for="checker--f4" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-g4">
+                    <input type="checkbox" name="checker--g4" id="checker--g4">
+                    <label for="checker--g4" class="board__checker"></label>
+                </article>
+            </div>
+
+            <div class="board__row" id="board__row-3">
+                <article class="board__cell" id="cell-a3">
+                    <input type="checkbox" name="checker--a3" id="checker--a3">
+                    <label for="checker--a3" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-b3">
+                    <input type="checkbox" name="checker--b3" id="checker--b3">
+                    <label for="checker--b3" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-c3">
+                    <input type="checkbox" name="checker--c3" id="checker--c3">
+                    <label for="checker--c3" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-d3">
+                    <input type="checkbox" name="checker--d3" id="checker--d3">
+                    <label for="checker--d3" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-e3">
+                    <input type="checkbox" name="checker--e3" id="checker--e3">
+                    <label for="checker--e3" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-f3">
+                    <input type="checkbox" name="checker--f3" id="checker--f3">
+                    <label for="checker--f3" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-g3">
+                    <input type="checkbox" name="checker--g3" id="checker--g3">
+                    <label for="checker--g3" class="board__checker"></label>
+                </article>
+            </div>
+
+            <div class="board__row" id="board__row-2">
+                <article class="board__cell" id="cell-a2">
+                    <input type="checkbox" name="checker--a2" id="checker--a2">
+                    <label for="checker--a2" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-b2">
+                    <input type="checkbox" name="checker--b2" id="checker--b2">
+                    <label for="checker--b2" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-c2">
+                    <input type="checkbox" name="checker--c2" id="checker--c2">
+                    <label for="checker--c2" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-d2">
+                    <input type="checkbox" name="checker--d2" id="checker--d2">
+                    <label for="checker--d2" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-e2">
+                    <input type="checkbox" name="checker--e2" id="checker--e2">
+                    <label for="checker--e2" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-f2">
+                    <input type="checkbox" name="checker--f2" id="checker--f2">
+                    <label for="checker--f2" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-g2">
+                    <input type="checkbox" name="checker--g2" id="checker--g2">
+                    <label for="checker--g2" class="board__checker"></label>
+                </article>
+            </div>
+
+            <div class="board__row" id="board__row-1">
+                <article class="board__cell" id="cell-a1">
+                    <input type="checkbox" name="checker--a1" id="checker--a1">
+                    <label for="checker--a1" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-b1">
+                    <input type="checkbox" name="checker--b1" id="checker--b1">
+                    <label for="checker--b1" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-c1">
+                    <input type="checkbox" name="checker--c1" id="checker--c1">
+                    <label for="checker--c1" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-d1">
+                    <input type="checkbox" name="checker--d1" id="checker--d1">
+                    <label for="checker--d1" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-e1">
+                    <input type="checkbox" name="checker--e1" id="checker--e1">
+                    <label for="checker--e1" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-f1">
+                    <input type="checkbox" name="checker--f1" id="checker--f1">
+                    <label for="checker--f1" class="board__checker"></label>
+                </article>
+                <article class="board__cell" id="cell-g1">
+                    <input type="checkbox" name="checker--g1" id="checker--g1">
+                    <label for="checker--g1" class="board__checker"></label>
+                </article>
+            </div>
+        </section>
+
+        <aside class="aside">
+            <header class="players__header">
+                <p>Turn</p>
+            </header>
+            <div class="players">
+                <div id="player-a" class="player">
+                    <div class="player__checker player--yellow">
+                        <span class="player__checker-color">Y</span>
+                    </div>
+                    <h2 class="player__name">Michelangelo</h2>
+                    <p class="player__id">Player A</p>
+                </div>
+                <div id="player-b" class="player">
+                    <div class="player__checker player--red">
+                        <span class="player__checker-color">R</span>
+                    </div>
+                    <h2 class="player__name">Leonardo</h2>
+                    <p class="player__id">Player B</p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="timer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path opacity="0.3" d="M12.07 6.00999C8.20001 6.00999 5.07001 9.13999 5.07001 13.01C5.07001 16.88 8.20001 20.01 12.07 20.01C15.94 20.01 19.07 16.88 19.07 13.01C19.07 9.13999 15.94 6.00999 12.07 6.00999V6.00999ZM13.07 14.01H11.07V8.00999H13.07V14.01Z" fill="#2D363C"/>
+                <path d="M9.07001 1.00999H15.07V3.00999H9.07001V1.00999ZM11.07 8.00999H13.07V14.01H11.07V8.00999ZM19.1 7.38999L20.52 5.96999C20.09 5.45999 19.62 4.97999 19.11 4.55999L17.69 5.97999C16.14 4.73999 14.19 3.99999 12.07 3.99999C7.10001 3.99999 3.07001 8.02999 3.07001 13C3.07001 17.97 7.09001 22 12.07 22C17.05 22 21.07 17.97 21.07 13C21.07 10.89 20.33 8.92999 19.1 7.38999ZM12.07 20.01C8.20001 20.01 5.07001 16.88 5.07001 13.01C5.07001 9.13999 8.20001 6.00999 12.07 6.00999C15.94 6.00999 19.07 9.13999 19.07 13.01C19.07 16.88 15.94 20.01 12.07 20.01Z" fill="#57C3FF"/>
+            </svg>
+            <p class="timer__time">
+                <span id="timer-minutes">00</span>:<span id="timer-seconds">00</span>
+            </p>
+            <button class="timer__pause-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 5H10V19H6V5ZM14 5H18V19H14V5Z" fill="white"/>
+                </svg>
+            </button>
+        </div>
+        <p>Copyright © 2022 Lab-Boole</p>
+    </footer>
+</body>
+</html>
