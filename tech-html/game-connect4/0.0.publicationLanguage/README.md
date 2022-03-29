@@ -4,7 +4,7 @@ Universo Santa Tecla
   
 ## requirements 
 
-* Escribe con un lenguaje de publicación (html) un tablero lo "más" parecido posible a la siguiente imagen
+* Escribe con un lenguaje de publicación (html) un tablero lo "más" parecido posible al juego Connect4
 
 ![connect4](../0.0.publicationLanguage/image/conecta4.jpg) 
 
