@@ -6,5 +6,5 @@ Universo Santa Tecla
 
 * Escribe con un lenguaje de publicación (html) un tablero lo "más" parecido posible a la siguiente imagen
 
-![Tictactoe](../docs/images/klondike.png) 
+![Klondike](../0.0.publicationLanguage/image/klondike.png) 
 
