@@ -8,3 +8,9 @@ Universo Santa Tecla
 
 ![Klondike](../0.0.publicationLanguage/image/klondike.png) 
 
+<br>
+<br>
+
+# ui html layout
+
+> ## [ html layout file](../0.0.publicationLanguage/klondike-ui-layout.html)
