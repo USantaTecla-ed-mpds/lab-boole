@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Klondike Free Online Game">
+    <meta name="author" content="lab-boole">
+    <title>Klondike Game</title>
+</head>
+
+<body>
+    <header class="header">
+        <h1 class="header__logo">Klondike</h1>
+        <nav class="nav">
+            <ul class="nav__list">
+                <li class="nav__item">
+                    <button id="new-game" class="nav__button">New Game</button>
+                </li>
+                <li class="nav__item">
+                    <button id="options-game" class="nav__button">Options</button>
+                </li>
+                <li class="nav__item">
+                    <button id="exit-game" class="nav__button">Exit Game</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="board">
+        <main class="board__main">
+            <div class="board__top">
+                <div class="left__side">
+                    <section class="stock__pile pile">
+                        <article class="card face--down" id="card-sa"></article>
+                        <article class="card face--down" id="card-s5"></article>
+                        <article class="card face--down" id="card-s10"></article>
+                        <article class="card face--down" id="card-sq"></article>
+                        <article class="card face--down" id="card-da"></article>
+                        <article class="card face--down" id="card-d2"></article>
+                        <article class="card face--down" id="card-d4"></article>
+                        <article class="card face--down" id="card-d6"></article>
+                        <article class="card face--down" id="card-d9"></article>
+                        <article class="card face--down" id="card-d10"></article>
+                        <article class="card face--down" id="card-ha"></article>
+                        <article class="card face--down" id="card-h2"></article>
+                        <article class="card face--down" id="card-h4"></article>
+                        <article class="card face--down" id="card-h6"></article>
+                        <article class="card face--down" id="card-h7"></article>
+                        <article class="card face--down" id="card-h8"></article>
+                        <article class="card face--down" id="card-h10"></article>
+                        <article class="card face--down" id="card-hj"></article>
+                        <article class="card face--down" id="card-hk"></article>
+                        <article class="card face--down" id="card-ca"></article>
+                        <article class="card face--down" id="card-c1"></article>
+                        <article class="card face--down" id="card-c3"></article>
+                        <article class="card face--down" id="card-c4"></article>
+                        <article class="card face--down" id="card-c6"></article>
+                        <article class="card face--down" id="card-c7"></article>
+                        <article class="card face--down" id="card-c9"></article>
+                        <article class="card face--down" id="card-c10"></article>
+                        <article class="card face--down" id="card-cq"></article>
+                    </section>
+
+                    <section class="waste__pile pile">
+                    </section>
+                </div>
+
+                <section class="foundation__pile pile">
+                </section>
+            </div>
+            
+
+            <div class="board__bottom tableus">
+                <section class="tableu__pile pile" id="tableu__pile-1">
+                    <article class="card black--card" id="card-s4">
+                        <!-- img with the value of the card - spades 4 (black) -->
+                    </article>
+                </section>
+
+                <section class="tableu__pile pile" id="tableu__pile-2">
+                    <article class="card black--card face--down" id="card-s7">
+                        <!-- img with the value of the card - spades 7 (black) -->
+                    </article>
+                    <article class="card black--card" id="card-c8">
+                        <!-- img with the value of the card - clubs 8 (black) -->
+                    </article>
+                </section>
+
+                <section class="tableu__pile pile" id="tableu__pile-3">
+                    <article class="card red--card face--down" id="card-h1">
+                        <!-- img with the value of the card - hearts 1 (red) -->
+                    </article>
+                    <article class="card black--card face--down" id="card-s3">
+                        <!-- img with the value of the card - spades 3 (black) -->
+                    </article>
+                    <article class="card red--card" id="card-d8">
+                        <!-- img with the value of the card - diamonds 8 (red) -->
+                    </article>
+                </section>
+
+                <section class="tableu__pile pile" id="tableu__pile-4">
+                    <article class="card red--card face--down" id="card-h5">
+                        <!-- img with the value of the card - hearts 5 (red) -->
+                    </article>
+                    <article class="card red--card face--down" id="card-h3">
+                        <!-- img with the value of the card - hearts 3 (red) -->
+                    </article>
+                    <article class="card red--card face--down" id="card-d7">
+                        <!-- img with the value of the card - diamonds 7 (red) -->
+                    </article>
+                    <article class="card black--card" id="card-s6">
+                        <!-- img with the value of the card - spades 6 (black) -->
+                    </article>
+                </section>
+
+                <section class="tableu__pile pile" id="tableu__pile-5">
+                    <article class="card black--card face--down" id="card-ck">
+                        <!-- img with the value of the card - clubs k (black) -->
+                    </article>
+                    <article class="card black--card face--down" id="card-cj">
+                        <!-- img with the value of the card - clubs j (black) -->
+                    </article>
+                    <article class="card red--card face--down" id="card-d5">
+                        <!-- img with the value of the card - diamonds 5 (red) -->
+                    </article>
+                    <article class="card black--card face--down" id="card-s2">
+                        <!-- img with the value of the card - spades 2 (black) -->
+                    </article>
+                    <article class="card black--card" id="card-hq">
+                        <!-- img with the value of the card - hearts q (black) -->
+                    </article>
+                </section>
+
+                <section class="tableu__pile pile" id="tableu__pile-6">
+                    <article class="card red--card face--down" id="card-h9">
+                        <!-- img with the value of the card - hearts 9 (red) -->
+                    </article>
+                    <article class="card red--card face--down" id="card-dk">
+                        <!-- img with the value of the card - diamonds k (red) -->
+                    </article>
+                    <article class="card red--card face--down" id="card-dq">
+                        <!-- img with the value of the card - diamonds q (red) -->
+                    </article>
+                    <article class="card black--card face--down" id="card-sj">
+                        <!-- img with the value of the card - spades j (black) -->
+                    </article>
+                    <article class="card black--card face--down" id="card-s8">
+                        <!-- img with the value of the card - spades 8 (black) -->
+                    </article>
+                    <article class="card black--card" id="card-s9">
+                        <!-- img with the value of the card - spades 9 (black) -->
+                    </article>
+                </section>
+
+                <section class="tableu__pile pile" id="tableu__pile-7">
+                    <article class="card black--card face--down" id="card-c2">
+                        <!-- img with the value of the card - clubs 2 (black) -->
+                    </article>
+                    <article class="card black--card face--down" id="card-c5">
+                        <!-- img with the value of the card - clubs 5 (black) -->
+                    </article>
+                    <article class="card red--card face--down" id="card-d1">
+                        <!-- img with the value of the card - diamonds 1 (red) -->
+                    </article>
+                    <article class="card black--card face--down" id="card-s1">
+                        <!-- img with the value of the card - spades 1 (black) -->
+                    </article>
+                    <article class="card black--card face--down" id="card-sk">
+                        <!-- img with the value of the card - spades k (black) -->
+                    </article>
+                    <article class="card red--card face--down" id="card-d3">
+                        <!-- img with the value of the card - diamonds 3 (red) -->
+                    </article>
+                    <article class="card red--card" id="card-dj">
+                        <!-- img with the value of the card - diamonds j (red) -->
+                    </article>
+                </section>
+            </div>
+        </main>
+
+        <aside class="board__score">
+            <div class="score__container">
+                <p class="score__item">
+                    <span class="score__text">Score: </span>
+                    <span class="score__value" id="score">0</span>
+                </p>
+                <p class="score__item">
+                    <span class="score__text">High Score: </span>
+                    <span class="score__value" id="high-score">0</span>
+                </p>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        <a href="" target="_blank" title="need help?">Help</a>
+        <a href="" target="_blank" title="about">About</a>
+        <p>Copyright © 2022 Lab-Boole</p>
+    </footer>
+</body>
+
+</html>
