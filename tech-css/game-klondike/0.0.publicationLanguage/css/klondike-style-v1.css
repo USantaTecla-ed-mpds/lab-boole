@@ -1,0 +1,101 @@
+
+body {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  font-size: 1.6rem;
+  background: radial-gradient(84.79% 50.97% at 50% 85%, rgba(86, 112, 83, 0.96) 0%, #2D353C 100%);
+}
+
+.header__logo {
+  text-decoration: solid;
+}
+
+.text-center{
+  text-align: center;
+}
+
+.nav__list {
+  top: 50%;
+}
+
+.nav__item {
+  display: inline;
+}
+
+.nav__button {
+  background-color: burlywood;
+  border-radius: 25px;
+}
+
+
+.board{
+  background: brown;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  grid-auto-rows: 200px;
+  height: 350px;
+}
+
+
+.board__main{
+  display: grid;
+  grid-template-columns: 20% 60% 20%;
+  
+}
+
+.board__top{
+  display: block;
+  
+}
+
+
+
+
+.board__bottom {
+  display: grid;
+  grid-template-columns:repeat(7, 14%);
+  border-radius: 25px;
+
+}
+
+.board__score{
+  padding-top: 30%;
+  display: block;
+ 
+}
+
+.card {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+
+
+
+.stock__pile{
+  height: 12rem;
+  background-color: burlywood;
+  border-radius: 25px;
+}
+
+.waste__pile{
+  height: 10rem;
+  background-color: rgb(87, 29, 29);
+  border-radius: 25px;
+}
+
+.tableaus{
+  background-color: bisque;
+ 
+
+}
+
+
+.foundation__pile{
+  background-color: aliceblue;
+  border-radius: 25px;
+  
+}
+.footer {
+  display: inline;
+}
