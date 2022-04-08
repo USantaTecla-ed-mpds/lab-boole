@@ -17,19 +17,25 @@ Universo Santa Tecla
 
 *Mobile UI design for mobile devices with started game state*
 
-<br>
+<!-- <br>
 <br>
 
 # ui base layout
 
 ![connect4-ui-layout](../0.0.publicationLanguage/image/01-connect4-mockup-layout.png)
 
-*Mobile UI layout using main semantic tags*
+*Mobile UI layout using main semantic tags* -->
 
 <br>
 <br>
 
-# experimental html & css for mobile
+# html & css for mobile
+
+![ result capture ](../0.0.publicationLanguage/image/connect4-capture.jpg)
+
+*Capture from final result*
+
+<br>
 
 ## ui html layout
 
@@ -40,3 +46,7 @@ Universo Santa Tecla
 ## ui css styles
 
 > ## [ css file ](../0.0.publicationLanguage/css/app.css)
+
+## ui css styles - *experimental version*
+
+> ## [ css file ](../0.0.publicationLanguage/css/app-experimental.css)
