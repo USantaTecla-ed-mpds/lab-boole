@@ -1,0 +1,395 @@
+/* -- Klondike stylesheet v0.2.0 -- */
+/* -- CLASSIC / OLD SCHOOL STYLE -- */
+
+
+/* RESET ---------------------------------------------------------*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: revert;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+ul,
+ol,
+li {
+  padding: 0;
+  list-style: none;
+}
+
+/* ELEMENTS ---------------------------------------------------------*/
+html {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+  font-size: 10px;
+}
+
+body {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 102%;
+  font-size: 1.6rem;
+  background: hsl(123deg 45% 44%);
+  overflow: hidden;
+}
+
+button {
+  padding: 0.6rem 1.4rem 0.6rem 1.4rem;
+}
+
+.header {
+  position: relative;
+  display: table;
+  vertical-align: middle;
+  width: 100%;
+  top: 0;
+  padding: 1.3rem 2rem;
+  background-color: rgb(29 39 29);
+  text-align: center;
+}
+
+.header__logo {
+  position: relative;
+  display: inline-table;
+  color: white;
+  font-weight: lighter;
+  font-size: 4.3rem;
+  padding: .3em 1em 0.1em .1em;
+  width: 33%;
+  text-align: left;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.nav__item {
+  display: inline-block;
+  margin: .2rem;
+
+}
+
+.nav__button {
+  background-color: rgb(35 56 38 / 40%);
+  border: 2px solid rgb(28 214 47 / 50%);
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  transition: background-color .1s ease;
+}
+
+.nav__button:hover {
+  background-color: rgb(68 220 90 / 0.4);
+}
+
+.nav__button:active {
+  background-color: rgb(35 112 46 / 54%);
+}
+
+.score__container {
+  position: relative;
+  display: inline-table;
+  width: 33%;
+  padding-top: 1em;
+  vertical-align: middle;
+}
+
+.score__item {
+  position: relative;
+  display: inherit;
+  margin: 0 2rem 0;
+  color: white;
+}
+
+.nav {
+  position: relative;
+  display: inline-table;
+  width: 33%;
+  padding-top: 1.2em;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.board {
+  position: relative;
+  display: block;
+  text-align: center;
+  max-width: 100%;
+  height: 95%;
+  overflow: hidden;
+}
+
+.board__left {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  padding: 1em 0;
+  background-color: hsl(120deg 15% 13% / 20%);
+  width: 11%;
+}
+
+.board__center {
+  position: relative;
+  display: block;
+  padding: 1em 2em 5em;
+  width: 78%;
+  height: 100%;
+  left: 11%;
+}
+
+.board__right {
+  position: absolute;
+  display: block;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1em;
+  background-color: hsl(120deg 15% 13% / 25%);
+  max-height: 100%;
+  width: 11%;
+}
+
+.board__score {
+  display: block;
+}
+
+.card {
+  position: relative;
+  width: 94%;
+  height: auto;
+
+  padding-bottom: 122%;
+  border-radius: 1.8rem;
+  border: 0.9rem solid white;
+  box-shadow: 0 -2px 16px hsla(0, 0%, 0%, .15), 0 -4px 6px -2px hsla(0, 0%, 0%, .25), 0 2px 8px hsla(0, 0%, 0%, .1);
+  background-color: hsl(0 0% 93% / 1);
+  background-image: url('../image/front.jpg');
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: center;
+  background-blend-mode: multiply;
+  margin-bottom: -45%;
+  font-size: 2em;
+  font-weight: 100;
+  transition: transform .3s ease, box-shadow .2s, filter .2s;
+}
+
+.card:hover {
+  box-shadow: 0 -4px 8px 0 hsl(0deg 0% 0% / 35%), 0 10px 8px 4px hsl(0deg 0% 0% / 20%);
+  transform: translateY(-.5rem) scale3d(1.01, 1.01, 1) perspective(9em) rotateX(-3deg);
+  cursor: grab;
+  transition-duration: .2s;
+  filter: brightness(1.1) saturate(1.1);
+}
+
+.card:last-child:hover {
+  box-shadow: 0 -16px 20px 2px hsl(0deg 0% 0% / 25%), 0 20px 28px 0 hsl(0deg 0% 0% / 20%);
+  transform: translateY(-.4rem) scale3d(1.05, 1.05, 1) perspective(9em) rotateX(-6deg);
+}
+
+.black--card {
+  color: #222222;
+}
+
+.red--card {
+  color: #E94B29;
+}
+
+.card__rank {
+  position: absolute;
+  top: 0;
+  left: 9%;
+  font-size: 4rem;
+  font-weight: 400;
+  user-select: none;
+}
+
+.card__suit__icon {
+  position: absolute;
+  top: .9rem;
+  right: .5rem;
+  width: 4.5rem;
+  height: 4.5rem;
+  background-repeat: no-repeat;
+}
+
+.card[id^='card-d'],
+.card[id^='card-d'] .card__suit__icon {
+  background-image: url('../image/diamonds.svg');
+  background-size: contain;
+}
+
+.card[id^='card-s'],
+.card[id^='card-s'] .card__suit__icon {
+  background-image: url('../image/spades.svg');
+  background-size: contain;
+}
+
+.card[id^='card-c'],
+.card[id^='card-c'] .card__suit__icon {
+  background-image: url('../image/clubs.svg');
+  background-size: contain;
+}
+
+.card[id^='card-h'],
+.card[id^='card-h'] .card__suit__icon {
+  background-image: url('../image/hearts.svg');
+  background-size: contain;
+}
+
+.card[id^='card-'] {
+  background-size: 70%;
+  background-position-y: 60%;
+}
+
+.face--down.face--down {
+  background-color: #bfbfbf;
+  background-image: url('../image/backface.png');
+  background-size: cover;
+  background-blend-mode: hard-light;
+  padding-bottom: 122%;
+  margin: 0 auto -95%;
+}
+
+.face--down .card__rank,
+.face--down .card__suit__icon {
+  display: none;
+}
+
+.card:first-of-type {
+  margin: 2rem auto -93%;
+}
+
+.card:last-of-type:not(:first-of-type) {
+  margin: 0 auto;
+}
+
+.stock__pile .card {
+  margin-bottom: -132.5%;
+  box-shadow: 0 -1px 4px hsla(0, 0%, 0%, .15);
+}
+
+.pile {
+  padding: .5em;
+  margin: .5em auto;
+  border-radius: 1.6rem;
+  max-width: 80%;
+  width: auto;
+  color: rgb(255 255 255 / 0.5);
+  word-break: break-all;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.stock__pile {
+  margin: 0 auto 5em;
+}
+
+.waste__pile {
+  margin: 0 auto 5em;
+}
+
+
+.tableau__pile {
+  width: 13%;
+  margin: .5em 0.5em 0;
+  height: 100%;
+  top: 0;
+  float: left;
+}
+
+
+.foundation__pile {
+  display: block;
+
+  width: auto;
+  border: 0.5em solid rgb(255 255 255 / .4);
+  border-radius: 1.6rem;
+  background: rgb(167 214 171 / 50%) url('../image/diamonds.svg') no-repeat center;
+  background-size: 60%;
+  background-blend-mode: luminosity;
+  opacity: .4;
+
+  padding-bottom: 80%;
+  margin: 10% auto;
+}
+
+.foundation--hearts {
+  background-image: url('../image/hearts.svg');
+}
+
+.foundation--diamonds {
+  background-image: url('../image/diamonds.svg');
+}
+
+.foundation--clubs {
+  background-image: url('../image/clubs.svg');
+}
+
+.foundation--spades {
+  background-image: url('../image/spades.svg');
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  padding: 1.5rem;
+  z-index: 2;
+}
+
+.footer * {
+  display: inline-block;
+  color: rgb(255 255 255 / 0.5);
+  margin: 0 1rem;
+  text-decoration: none;
+  letter-spacing: .05em;
+}
+
+.footer a:hover {
+  color: white;
+}
