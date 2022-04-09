@@ -64,7 +64,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .5vmin 2vmin;
+  padding: .5vmin 3vmin;
   background-color: rgb(29 39 29);
   z-index: 1;
 }
@@ -74,7 +74,7 @@ button {
   color: white;
   font-weight: lighter;
   font-size: clamp(2rem, 3vw, 4rem);
-  padding: 0 1em .15em .1em
+  padding: 0 1em .15em .1em;
 }
 
 .text-center {
@@ -111,12 +111,12 @@ button {
 }
 
 .score__container {
-  display: flex
+  display: flex;
 }
 
 .score__item {
   margin: 0 2rem;
-  color: white
+  color: white;
 }
 
 .board {
@@ -129,18 +129,12 @@ button {
   overflow: hidden;
 }
 
-.board__main {
-  display: flex;
-  flex: 1 1 auto;
-  width: 100%;
-}
-
 .board__left {
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 0 1 11%;
-  padding: 1vw 0;
+  padding: 2vw 0;
   background-color: hsl(120deg 15% 13% / 20%);
 }
 
@@ -149,11 +143,12 @@ button {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: nowrap;
-  padding: 1vw 1vmin;
+  padding: 2vw 2vmin;
 }
 
 .board__right {
-  display: flex;flex: 0 1 11%;
+  display: flex;
+  flex: 0 1 11%;
   flex-direction: column;
   align-items: center;
   padding: 1vw 0;
@@ -167,7 +162,8 @@ button {
 
 .card {
   position: relative;
-  display: flex;width: 96%;
+  display: flex;
+  width: 96%;
   height: auto;
   aspect-ratio: auto 1/1.4;
   border-radius: 1.4vmin;
@@ -184,6 +180,7 @@ button {
   font-size: 2vmin;
   font-weight: 100;
   transition: transform .3s ease, box-shadow .2s, filter .2s;
+  align-content: flex-start;
 }
 
 .card:hover {
@@ -191,7 +188,7 @@ button {
   transform: translateY(-1vmin) scale3d(1.01, 1.01, 1) perspective(29vh) rotateX(-3deg);
   cursor: grab;
   transition-duration: .2s;
-  filter: brightness(1.1) saturate(1.1)
+  filter: brightness(1.1) saturate(1.1);
 }
 
 .card:last-child:hover {
@@ -199,15 +196,23 @@ button {
   transform: translateY(-.5vmin) scale3d(1.05, 1.05, 1) perspective(29vh) rotateX(-6deg);
 }
 
-.black--card { color: #222222 }
-.red--card { color: #E94B29 }
+.black--card {
+  color: #222222;
+}
+
+.red--card {
+  color: #E94B29;
+}
 
 .card__rank {
-  font-size: 3.5vmin;
+  position: relative;
+  display: block;
+  font-size: 3.8vmin;
   font-weight: 400;
   line-height: 1;
   padding-left: 5%;
-  margin: 1.2vmin .7vmin;
+  height: auto;
+  margin: 0.4vmax .7vmin;
   user-select: none;
 }
 
@@ -218,28 +223,37 @@ button {
   height: auto;
   aspect-ratio: 1;
   margin: .8vmin;
-background-repeat: no-repeat;}
+  background-repeat: no-repeat;
+}
 
-.card[id^='card-d'], .card[id^='card-d'] .card__suit__icon {
+.card[id^='card-d'],
+.card[id^='card-d'] .card__suit__icon {
   background-image: url('../image/diamonds.svg');
   background-size: contain;
 }
-.card[id^='card-s'], .card[id^='card-s'] .card__suit__icon {
+
+.card[id^='card-s'],
+.card[id^='card-s'] .card__suit__icon {
   background-image: url('../image/spades.svg');
   background-size: contain;
 }
-.card[id^='card-c'], .card[id^='card-c'] .card__suit__icon {
+
+.card[id^='card-c'],
+.card[id^='card-c'] .card__suit__icon {
   background-image: url('../image/clubs.svg');
   background-size: contain;
 }
-.card[id^='card-h'], .card[id^='card-h'] .card__suit__icon {
+
+.card[id^='card-h'],
+.card[id^='card-h'] .card__suit__icon {
   background-image: url('../image/hearts.svg');
   background-size: contain;
 }
 
 .card[id^='card-'] {
-  background-size: 70%
-;background-position-y: 60%;}
+  background-size: 70%;
+  background-position-y: 60%;
+}
 
 .face--down.face--down {
   background-color: #bfbfbf;
@@ -254,7 +268,8 @@ background-repeat: no-repeat;}
 }
 
 .card:first-of-type {
-  margin-top: 1vmin;}
+  margin-top: 1vmin;
+}
 
 .card:last-of-type:not(:first-of-type) {
   margin: revert;
@@ -269,7 +284,7 @@ background-repeat: no-repeat;}
   padding: .5vmin;
   margin: .5vmin .5vmin 1vmin;
   border-radius: .7rem;
-  max-width: 8vmax;
+  max-width: 9vmax;
   width: auto;
   flex: 1 1 auto;
   color: rgb(255 255 255 / 0.5);
@@ -278,7 +293,11 @@ background-repeat: no-repeat;}
   word-break: break-all;
   font-size: clamp(.4rem, 1.6vmin, 1.5rem);
   text-transform: uppercase;
-  letter-spacing: .1em
+  letter-spacing: .1em;
+}
+
+.tableau__pile {
+  max-width: 9vmax;
 }
 
 .stock__pile {
@@ -305,12 +324,15 @@ background-repeat: no-repeat;}
 .foundation--hearts {
   background-image: url('../image/hearts.svg');
 }
+
 .foundation--diamonds {
   background-image: url('../image/diamonds.svg');
 }
+
 .foundation--clubs {
   background-image: url('../image/clubs.svg');
 }
+
 .foundation--spades {
   background-image: url('../image/spades.svg');
 }
