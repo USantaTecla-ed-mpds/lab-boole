@@ -232,10 +232,13 @@ button {
 }
 
 .player__checker {
-  width: 12vh;
-  height: 12vh;
+  width: 40%;
+  max-width: 7rem;
+  height: auto;
+  aspect-ratio: 1;
   border-radius: 100px;
   font-size: var(--font-size-5);
+  font-size: clamp(.6rem, 5vmin, 2rem);
   font-weight: lighter;
   box-shadow: inset 0 0 0 3px hsla(0, 0%, 0%, .05);
 }
@@ -317,8 +320,8 @@ button {
   width: 106vh;
   max-width: 55vw;
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-columns: repeat(7, calc(100%/7));
+  grid-template-rows: repeat(6, auto);
 }
 
 .board__cell {
@@ -328,8 +331,7 @@ button {
   justify-content: center;
   flex: 1 1 auto;
   aspect-ratio: 1;
-  padding: clamp(0.7vmax, 1.4vmin ,1.2vmax);
-  padding: 2vh;
+  padding: 10%;
 }
 
 .timer__wrapper {
@@ -364,7 +366,7 @@ button {
 }
 
 .player {
-  margin: 3rem 0;
+  margin: 20% 0;
   opacity: .5;
   transition: opacity .2s ease-in-out;
 }
