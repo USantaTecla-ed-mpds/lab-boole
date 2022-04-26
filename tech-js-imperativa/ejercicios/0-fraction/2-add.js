@@ -12,7 +12,7 @@ console.writeln(`\nSegunda fraccion -------------`);
 const numerator2 = console.readNumber(`Introduce el numerador de la fracción:`);
 const denominator2 = console.readNumber(`Introduce el denominator de la fracción:`);
 
-let sumNumerators = numerator * denominator2 + numerator2 * denominator;
-let sumDenominators = denominator * denominator2;
+const sumNumerators = numerator * denominator2 + numerator2 * denominator;
+const sumDenominators = denominator * denominator2;
 
 console.writeln(`\nLa suma de la fracción ${numerator}/${denominator} y la fracción ${numerator2}/${denominator2} es la fracción ${sumNumerators}/${sumDenominators}`);
