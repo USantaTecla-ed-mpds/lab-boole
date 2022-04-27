@@ -17,11 +17,11 @@ const sumSeconds = seconds + seconds2;
 const sumMinutes = minutes + minutes2;
 const sumHours = hours + hours2;
 
-const extraMinutes = sumSeconds<60 ? 0 : (sumSeconds<120 ? 1 : 2);
-const extraHours = sumMinutes<60 ? 0 : sumMinutes<120 ? 1 : 2;
+const extraMinutes = sumSeconds < 60 ? 0 : (sumSeconds < 120 ? 1 : 2);
+const extraHours = sumMinutes < 60 ? 0 : (sumMinutes < 120 ? 1 : 2);
 
-const totalSeconds = extraMinutes ? sumSeconds%60 : sumSeconds;
-const totalMinutes = (extraHours ? sumMinutes%60 : sumMinutes) + extraMinutes;
+const totalSeconds = extraMinutes ? sumSeconds % 60 : sumSeconds;
+const totalMinutes = (extraHours ? sumMinutes % 60 : sumMinutes) + extraMinutes;
 const totalHours = sumHours + extraHours;
 
 const printSeconds = totalSeconds < 10 ? `0${totalSeconds}` : totalSeconds;
