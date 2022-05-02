@@ -15,4 +15,3 @@ const onAxisY = ordinateDest - ordinateOrg;
 
 console.writeln(`La coordenada origen [${abscissaOrg},${ordinateOrg}] y la coordenada destino [${abscissaDest},${ordinateDest}]\
  ${!(-1 <= onAxisX && onAxisX <=1 && -1 <= onAxisY && onAxisY <=1) ? 'no ':''}es un movimiento del rey`);
- let variable = onAxisX
