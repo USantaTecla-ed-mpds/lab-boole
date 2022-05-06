@@ -3,40 +3,33 @@ const console = new Console();
 
 // 1-interval/4-split-v0
 
-let minInterval = console.readNumber(`Introduce el mínimo del intervalo: `);
+let minInterval;
 let maxInterval;
-let range;
-let steps;
-let newMax;
-let result = '';
-
-while (typeof range !== 'number' || range < 0) {
+let isValidInterval = false;
+do {
+  minInterval = console.readNumber(`Introduce el mínimo del intervalo: `);
   maxInterval = console.readNumber(`Introduce el máximo del intervalo (superior o igual al mínimo): `);
-  range = maxInterval - minInterval;
-
-  if (range < 0) {
+  isValidInterval = maxInterval >= minInterval;
+  if (!isValidInterval) {
     console.writeln(`\n¡Error! El máximo debe ser superior o igual al mínimo`);
   }
-}
+} while (!isValidInterval);
 
-while (!steps || steps < 0) {
+let steps;
+let isValidSteps = false;
+do {
   steps = console.readNumber(`Introduce una cantidad positiva de intervalos: `);
-
-  if (steps <= 0) {
+  isValidSteps = steps > 0;
+  if (!isValidSteps) {
     console.writeln('\n¡Error! La cantidad de intervalos debe ser positiva');
   }
-}
+} while (!isValidSteps);
 
-const size = range / steps;
-
-for (let i=1; i<=steps; i++) {
-    newMax = minInterval + size;
-    result += `[${minInterval}, ${newMax}]`;
-
-    if (newMax < maxInterval) {
-        i + 1 < steps ? (result += ', ') : (result += ' y ');
-        minInterval = newMax;
-    }
+let result = '';
+const size = (maxInterval-minInterval) / steps;
+for (let i = 0; i < steps; i++) {
+    result += `[${minInterval + i*size}, ${minInterval + (i+1)*size}]`;
+    result += `${i < steps-2 ? ', ' : ( i < steps-1 ? ' y ' : '.')}`;
 }
 
 console.writeln(`El intervalo [${minInterval}, ${maxInterval}] dividido en ${steps} intervalo${steps>1?'s':''} son: ${result}`);
