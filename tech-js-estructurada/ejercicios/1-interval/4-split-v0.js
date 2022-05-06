@@ -29,7 +29,7 @@ let result = '';
 const size = (maxInterval-minInterval) / steps;
 for (let i = 0; i < steps; i++) {
     result += `[${minInterval + i*size}, ${minInterval + (i+1)*size}]`;
-    result += `${i < steps-2 ? ', ' : ( i < steps-1 ? ' y ' : '.')}`;
+    result += `${i < steps-2 ? ', ' : (i < steps-1 ? ' y ' : '.')}`;
 }
 
 console.writeln(`El intervalo [${minInterval}, ${maxInterval}] dividido en ${steps} intervalo${steps>1?'s':''} son: ${result}`);
