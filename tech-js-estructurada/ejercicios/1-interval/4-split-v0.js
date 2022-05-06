@@ -32,4 +32,4 @@ for (let i = 0; i < steps; i++) {
     result += `${i < steps-2 ? ', ' : (i < steps-1 ? ' y ' : '.')}`;
 }
 
-console.writeln(`El intervalo [${minInterval}, ${maxInterval}] dividido en ${steps} intervalo${steps>1?'s':''} son: ${result}`);
+console.writeln(`El intervalo [${minInterval}, ${maxInterval}] dividido en ${steps} intervalo${steps>1?'s son':' es'}: ${result}`);
