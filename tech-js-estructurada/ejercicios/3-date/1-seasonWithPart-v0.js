@@ -1,60 +1,33 @@
 const { Console } = require("console-mpds");
 const console = new Console();
 
-
 // 3-date / 1-seasonWithPart / v0
+
+const DAYS_IN_MONTH = 30;
+const DAYS_IN_YEAR = DAYS_IN_MONTH * 12;
+const OFFSET_DAYS = 9;
 
 const day = console.readNumber(`Escriba un día (1-30): `);
 const month = console.readNumber(`Escriba un mes (1-12): `);
 const year = console.readNumber(`Escriba un año (1-...): `);
 
-const JANUARY = month === 1;
-const FEBRUARY = month === 2;
-const MARCH = month === 3;
-const APRIL = month === 4;
-const MAY = month === 5;
-const JUNE = month === 6;
-const JULY = month === 7;
-const AUGUST = month === 8;
-const SEPTEMBER = month === 9;
-const OCTOBER = month === 10;
-const NOVEMBER = month === 11;
-const DECEMBER = month === 12;
+let dayOfYear = DAYS_IN_MONTH*month + (day+OFFSET_DAYS) - DAYS_IN_MONTH;
+dayOfYear = dayOfYear>=DAYS_IN_YEAR ? dayOfYear - DAYS_IN_YEAR : dayOfYear;
+let nSeason = ((dayOfYear/360 * 4));
+let floorSeason = nSeason | 0;
 
-const isWinterMid = JANUARY && day>=21 || FEBRUARY && day<21;
-const isWinterLate = FEBRUARY && day>=21 || MARCH && day<21;
-const isSpringEarly = MARCH && day>=21 || APRIL && day<21;
-const isSpringMid = APRIL && day>=21 || MAY && day<21;
-const isSpringLate = MAY && day>=21 || JUNE && day<21;
-const isSummerEarly = JUNE && day>=21 || JULY && day<21;
-const isSummerMid = JULY && day>=21 || AUGUST && day<21;
-const isSummerLate = AUGUST && day>=21 || SEPTEMBER && day<21;
-const isAutumnEarly = SEPTEMBER && day>=21 || OCTOBER && day<21;
-const isAutumnMid = OCTOBER && day>=21 || NOVEMBER && day<21;
-const isAutumnLate = NOVEMBER && day>=21 || DECEMBER && day<21;
-
-
-let seasonMoment = 'primeros';
-
-if (isWinterMid || isSpringMid || isSummerMid || isAutumnMid) {
-    seasonMoment = 'mediados';
-}
-if (isWinterLate || isSpringLate || isSummerLate || isAutumnLate) {
-    seasonMoment = 'finales';
+let seasonTime;
+if (nSeason-floorSeason < 1/3) {
+    seasonTime = 'primeros';
+} else {
+    seasonTime = nSeason-floorSeason >= 2/3 ? 'finales' : 'mediados';
 }
 
-
-let seasonName = 'invierno';
-
-if (isSpringEarly || isSpringMid || isSpringLate ) {
-    seasonName = `primavera`;
-}
-if (isSummerEarly || isSummerMid || isSummerLate ) {
-    seasonName = `verano`;
-}
-if (isAutumnEarly || isAutumnMid || isAutumnLate ) {
-    seasonName = `otoño`;
+let seasonName;
+if (floorSeason < 2) {
+    seasonName = floorSeason === 0 ? 'invierno' : 'primavera';
+} else {
+    seasonName = floorSeason === 2 ? 'verano' : 'otoño';
 }
 
-
-console.writeln(`El día ${day} del ${month} de ${year} cae a ${seasonMoment} de ${seasonName}.`);
+console.writeln(`El día ${day} del ${month} de ${year} cae a ${seasonTime} de ${seasonName}.`);
