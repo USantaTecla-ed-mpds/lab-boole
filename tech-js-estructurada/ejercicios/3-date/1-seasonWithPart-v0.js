@@ -13,6 +13,8 @@ const year = console.readNumber(`Escriba un año (1-...): `);
 
 let dayOfYear = DAYS_IN_MONTH*month + (day+OFFSET_DAYS) - DAYS_IN_MONTH;
 dayOfYear = dayOfYear>=DAYS_IN_YEAR ? dayOfYear - DAYS_IN_YEAR : dayOfYear;
+const nSeason = ((dayOfYear/360 * 4));
+const floorSeason = nSeason | 0;
 let nSeason = ((dayOfYear/360 * 4));
 let floorSeason = nSeason | 0;
 
