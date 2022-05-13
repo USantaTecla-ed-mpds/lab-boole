@@ -4,30 +4,53 @@ const console = new Console();
 // 3-date / 1-seasonWithPart / v0
 
 const DAYS_IN_MONTH = 30;
+let day = 0;
+do {
+    day = console.readNumber(`Escriba un día (1-30): `);
+} while (0 >= day || day > DAYS_IN_MONTH);
+
+let month = 0;
+do {
+    month = console.readNumber(`Escriba un mes (1-12): `);
+} while (0 >= month || month > 12);
+
+let year = 0;
+do {
+    year = console.readNumber(`Escriba un año (1-...): `);
+} while (1 > year);
+
 const DAYS_IN_YEAR = DAYS_IN_MONTH * 12;
-const OFFSET_DAYS = 9;
-
-const day = console.readNumber(`Escriba un día (1-30): `);
-const month = console.readNumber(`Escriba un mes (1-12): `);
-const year = console.readNumber(`Escriba un año (1-...): `);
-
-let dayOfYear = DAYS_IN_MONTH*month + (day+OFFSET_DAYS) - DAYS_IN_MONTH;
-dayOfYear = dayOfYear>=DAYS_IN_YEAR ? dayOfYear - DAYS_IN_YEAR : dayOfYear;
-const nSeason = ((dayOfYear/360 * 4));
-const floorSeason = nSeason | 0;
-
-let seasonTime;
-if (nSeason-floorSeason < 1/3) {
-    seasonTime = 'primeros';
-} else {
-    seasonTime = nSeason-floorSeason >= 2/3 ? 'finales' : 'mediados';
+const OFFSET_DAYS = 80;
+const dayOfYear = DAYS_IN_MONTH * (month-1) + day;
+let offsetDayOfYear = dayOfYear - (OFFSET_DAYS % DAYS_IN_YEAR);
+if (offsetDayOfYear <= 0) {
+    offsetDayOfYear += DAYS_IN_YEAR;
 }
 
-let seasonName;
-if (floorSeason < 2) {
-    seasonName = floorSeason === 0 ? 'invierno' : 'primavera';
-} else {
-    seasonName = floorSeason === 2 ? 'verano' : 'otoño';
+const SEASON_PARTS = ["principios", "mediados", "finales"];
+let seasonPart = offsetDayOfYear % 90;
+if (seasonPart === 0) {
+    seasonPart = 90;
+}
+let isSeasonPart;
+let message = `El día ${day} del ${month} del año ${year} cae a `;
+
+for (let i = 0; i < SEASON_PARTS.length; i++) {
+    isSeasonPart = i*DAYS_IN_MONTH < seasonPart && seasonPart <= (i+1)*DAYS_IN_MONTH;
+    if (isSeasonPart) {
+        message += `${SEASON_PARTS[i]} `;
+    }
 }
 
-console.writeln(`El día ${day} del ${month} de ${year} cae a ${seasonTime} de ${seasonName}.`);
+const SEASONS = ["primavera", "verano", "otoño", "invierno"];
+const seasonNumber = offsetDayOfYear / 90;
+let isSeason;
+
+for (let i = 0; i < SEASONS.length; i++) {
+    isSeason = i < seasonNumber && seasonNumber <= i + 1;
+    if (isSeason) {
+        message += `de ${SEASONS[i]}.`;
+    }
+}
+
+console.writeln(message);
