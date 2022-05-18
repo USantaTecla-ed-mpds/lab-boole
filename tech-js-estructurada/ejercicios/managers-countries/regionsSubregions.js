@@ -26,19 +26,19 @@ let uniqueSubregions = [];
 for (uniqueRegion of uniqueRegions) {
     console.writeln(`${uniqueRegion}:`);
 
-    for (let j = 0; j < REGIONS.length; j++) {
-        if (REGIONS[j] === uniqueRegion) {
-            for (let k = 0; k < SUBREGIONS.length; k++) {
+    for (let i = 0; i < REGIONS.length; i++) {
+        if (REGIONS[i] === uniqueRegion) {
+            for (let j = 0; j < SUBREGIONS.length; j++) {
                 let isUniqueSubregion = true;
                 for (uniqueSubregion of uniqueSubregions) {
-                    if (SUBREGIONS[j] === uniqueSubregion) {
+                    if (SUBREGIONS[i] === uniqueSubregion) {
                         isUniqueSubregion = false;
                     }
                 }
                 if (isUniqueSubregion) {
-                    uniqueSubregions[uniqueSubregions.length] = SUBREGIONS[j];
-                    if (SUBREGIONS[j]) {
-                        console.writeln(`\t ${SUBREGIONS[j]}`);
+                    uniqueSubregions[uniqueSubregions.length] = SUBREGIONS[i];
+                    if (SUBREGIONS[i]) {
+                        console.writeln(`\t ${SUBREGIONS[i]}`);
                     }
                 }
             }
