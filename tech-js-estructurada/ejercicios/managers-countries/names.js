@@ -8,7 +8,7 @@ const COUNTRIES = ["Uruguay", "Paraguay", "Gambia", "Djibouti", "Martinique", "G
 const nCountries = COUNTRIES.length;
 
 do {
-    userChoice = console.readNumber(`Escoge opción [1-3]:`);
+    userChoice = console.readNumber(`1. Ver países\n2. Buscar país\n3. Salir\nEscoge opción [1-3]:`);
     switch (userChoice) {
         case 1:
             let countriesList = '';
