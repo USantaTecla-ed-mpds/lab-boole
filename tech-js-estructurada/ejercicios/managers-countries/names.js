@@ -25,7 +25,7 @@ do {
             break;
 
         case 2:
-            let userCountry = console.readString(`\n🔎 Dame el nombre del país:`);
+            let userCountry = console.readString(`\n🔎 Dame el nombre del país (en inglés):`);
             let countryExist;
             for (country of COUNTRIES) {
                 if (country === userCountry) {
