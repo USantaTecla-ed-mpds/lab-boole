@@ -10,18 +10,18 @@ const denominator = console.readNumber(`Introduce el denominador de la fracción
 let dividend = numerator>=denominator ? numerator : denominator;
 let divisor = numerator>=denominator ? denominator : numerator;
 let remainder = dividend % divisor;
+let gcd;
 
 if (remainder === 0) {
-    mcd = divisor;
+    gcd = divisor;
 } else {
     while (remainder !== 0) {
         dividend = divisor;
         divisor = remainder;
         remainder = dividend % divisor;
     }
-    mcd = divisor;
+    gcd = divisor;
 }
 
-console.writeln(`\nLa fracción ${numerator}/${denominator} \
-reducida es ${numerator/mcd}/${denominator/mcd}, \
-e invertida es la fracción ${denominator/mcd}/${numerator/mcd}`);
+console.writeln(`\nLa fracción ${numerator}/${denominator} reducida es ${numerator/gcd}/${denominator/gcd}, \
+e invertida es la fracción ${denominator/gcd}/${numerator/gcd}`);
