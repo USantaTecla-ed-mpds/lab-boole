@@ -22,9 +22,14 @@ function playGame(){
     boardResults[i]=[];
     codeFound = getRoundResult(board[i],i);
     drawBoard();
+    let msg;
     if(codeFound){
-      console.writeln(`Congratulation, you have found the secret code in ${i} tries.`)
+      msg =`Congratulation, you have found the secret code in ${i} tries.`;
     }
+    else{
+      msg = `Oh, you loose!!!! Try again`;
+    }
+    console.writeln(msg);
   }
 
 function getSecretCode(){
@@ -35,7 +40,7 @@ function getSecretCode(){
 }
 
 function getProposedCode(){
-  console.writeln(`Hi CodeBraker, please enter a Secret Code.`);
+  console.writeln(`Hi CodeBreaker, please enter a Secret Code.`);
   showMenu();
   const proposedCode = getCode();
   return proposedCode;
@@ -52,13 +57,13 @@ function getCode(){
 function getRoundResult(proposedCode, round){
   const NO_MATCH = 0;
   const MATCH = 1;
-  const ORDERED = 2;
-  const resultCode = [' ','☑️','✅'];
-  let totalOrdered = 0;
+  const PLACED = 2;
+  const resultCode = ['◾','◻️','✅','☑️'];
+  let totalPlaced = 0;
   for (let i=0 ; i< MAX_TOKENS ; i++){
     if(proposedCode[i] == secretCode[i]){
-        boardResults[round][i] = resultCode[ORDERED];
-        totalOrdered ++;
+        boardResults[round][i] = resultCode[PLACED];
+        totalPlaced ++;
    }else{
       let match = false;
       for (let j=0;!match && j<MAX_TOKENS;j++){
@@ -70,7 +75,7 @@ function getRoundResult(proposedCode, round){
    }
   
  }
-  return totalOrdered == 4 ? true : false;
+  return totalPlaced == 4 ? true : false;
 }
 
 function drawBoard(){
@@ -82,15 +87,16 @@ function drawBoard(){
       for(let color of board[i]){
         row += `-- ${POSSIBLE_COLORS[color]} `;
       }
+      row += '-------------------- || ';
       for (let result of boardResults[i]){
-        row += `--  ${result} `;
+        row += `-- ${result} `;
       }
     }else{
       for(j=0; j< MAX_TOKENS; j++){
         row += `--  ${TOKEN_EMPTY} `;
       }
     }
-    row +=' --'
+    //row +=' --'
       console.writeln(row);
     
   }
@@ -101,19 +107,16 @@ function showMenu(){
   1: ${POSSIBLE_COLORS[0]}
   2: ${POSSIBLE_COLORS[1]}
   3: ${POSSIBLE_COLORS[2]}
-  4: ${POSSIBLE_COLORS[3]}
-  `);
-}
-function askColor(boardCol){
-  //let correctColor = false;
-  let selectColor;
-  do{
-      selectColor = console.readNumber(`Elige color para la columna\
-      ${boardCol + 1} (1-4): `);
-  }while(selectColor < 1 && POSSIBLE_COLORS.length + 1 < selectColor);
-  return selectColor;
+  4: ${POSSIBLE_COLORS[3]}`);
 }
 
+function askColor(boardCol){
+  let choice;
+  do{
+      choice = console.readNumber(`Choise a color for column number ${boardCol + 1} (1-4): `);
+  }while(choice < 1 && POSSIBLE_COLORS.length + 1 < choice);
+  return choice;
+}
 }
 
 function repeatGame() {
