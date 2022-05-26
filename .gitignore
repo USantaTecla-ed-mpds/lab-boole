@@ -1,1 +1,4 @@
-tech-js-estructurada/
+node_modules/
+*/node_modules/
+.gitignore
+.history
