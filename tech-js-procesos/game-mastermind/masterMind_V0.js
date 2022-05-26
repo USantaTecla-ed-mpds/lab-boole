@@ -103,7 +103,7 @@ function drawBoard(){
 }
 
 function showMenu(){
-  console.writeln(`Indica el color elegido:
+  console.writeln(`Choice one color:
   1: ${POSSIBLE_COLORS[0]}
   2: ${POSSIBLE_COLORS[1]}
   3: ${POSSIBLE_COLORS[2]}
