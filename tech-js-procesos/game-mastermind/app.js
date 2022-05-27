@@ -16,7 +16,7 @@ function playMastermind() {
     function playGame() {
         const CODE_LENGTH = 4;
         const VALID_COLORS = ['R', 'G', 'B', 'Y', 'C', 'M'];
-        const MAX_ATTEMPTS = 1;
+        const MAX_ATTEMPTS = 10;
 
         const secretCode = getCode('secret');
         console.writeln(`\nThe secret code is: [${secretCode}]\n`);
