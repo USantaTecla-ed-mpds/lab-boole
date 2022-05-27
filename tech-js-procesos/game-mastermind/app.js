@@ -17,27 +17,32 @@ function playMastermind() {
         const CODE_LENGTH = 4;
         const VALID_COLORS = ['R', 'G', 'B', 'Y', 'C', 'M'];
         const MAX_ATTEMPTS = 10;
+        const MAKER = 'CodeMaker';
+        const BREAKER = 'CodeBreaker';
 
-        const secretCode = getCode('secret');
-        console.writeln(`\nThe secret code is: [${secretCode}]\n`);
+        printMsg('welcome', MAKER, 'Secret');
+        const secretCode = getCode('Secret');
+        printMsg('secret-is', null, secretCode);
+        // console.writeln(`\nThe secret code is: [${secretCode}]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`);
 
         let brokenSecretCode = false;
         let remainingAttempts = MAX_ATTEMPTS;
+        const BREAK_CODE = [2,2,2,2];
 
+        printMsg('welcome', BREAKER, 'Proposed');
         do {
             let proposedCode = getCode('proposed');
-            console.writeln(`\nThe proposed code is: [${proposedCode}]\n`);
+            printMsg('attempt-is', null, proposedCode);
 
             let codeMatch = compareCodes(proposedCode, secretCode);
-            console.writeln(`\nThe result is: [${codeMatch}]\n`);
+            printMsg('result-is', null, codeMatch);
 
-            if (codeMatch === [2, 2, 2, 2]) {
+            if (isEqualCode(codeMatch, BREAK_CODE)) {
                 brokenSecretCode = true;
             } else {
                 remainingAttempts--;
-                printMsg('remaining')
+                printMsg('remaining', null, remainingAttempts)
             }
-
         } while (!brokenSecretCode && remainingAttempts > 0);
 
         printMsg(brokenSecretCode
@@ -46,7 +51,6 @@ function playMastermind() {
 
 
         function getCode(typeCode) {
-            printMsg(typeCode);
             let code = [];
             for (let i = 0; i < CODE_LENGTH; i++) {
                 code[i] = askColor(i, typeCode);
@@ -60,7 +64,7 @@ function playMastermind() {
                     color = console.readString(`- Enter ${typeCode} color ${i + 1}: `);
                     isValidColor = validateColor(color);
                     if (!isValidColor) {
-                        printMsg(typeCode, false);
+                        printMsg('is-invalid');
                     }
                 } while (!isValidColor);
                 return color;
@@ -93,21 +97,43 @@ function playMastermind() {
             return result;
         }
 
-        function printMsg(type, validColor = true) {
-            let player;
+        function isEqualCode(code1, code2) {
+            for (var i = 0; i < code1.length; i++) {
+                if (code1[i] !== code2[i]) {	
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function printMsg(type, player, data) {
             switch (type) {
-                case 'secret':
-                    player = 'CodeMaker';
-                    console.writeln(getCodeMsg(type, validColor, player));
+                case 'welcome':
+                    console.writeln(`\nHi ${player}, please enter a ${data} Code with only ${CODE_LENGTH} colors.\
+                    \nYou can use 1 or ${CODE_LENGTH} of these colors: [${VALID_COLORS}]\n`);
                     break;
 
-                case 'proposed':
-                    player = 'CodeBreaker';
-                    console.writeln(getCodeMsg(type, validColor, player))
+                case 'is-invalid':
+                    console.writeln(`\nInvalid color, please enter one of these colors: [${VALID_COLORS}]`);
+                    break;
+
+                case 'secret-is':
+                    console.writeln(`\n********************************\
+                    \n* The Secret Code is [${data}] *\
+                    \n********************************\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`);
+                    break;
+
+                case 'proposed-is':
+                    console.writeln(`\nYour proposed code is [${data}]`);
+                    break;
+
+                case 'result-is':
+                    console.writeln(`\n---> The result is: [${data}]\n`);
                     break;
 
                 case 'remaining':
-                    console.writeln(`\nYou have ${remainingAttempts} attempts left.\n`);
+                    console.writeln(`-------------------------------\
+                    \n\nYou have [${data}] attempts left to break the code.`);
                     break;
 
                 case 'win':
@@ -118,20 +144,8 @@ function playMastermind() {
                     console.writeln('\nSorry, you lost!');
                     break;
             }
-
-            function getCodeMsg(typeCode, validColor = true, player) {
-                let msg = '';
-                if (validColor) {
-                    msg = `\nHi ${player}, please enter a ${typeCode} code with only ${CODE_LENGTH} colors.\
-                    \nYou can use 1 or ${CODE_LENGTH} of these colors: [${VALID_COLORS}]\n`;
-                } else {
-                    msg = `\nInvalid color, please enter one of these colors: [${VALID_COLORS}]`;
-                }
-                return msg;
-            }
         }
     }
-
 
     function repeatGame() {
         let repeat;
