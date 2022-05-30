@@ -23,7 +23,6 @@ function playMastermind() {
         printMsg('welcome', MAKER, 'Secret');
         const secretCode = getCode('Secret');
         printMsg('secret-is', null, secretCode);
-        // console.writeln(`\nThe secret code is: [${secretCode}]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`);
 
         let brokenSecretCode = false;
         let remainingAttempts = MAX_ATTEMPTS;
