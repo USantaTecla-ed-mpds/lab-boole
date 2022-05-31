@@ -2,164 +2,167 @@ const { Console } = require("console-mpds");
 const console = new Console();
 
 // process oriented programming
-// game mastermind
-
 
 playMastermind();
 
 function playMastermind() {
     do {
         playGame();
-    } while (repeatGame());
-
+    } while (isResumed());
 
     function playGame() {
-        const CODE_LENGTH = 4;
-        const VALID_COLORS = ['R', 'G', 'B', 'Y', 'C', 'M'];
-        const MAX_ATTEMPTS = 10;
-        const MAKER = 'CodeMaker';
-        const BREAKER = 'CodeBreaker';
-
-        printMsg('welcome', MAKER, 'Secret');
-        const secretCode = getCode('Secret');
-        printMsg('secret-is', null, secretCode);
-
-        let brokenSecretCode = false;
-        let remainingAttempts = MAX_ATTEMPTS;
-        const BREAK_CODE = [2,2,2,2];
-
-        printMsg('welcome', BREAKER, 'Proposed');
+        const COMBINATION_LENGTH = 4;
+        const VALID_COLORS = ["r", "g", "b", "y", "c", "m"];
+        const MAX_ATTEMPTS = 2;
+        
+        welcomeMakerMsg(COMBINATION_LENGTH, VALID_COLORS);
+        const secretCombination = getCombination(COMBINATION_LENGTH, VALID_COLORS, "Secret");
+        welcomeBreakerMsg(COMBINATION_LENGTH, VALID_COLORS, MAX_ATTEMPTS);
+        let proposedCombinations = [];
+        let proposedCombinationsResults = [];
+        let nAttempt = 0;
+        let isBrokenSecretCode = false;
+        let gameFinished = false;
         do {
-            let proposedCode = getCode('proposed');
-            printMsg('attempt-is', null, proposedCode);
+            proposedCombinations[nAttempt] = getCombination(COMBINATION_LENGTH, VALID_COLORS, "Proposed");
+            proposedCombinationsResults[nAttempt] = checkCombination(proposedCombinations[nAttempt], secretCombination);
+            showBoard(proposedCombinations, proposedCombinationsResults, nAttempt);
+            gameFinished = checkGameFinished(isBrokenSecretCode, nAttempt, MAX_ATTEMPTS);
+            nAttempt++;
+        } while (!gameFinished);
+        exitMsg(isBrokenSecretCode, gameFinished);
 
-            let codeMatch = compareCodes(proposedCode, secretCode);
-            printMsg('result-is', null, codeMatch);
 
-            if (isEqualCode(codeMatch, BREAK_CODE)) {
-                brokenSecretCode = true;
-            } else {
-                remainingAttempts--;
-                printMsg('remaining', null, remainingAttempts)
+        function welcomeMakerMsg(combinationLength, validColors) {
+            console.writeln(`\n----- MASTERMIND -----\
+            \n\nHi CodeMaker, please enter a Secret Combination with only ${combinationLength} colors.\
+            \nThe valid colors are: [${validColors}]. You can not repeat any of them.\n`);
+        }
+
+        function getCombination(combinationLength, validColors, combinationType) {
+            let combination = [];
+            console.writeln(`Propose a combination:`);
+            for (let i = 0; i < combinationLength; i++) {
+                combination[i] = askColor(i, validColors, combinationType, combination);
             }
-        } while (!brokenSecretCode && remainingAttempts > 0);
+            return combination;
 
-        printMsg(brokenSecretCode
-            ? 'win'
-            : 'lose');
-
-
-        function getCode(typeCode) {
-            let code = [];
-            for (let i = 0; i < CODE_LENGTH; i++) {
-                code[i] = askColor(i, typeCode);
-            }
-            return code;
-
-            function askColor(i, typeCode) {
-                let color = '';
-                let isValidColor = true;
+            function askColor(i, validColors, combinationType, combination) {
+                let color = "";
+                let isValid, isUnique;
                 do {
-                    color = console.readString(`- Enter ${typeCode} color ${i + 1}: `);
-                    isValidColor = validateColor(color);
-                    if (!isValidColor) {
-                        printMsg('is-invalid');
+                    color = console.readString(`- Enter ${combinationType} color ${i + 1}: `);
+                    isValid = isValidColor(color, validColors);
+                    isUnique = isUniqueColor(color, combination);
+                    if (!isValid) {
+                        console.writeln(`\nWrong color, they must be: [${validColors}]`);
+                    } else if (!isUnique) {
+                        console.writeln(`\nUpsss, you can not repeat any of them.`);
                     }
-                } while (!isValidColor);
+                } while (!isValid || !isUnique);
                 return color;
             }
 
-            function validateColor(color) {
-                for (let validColor of VALID_COLORS) {
-                    if (color === validColor) {
-                        return true;
+            function isValidColor(color, validColors) {
+                let isValid = false;
+                for (let validColor of validColors) {
+                    if (validColor === color) {
+                        isValid = true;
                     }
                 }
-                return false;
+                return isValid;
             }
-        }
 
-        // 2 for correct color and position // 1 for correct color but wrong position // 0 for incorrect color and position
-        function compareCodes(code1, code2) {
-            let result = [];
-            for (let i = 0; i < code1.length; i++) {
-                let match = false;
-                for (let j = 0; !match && j < code2.length; j++) {
-                    if (code1[i] === code2[j]) {
-                        result[i] = i === j ? 2 : 1;
-                        match = true;
-                    } else {
-                        result[i] = 0;
+            function isUniqueColor(color, combinationColors) {
+                let isUnique = true;
+                for (let combinationColor of combinationColors) {
+                    if (combinationColor === color) {
+                        isUnique = false;
                     }
                 }
-            }
-            return result;
-        }
-
-        function isEqualCode(code1, code2) {
-            for (var i = 0; i < code1.length; i++) {
-                if (code1[i] !== code2[i]) {	
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        function printMsg(type, player, data) {
-            switch (type) {
-                case 'welcome':
-                    console.writeln(`\nHi ${player}, please enter a ${data} Code with only ${CODE_LENGTH} colors.\
-                    \nYou can use 1 or ${CODE_LENGTH} of these colors: [${VALID_COLORS}]\n`);
-                    break;
-
-                case 'is-invalid':
-                    console.writeln(`\nInvalid color, please enter one of these colors: [${VALID_COLORS}]`);
-                    break;
-
-                case 'secret-is':
-                    console.writeln(`\n********************************\
-                    \n* The Secret Code is [${data}] *\
-                    \n********************************\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`);
-                    break;
-
-                case 'proposed-is':
-                    console.writeln(`\nYour proposed code is [${data}]`);
-                    break;
-
-                case 'result-is':
-                    console.writeln(`\n---> The result is: [${data}]\n`);
-                    break;
-
-                case 'remaining':
-                    console.writeln(`-------------------------------\
-                    \n\nYou have [${data}] attempts left to break the code.`);
-                    break;
-
-                case 'win':
-                    console.writeln('\nCongratulations, you won!');
-                    break;
-
-                case 'lose':
-                    console.writeln('\nSorry, you lost!');
-                    break;
+                return isUnique;
             }
         }
-    }
 
-    function repeatGame() {
-        let repeat;
-        let validResponse;
-        do {
-            repeat = console.readString("Do you want to play again? (y/n)");
-            validResponse = repeat === "y" || repeat === "n";
-            if (validResponse) {
-                if (repeat === "n") {
-                    console.writeln('\nBye! See you next time');
-                }
-                return repeat === "y";
+        function welcomeBreakerMsg(combinationLength, validColors, maxAttempts) {
+            console.writeln(`\n\n\n\nHi CodeBreaker, please enter a Proposed Combination with only ${combinationLength} colors.\
+            \nThe valid colors are: [${validColors}]. You can not repeat any of them and you have ${maxAttempts} attempts.\
+            \nGood Luck!\n`);
+        }
+        
+        function checkCombination(proposedCombination, secretCombination) {
+            let whites = 0;
+            let blacks = getBlacks(proposedCombination, secretCombination);
+            if (blacks === secretCombination.length) {
+                isBrokenSecretCode = true;
             } else {
-                console.writeln("\nPlease, enter a valid response");
+                whites = getWhites(proposedCombination, secretCombination, blacks);
             }
-        } while (!validResponse);
+            return `${blacks} blacks and ${whites} whites`;
+
+            function getBlacks(proposedCombination, secretCombination) {
+                let result = 0;
+                for (let i = 0; i < proposedCombination.length; i++) {
+                    if (proposedCombination[i] === secretCombination[i]) {
+                        result++;
+                    }
+                }
+                return result;
+            }
+
+            function getWhites(proposedCombination, secretCombination, blacks) {
+                let result = 0;
+                for (let i = 0; i < proposedCombination.length; i++) {
+                    for (let j = 0; j < secretCombination.length; j++) {
+                        if (proposedCombination[i] === secretCombination[j]) {
+                            result++;
+                        }
+                    }
+                }
+                return result > 0 
+                    ? result-blacks 
+                    : result;
+            }
+        }
+
+        function showBoard(proposeCombinations, proposedCombinationsResults, nAttempt) {
+            let score = `\n- - - - - - - - - - - - - -\
+            \n${nAttempt+1} attempt${nAttempt > 0 ? "s" : ""}:\
+            \n****\n`;
+            for (let i = 0; i < proposeCombinations.length; i++) {
+                score += `${proposeCombinations[i]} --> ${proposedCombinationsResults[i]}\n`;
+            }
+            console.writeln(score);
+        }
+
+        function checkGameFinished(isBrokenSecretCode, nAttempt, MAX_ATTEMPTS) {
+            return isBrokenSecretCode || nAttempt+1 === MAX_ATTEMPTS;
+        }
+
+        function exitMsg(isBrokenSecretCode, gameFinished) {
+            if (isBrokenSecretCode) {
+                console.writeln(`\nCongratulations, you broke the secret code!\n`);
+            } else if (gameFinished) {
+                console.writeln(`\nSorry, you lost.\n`);
+            }
+        }
     }
+
+    function isResumed() {
+        let answer;
+        let result;
+        let error = false;
+        do {
+            answer = console.readString(`Do you want to play again? (y/n) `);
+            result = answer === "y";
+            error = !result && answer !== "n";
+            if (error) {
+                console.writeln(`\nPlease, enter a valid response`);
+            } else if (answer === "n") {
+                console.writeln("\nBye! See you next time");
+            }
+        } while (error);
+        return result;
+    }
+    
 }
