@@ -27,10 +27,10 @@ function playMastermind() {
             proposedCombinations[nAttempt] = getCombination(COMBINATION_LENGTH, VALID_COLORS, "Proposed");
             proposedCombinationsResults[nAttempt] = checkCombination(proposedCombinations[nAttempt], secretCombination);
             showBoard(proposedCombinations, proposedCombinationsResults, nAttempt);
-            gameFinished = checkGameFinished(isBrokenSecretCode, nAttempt, MAX_ATTEMPTS);
+            gameFinished = isBrokenSecretCode || MAX_ATTEMPTS === nAttempt+1;
             nAttempt++;
         } while (!gameFinished);
-        exitMsg(isBrokenSecretCode, gameFinished);
+        exitMsg(isBrokenSecretCode);
 
 
         function welcomeMakerMsg(combinationLength, validColors) {
@@ -135,14 +135,12 @@ function playMastermind() {
             console.writeln(score);
         }
 
-        function checkGameFinished(isBrokenSecretCode, nAttempt, MAX_ATTEMPTS) {
-            return isBrokenSecretCode || nAttempt+1 === MAX_ATTEMPTS;
-        }
-
-        function exitMsg(isBrokenSecretCode, gameFinished) {
+        function exitMsg(isBrokenSecretCode) {
             if (isBrokenSecretCode) {
-                console.writeln(`\nCongratulations, you broke the secret code!\n`);
-            } else if (gameFinished) {
+                console.writeln(`*****************************************************\
+                \n* Congratulations, you've broken the secret code!!! *\
+                \n*****************************************************\n`);
+            } else {
                 console.writeln(`\nSorry, you lost.\n`);
             }
         }
