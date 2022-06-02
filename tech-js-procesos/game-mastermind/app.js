@@ -6,31 +6,30 @@ const console = new Console();
 playMastermind();
 
 function playMastermind() {
+    const COMBINATION_LENGTH = 4;
+    const VALID_COLORS = ["r", "g", "b", "y", "c", "m"];
+    const MAX_ATTEMPTS = 3;
+
     do {
-        playGame();
+        playGame(COMBINATION_LENGTH, VALID_COLORS, MAX_ATTEMPTS);
     } while (isResumed());
 
-    function playGame() {
-        const COMBINATION_LENGTH = 4;
-        const VALID_COLORS = ["r", "g", "b", "y", "c", "m"];
-        const MAX_ATTEMPTS = 10;
-        
-        welcomeMakerMsg(COMBINATION_LENGTH, VALID_COLORS);
-        const secretCombination = generateSecretCombination(COMBINATION_LENGTH, VALID_COLORS);
-        welcomeBreakerMsg(COMBINATION_LENGTH, VALID_COLORS, MAX_ATTEMPTS);
+    function playGame(combinationLength, validColors, maxAttempts) {
+        welcomeMakerMsg(combinationLength, validColors);
+        const secretCombination = generateSecretCombination(combinationLength, validColors);
+        // print ****
+        welcomeBreakerMsg(combinationLength, validColors, maxAttempts);
         let proposedCombinations = [];
-        let proposedCombinationsResults = [];
+        let proposedResults = [];
         let nAttempt = 0;
         let isBrokenSecretCode = false;
-        let gameFinished = false;
         do {
-            proposedCombinations[nAttempt] = getCombination(COMBINATION_LENGTH, VALID_COLORS, "Proposed");
-            proposedCombinationsResults[nAttempt] = checkCombination(proposedCombinations[nAttempt], secretCombination);
-            showBoard(proposedCombinations, proposedCombinationsResults, nAttempt);
-            gameFinished = isBrokenSecretCode || MAX_ATTEMPTS === nAttempt+1;
+            proposedCombinations[nAttempt] = getProposedCombination(combinationLength, validColors);
+            proposedResults[nAttempt] = getProposedResults(proposedCombinations[nAttempt], secretCombination);
+            showBoard(proposedCombinations, proposedResults, nAttempt);
             nAttempt++;
-        } while (!gameFinished);
-        exitMsg(isBrokenSecretCode);
+        } while (!isBrokenSecretCode && nAttempt < maxAttempts);
+        exitMsg();
 
 
         function welcomeMakerMsg(combinationLength, validColors) {
@@ -51,19 +50,19 @@ function playMastermind() {
             return combination;
         }
 
-        function getCombination(combinationLength, validColors, combinationType) {
+        function getProposedCombination(combinationLength, validColors) {
             let combination = [];
             console.writeln(`Propose a combination:`);
             for (let i = 0; i < combinationLength; i++) {
-                combination[i] = askColor(i, validColors, combinationType, combination);
+                combination[i] = askColor(i, validColors, combination);
             }
             return combination;
 
-            function askColor(i, validColors, combinationType, combination) {
+            function askColor(i, validColors, combination) {
                 let color = "";
                 let isValid, isUnique;
                 do {
-                    color = console.readString(`- Enter ${combinationType} color ${i + 1}: `);
+                    color = console.readString(`- Enter proposed color ${i + 1}: `);
                     isValid = isValidColor(color, validColors);
                     isUnique = isUniqueColor(color, combination);
                     if (!isValid) {
@@ -102,7 +101,7 @@ function playMastermind() {
             \nThe valid colors are: [${validColors}]. You can not repeat any of them and you have ${maxAttempts} attempts.\n`);
         }
         
-        function checkCombination(proposedCombination, secretCombination) {
+        function getProposedResults(proposedCombination, secretCombination) {
             let whites = 0;
             let blacks = getBlacks(proposedCombination, secretCombination);
             if (blacks === secretCombination.length) {
@@ -137,17 +136,17 @@ function playMastermind() {
             }
         }
 
-        function showBoard(proposeCombinations, proposedCombinationsResults, nAttempt) {
+        function showBoard(proposeCombinations, proposedResults, nAttempt) {
             let score = `\n- - - - - - - - - - - - - -\
             \n\n${nAttempt+1} attempt${nAttempt > 0 ? "s" : ""}:\
             \n****\n\n`;
             for (let i = 0; i < proposeCombinations.length; i++) {
-                score += `${proposeCombinations[i]} --> ${proposedCombinationsResults[i]}\n`;
+                score += `${proposeCombinations[i]} --> ${proposedResults[i]}\n`;
             }
             console.writeln(score);
         }
 
-        function exitMsg(isBrokenSecretCode) {
+        function exitMsg() {
             if (isBrokenSecretCode) {
                 console.writeln(`*****************************************************\
                 \n* Congratulations, you've broken the secret code!!! *\
