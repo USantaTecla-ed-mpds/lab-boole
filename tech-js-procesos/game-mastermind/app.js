@@ -13,7 +13,7 @@ function playMastermind() {
     function playGame() {
         const COMBINATION_LENGTH = 4;
         const VALID_COLORS = ["r", "g", "b", "y", "c", "m"];
-        const MAX_ATTEMPTS = 2;
+        const MAX_ATTEMPTS = 10;
         
         welcomeMakerMsg(COMBINATION_LENGTH, VALID_COLORS);
         const secretCombination = getCombination(COMBINATION_LENGTH, VALID_COLORS, "Secret");
