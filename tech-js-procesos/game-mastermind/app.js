@@ -19,10 +19,10 @@ function playMastermind() {
         const getValidColors = () => VALID_COLORS;
         const getCombinationLength = () => COMBINATION_LENGTH;
 
-        welcomeMakerMsg();
-        const secretCombination = ['r', 'g', 'b', 'y'];//generateSecretCombination();
-        // print ****
-        welcomeBreakerMsg();
+        showMakerMsg();
+        const secretCombination = generateSecretCombination();
+            console.writeln(secretCombination); // TODO: remove
+        showBreakerMsg();
         let proposedCombinations = [];
         let proposedResults = [];
         let nAttempt = 0;
@@ -35,7 +35,7 @@ function playMastermind() {
         } while (!isBrokenSecretCode && nAttempt < getMaxAttempts());
         exitMsg();
 
-        function welcomeMakerMsg() {
+        function showMakerMsg() {
             console.writeln(`\n----- MASTERMIND -----\
             \n\nHi CodeMaker, please enter a Secret Combination with only ${getCombinationLength()} colors.\
             \nThe valid colors are: [${getValidColors()}]. You can not repeat any of them.\n`);
@@ -48,9 +48,10 @@ function playMastermind() {
             for (let i = 0; i < getCombinationLength(); i++) {
                 do {
                     index = parseInt(Math.random() * validColors.length);
-                } while (!isRepeatedColor(validColors[index], combination));
+                } while (isRepeatedColor(validColors[index], combination));
                 combination[i] = validColors[index];
             }
+            console.writeln('****');
             return combination;
         }
 
@@ -99,7 +100,7 @@ function playMastermind() {
             return isRepeated;
         }
 
-        function welcomeBreakerMsg() {
+        function showBreakerMsg() {
             console.writeln(`\n\n\n\nHi CodeBreaker, please enter a Proposed Combination with only ${getCombinationLength()} colors.\
             \nThe valid colors are: [${getValidColors()}]. You can not repeat any of them and you have ${getMaxAttempts()} attempts.\n`);
         }
