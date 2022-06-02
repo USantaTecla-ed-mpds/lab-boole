@@ -16,7 +16,7 @@ function playMastermind() {
         const MAX_ATTEMPTS = 10;
         
         welcomeMakerMsg(COMBINATION_LENGTH, VALID_COLORS);
-        const secretCombination = getCombination(COMBINATION_LENGTH, VALID_COLORS, "Secret");
+        const secretCombination = generateSecretCombination(COMBINATION_LENGTH, VALID_COLORS);
         welcomeBreakerMsg(COMBINATION_LENGTH, VALID_COLORS, MAX_ATTEMPTS);
         let proposedCombinations = [];
         let proposedCombinationsResults = [];
@@ -37,6 +37,18 @@ function playMastermind() {
             console.writeln(`\n----- MASTERMIND -----\
             \n\nHi CodeMaker, please enter a Secret Combination with only ${combinationLength} colors.\
             \nThe valid colors are: [${validColors}]. You can not repeat any of them.\n`);
+        }
+
+        function generateSecretCombination(combinationLength, validColors) {
+            let combination = [];
+            let index;
+            for (let i = 0; i < combinationLength; i++) {
+                do {
+                    index = parseInt(Math.random() * validColors.length);
+                } while (!isUniqueColor(validColors[index], combination));
+                combination[i] = validColors[index];
+            }
+            return combination;
         }
 
         function getCombination(combinationLength, validColors, combinationType) {
@@ -73,15 +85,16 @@ function playMastermind() {
                 return isValid;
             }
 
-            function isUniqueColor(color, combinationColors) {
-                let isUnique = true;
-                for (let combinationColor of combinationColors) {
-                    if (combinationColor === color) {
-                        isUnique = false;
-                    }
+        }
+
+        function isUniqueColor(color, combinationColors) {
+            let isUnique = true;
+            for (let combinationColor of combinationColors) {
+                if (combinationColor === color) {
+                    isUnique = false;
                 }
-                return isUnique;
             }
+            return isUnique;
         }
 
         function welcomeBreakerMsg(combinationLength, validColors, maxAttempts) {
