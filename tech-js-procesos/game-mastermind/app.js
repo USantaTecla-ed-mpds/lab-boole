@@ -86,8 +86,7 @@ function playMastermind() {
 
         function welcomeBreakerMsg(combinationLength, validColors, maxAttempts) {
             console.writeln(`\n\n\n\nHi CodeBreaker, please enter a Proposed Combination with only ${combinationLength} colors.\
-            \nThe valid colors are: [${validColors}]. You can not repeat any of them and you have ${maxAttempts} attempts.\
-            \nGood Luck!\n`);
+            \nThe valid colors are: [${validColors}]. You can not repeat any of them and you have ${maxAttempts} attempts.\n`);
         }
         
         function checkCombination(proposedCombination, secretCombination) {
@@ -127,8 +126,8 @@ function playMastermind() {
 
         function showBoard(proposeCombinations, proposedCombinationsResults, nAttempt) {
             let score = `\n- - - - - - - - - - - - - -\
-            \n${nAttempt+1} attempt${nAttempt > 0 ? "s" : ""}:\
-            \n****\n`;
+            \n\n${nAttempt+1} attempt${nAttempt > 0 ? "s" : ""}:\
+            \n****\n\n`;
             for (let i = 0; i < proposeCombinations.length; i++) {
                 score += `${proposeCombinations[i]} --> ${proposedCombinationsResults[i]}\n`;
             }
@@ -151,7 +150,7 @@ function playMastermind() {
         let result;
         let error = false;
         do {
-            answer = console.readString(`Do you want to play again? (y/n) `);
+            answer = console.readString(`- Do you want to play again? (y/n) `);
             result = answer === "y";
             error = !result && answer !== "n";
             if (error) {
