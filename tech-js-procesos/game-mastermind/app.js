@@ -20,7 +20,7 @@ function playMastermind() {
         const getCombinationLength = () => COMBINATION_LENGTH;
 
         welcomeMakerMsg();
-        const secretCombination = ['r', 'g', 'b', 'y'];//generateSecretCombination(combinationLength, validColors);
+        const secretCombination = ['r', 'g', 'b', 'y'];//generateSecretCombination();
         // print ****
         welcomeBreakerMsg();
         let proposedCombinations = [];
@@ -42,14 +42,13 @@ function playMastermind() {
         }
 
         function generateSecretCombination() {
-            const combinationLength = getCombinationLength();
             const validColors = getValidColors();
             let combination = [];
             let index;
-            for (let i = 0; i < combinationLength; i++) {
+            for (let i = 0; i < getCombinationLength(); i++) {
                 do {
                     index = parseInt(Math.random() * validColors.length);
-                } while (!isUniqueColor(validColors[index], combination));
+                } while (!isRepeatedColor(validColors[index], combination));
                 combination[i] = validColors[index];
             }
             return combination;
@@ -65,39 +64,39 @@ function playMastermind() {
 
             function askColor(i, combination) {
                 let color = "";
-                let isValid, isUnique;
+                let isWrong, isRepeated;
                 do {
                     color = console.readString(`- Enter proposed color ${i + 1}: `);
-                    isValid = isValidColor(color);
-                    isUnique = isUniqueColor(color, combination);
-                    if (!isValid) {
+                    isWrong = isWrongColor(color);
+                    isRepeated = isRepeatedColor(color, combination);
+                    if (isWrong) {
                         console.writeln(`\nWrong color, they must be: [${getValidColors()}]`);
-                    } else if (!isUnique) {
+                    } else if (isRepeated) {
                         console.writeln(`\nUpsss, you can not repeat any of them.`);
                     }
-                } while (!isValid || !isUnique);
+                } while (isWrong || isRepeated);
                 return color;
             }
 
-            function isValidColor(color) {
-                let isValid = false;
+            function isWrongColor(color) {
+                let isWrong = true;
                 for (let validColor of getValidColors()) {
                     if (validColor === color) {
-                        isValid = true;
+                        isWrong = false;
                     }
                 }
-                return isValid;
+                return isWrong;
             }
         }
 
-        function isUniqueColor(color, combinationColors) {
-            let isUnique = true;
+        function isRepeatedColor(color, combinationColors) {
+            let isRepeated = false;
             for (let combinationColor of combinationColors) {
                 if (combinationColor === color) {
-                    isUnique = false;
+                    isRepeated = true;
                 }
             }
-            return isUnique;
+            return isRepeated;
         }
 
         function welcomeBreakerMsg() {
