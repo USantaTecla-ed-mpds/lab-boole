@@ -1,107 +1,113 @@
 const { Console } = require("console-mpds");
 const console = new Console();
 
-// process oriented programming
 
 playMastermind();
 
 function playMastermind() {
-    const COMBINATION_LENGTH = 4;
+    const MAX_ATTEMPTS = 10;
     const VALID_COLORS = ["r", "g", "b", "y", "c", "m"];
-    const MAX_ATTEMPTS = 3;
+    const COMBINATION_LENGTH = 4;
 
     do {
-        playGame(COMBINATION_LENGTH, VALID_COLORS, MAX_ATTEMPTS);
+        playGame();
     } while (isResumed());
 
-    function playGame(combinationLength, validColors, maxAttempts) {
-        welcomeMakerMsg(combinationLength, validColors);
-        const secretCombination = generateSecretCombination(combinationLength, validColors);
-        // print ****
-        welcomeBreakerMsg(combinationLength, validColors, maxAttempts);
+    function playGame() {
+        const getMaxAttempts = () => MAX_ATTEMPTS;
+        const getValidColors = () => VALID_COLORS;
+        const getCombinationLength = () => COMBINATION_LENGTH;
+
+        showWelcomeMsg();
+        const secretCombination = generateSecretCombination();
+        const getSecretCombination = () => secretCombination;
+        showBreakerMsg();
+        
         let proposedCombinations = [];
         let proposedResults = [];
         let nAttempt = 0;
         let isBrokenSecretCode = false;
+
         do {
-            proposedCombinations[nAttempt] = getProposedCombination(combinationLength, validColors);
-            proposedResults[nAttempt] = getProposedResults(proposedCombinations[nAttempt], secretCombination);
+            proposedCombinations[nAttempt] = getProposedCombination();
+            proposedResults[nAttempt] = getProposedResults(proposedCombinations[nAttempt]);
             showBoard(proposedCombinations, proposedResults, nAttempt);
             nAttempt++;
-        } while (!isBrokenSecretCode && nAttempt < maxAttempts);
-        exitMsg();
+        } while (!isBrokenSecretCode && nAttempt < getMaxAttempts());
+
+        showExitMsg(isBrokenSecretCode);
 
 
-        function welcomeMakerMsg(combinationLength, validColors) {
+        function showWelcomeMsg() {
             console.writeln(`\n----- MASTERMIND -----\
-            \n\nHi CodeMaker, please enter a Secret Combination with only ${combinationLength} colors.\
-            \nThe valid colors are: [${validColors}]. You can not repeat any of them.\n`);
+            \n\nHi! I'm the computer.\nI'm going to think for a secret combination of ${getCombinationLength()} unique colors.`);
         }
 
-        function generateSecretCombination(combinationLength, validColors) {
-            let combination = [];
-            let index;
-            for (let i = 0; i < combinationLength; i++) {
+        function generateSecretCombination() {
+            const validColors = getValidColors();
+            let secretCombination = [];
+            let idx;
+            for (let i = 0; i < getCombinationLength(); i++) {
                 do {
-                    index = parseInt(Math.random() * validColors.length);
-                } while (!isUniqueColor(validColors[index], combination));
-                combination[i] = validColors[index];
+                    idx = parseInt(Math.random() * validColors.length);
+                } while (isRepeatedColor(validColors[idx], secretCombination));
+                secretCombination[i] = validColors[idx];
             }
-            return combination;
+            console.writeln('****');
+            console.writeln(secretCombination); // TODO: remove. only for debug
+            return secretCombination;
         }
 
-        function getProposedCombination(combinationLength, validColors) {
-            let combination = [];
-            console.writeln(`Propose a combination:`);
-            for (let i = 0; i < combinationLength; i++) {
-                combination[i] = askColor(i, validColors, combination);
-            }
-            return combination;
-
-            function askColor(i, validColors, combination) {
-                let color = "";
-                let isValid, isUnique;
-                do {
-                    color = console.readString(`- Enter proposed color ${i + 1}: `);
-                    isValid = isValidColor(color, validColors);
-                    isUnique = isUniqueColor(color, combination);
-                    if (!isValid) {
-                        console.writeln(`\nWrong color, they must be: [${validColors}]`);
-                    } else if (!isUnique) {
-                        console.writeln(`\nUpsss, you can not repeat any of them.`);
-                    }
-                } while (!isValid || !isUnique);
-                return color;
-            }
-
-            function isValidColor(color, validColors) {
-                let isValid = false;
-                for (let validColor of validColors) {
-                    if (validColor === color) {
-                        isValid = true;
+        function getProposedCombination() {
+            let combination, wrongColors;
+            do {
+                combination = console.readString(`Propose a combination:`);
+                if (combination.length !== getCombinationLength()) {
+                    console.writeln(`- Wrong proposed combination length!`);
+                } else {
+                    wrongColors = false;
+                    let idx = 0;
+                    do {
+                        wrongColors = isWrongColor(combination[idx]);
+                        idx++;
+                    } while (!wrongColors && idx < combination.length);
+    
+                    if (wrongColors) {
+                        console.writeln(`- Wrong colors, they must be: [${getValidColors()}]`);
                     }
                 }
-                return isValid;
-            }
+            } while (wrongColors || combination.length !== getCombinationLength());
 
+            return combination;
+
+            function isWrongColor(color) {
+                let isWrong = true;
+                for (let validColor of getValidColors()) {
+                    if (validColor === color) {
+                        isWrong = false;
+                    }
+                }
+                return isWrong;
+            }
         }
 
-        function isUniqueColor(color, combinationColors) {
-            let isUnique = true;
+        function isRepeatedColor(color, combinationColors) {
+            let isRepeated = false;
             for (let combinationColor of combinationColors) {
                 if (combinationColor === color) {
-                    isUnique = false;
+                    isRepeated = true;
                 }
             }
-            return isUnique;
+            return isRepeated;
         }
 
-        function welcomeBreakerMsg(combinationLength, validColors, maxAttempts) {
-            console.writeln(`\n\n\n\nHi CodeBreaker, please enter a Proposed Combination with only ${combinationLength} colors.\
-            \nThe valid colors are: [${validColors}]. You can not repeat any of them and you have ${maxAttempts} attempts.\n`);
+        function showBreakerMsg() {
+            console.writeln(`\n\nHi CodeBreaker, you have ${getMaxAttempts()} attempts to break the secret combination.\
+            \nThe valid colors are: [${getValidColors()}]. You can't repeat any of them.\n`);
         }
         
-        function getProposedResults(proposedCombination, secretCombination) {
+        function getProposedResults(proposedCombination) {
+            const secretCombination = getSecretCombination();
             let whites = 0;
             let blacks = getBlacks(proposedCombination, secretCombination);
             if (blacks === secretCombination.length) {
@@ -109,6 +115,7 @@ function playMastermind() {
             } else {
                 whites = getWhites(proposedCombination, secretCombination, blacks);
             }
+
             return `${blacks} blacks and ${whites} whites`;
 
             function getBlacks(proposedCombination, secretCombination) {
@@ -130,23 +137,21 @@ function playMastermind() {
                         }
                     }
                 }
-                return result > 0 
-                    ? result-blacks 
-                    : result;
+                return result > 0 ? result-blacks : result;
             }
         }
 
-        function showBoard(proposeCombinations, proposedResults, nAttempt) {
+        function showBoard(proposedCombinations, proposedResults, nAttempt) {
             let score = `\n- - - - - - - - - - - - - -\
             \n\n${nAttempt+1} attempt${nAttempt > 0 ? "s" : ""}:\
-            \n****\n\n`;
-            for (let i = 0; i < proposeCombinations.length; i++) {
-                score += `${proposeCombinations[i]} --> ${proposedResults[i]}\n`;
+            \n****\n`;
+            for (let i = 0; i < proposedCombinations.length; i++) {
+                score += `${proposedCombinations[i]} --> ${proposedResults[i]}\n`;
             }
             console.writeln(score);
         }
 
-        function exitMsg() {
+        function showExitMsg(isBrokenSecretCode) {
             if (isBrokenSecretCode) {
                 console.writeln(`*****************************************************\
                 \n* Congratulations, you've broken the secret code!!! *\
@@ -158,8 +163,7 @@ function playMastermind() {
     }
 
     function isResumed() {
-        let answer;
-        let result;
+        let answer, result;
         let error = false;
         do {
             answer = console.readString(`- Do you want to play again? (y/n) `);
@@ -168,10 +172,9 @@ function playMastermind() {
             if (error) {
                 console.writeln(`\nPlease, enter a valid response`);
             } else if (answer === "n") {
-                console.writeln("\nBye! See you next time");
+                console.writeln("Bye! See you next time");
             }
         } while (error);
         return result;
     }
-    
 }
