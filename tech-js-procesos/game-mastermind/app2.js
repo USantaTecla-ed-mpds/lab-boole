@@ -1,0 +1,65 @@
+const { Console } = require("console-mpds");
+const console = new Console();
+
+// process oriented programming
+
+playMastermind();
+
+function playMastermind() {
+    do {
+        playGame();
+    } while (isResumed());
+
+    function playGame() {
+        const COMBINATION_LENGTH = 4;
+        const VALID_COLORS = ["r", "g", "b", "y", "c", "m"];
+        const MAX_ATTEMPTS = 5;
+
+        console.writeln(`\n----- MASTERMIND -----\n\n`);
+        const secretCombination = getSecretCombination(COMBINATION_LENGTH, VALID_COLORS);
+        let nAttempt = 0;
+        showAttempMsg(nAttempt);
+        let proposedCombinations = [];
+        let proposedResults = [];
+        let isBrokenSecretCode = false;
+        do {
+            nAttempt++;
+            proposedCombinations[nAttempt] = getProposedCombination(COMBINATION_LENGTH,VALID_COLORS);
+            proposedResults[nAttempt] = getProposedResults(proposedCombinations[nAttempt],secretCombination);
+            console.writeln(proposedResults[nAttempt]);
+           
+            
+            showAttempMsg(nAttempt);
+            showBoard(proposedCombinations[nAttempt], proposedResults[nAttempt]);
+        } while (nAttempt < MAX_ATTEMPTS);
+
+    }
+
+    function showAttempMsg(nAttempt){
+        console.writeln(`${nAttempt} intento (s):`)
+    }
+
+    function getSecretCombination(lenght, validColors){
+        return 'rgby';
+    }
+
+    function getProposedCombination(lenght, validColors){
+        return 'rgcm';
+    }
+    
+    function getProposedResults(proposedCombination,secretCombination){
+        let blanks = 0;
+        let whites = 0;
+        return [blanks,whites];
+    }
+
+    function showBoard(proposedCombination,result){
+        const blanksIndex = 0;
+        const whiteIndex = 1;
+        console.writeln(`${proposedCombination} --> ${result[blanksIndex]} blanks and ${result[whiteIndex]} whites`);
+    }
+
+    function isResumed(){
+        return false;
+    }
+}
