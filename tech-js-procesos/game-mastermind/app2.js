@@ -21,7 +21,7 @@ function playMastermind() {
         showAttempMsg(nAttempt);
         let proposedCombinations = [];
         let proposedResults = [];
-        let isBrokenSecretCode = false;
+        let isBrokensecretCombination = false;
         do {
             nAttempt++;
             proposedCombinations[nAttempt] = getProposedCombination(COMBINATION_LENGTH,VALID_COLORS);
@@ -48,9 +48,24 @@ function playMastermind() {
     }
     
     function getProposedResults(proposedCombination,secretCombination){
-        let blanks = 0;
+        let blacks = 0;
         let whites = 0;
-        return [blanks,whites];
+
+        for (let i = 0; i < proposedCombination) {
+            let match = false;
+            for (let j = 0; !match && j < secretCombination.length; j++) {
+                if (proposedCombination[i] === secretCombination[j]) {
+                    match = true;
+                    if(i === j){
+                        blacks ++;
+                    }else{
+                        whites ++;
+                    }
+                }
+            }    
+        
+        }    
+        return [blacks,whites];
     }
 
     function showBoard(proposedCombination,result){
