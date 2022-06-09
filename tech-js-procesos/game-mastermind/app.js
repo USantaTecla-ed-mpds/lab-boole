@@ -163,18 +163,17 @@ function playMastermind() {
     }
 
     function isResumed() {
-        let answer, result;
+        let answer;
         let error = false;
         do {
             answer = console.readString(`- Do you want to play again? (y/n) `);
-            result = answer === "y";
-            error = !result && answer !== "n";
+            error = answer !== "y" && answer !== "n";
             if (error) {
                 console.writeln(`\nPlease, enter a valid response`);
             } else if (answer === "n") {
                 console.writeln("Bye! See you next time");
             }
         } while (error);
-        return result;
+        return answer === "y";
     }
 }
