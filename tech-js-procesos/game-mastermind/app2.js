@@ -46,17 +46,24 @@ function playMastermind() {
     console.writeln(`\n${nAttempt} intento (s):`);
   }
 
-  function getSecretCombination(lenght, validColors) {
-    return "rgby";
+  function getSecretCombination(length, validColors) {
+    let combination = [];
+    let index;
+    for (let i = 0; i < length; i++) {
+      index = parseInt(Math.random() * validColors.length);
+      combination[i] = validColors[index];
+    }
+    return combination;
+  }
   }
 
-  function getProposedCombination(combinationLenght, validColors) {
+  function getProposedCombination(combinationlength, validColors) {
     let proposedCombination = "";
     let isValidCombination, isValidLength;
     do {
       proposedCombination = console.readString("Propón una combinación:");
       isValidCombination = isValidColor(validColors, proposedCombination);
-      isValidLength = proposedCombination.length === combinationLenght;
+      isValidLength = proposedCombination.length === combinationlength;
       if (!isValidLength) {
         console.writeln(
           `La longitud de la combinación propuesta es incorrecta`
