@@ -26,16 +26,8 @@ function playMastermind() {
         let proposedResults = [];
         let isBrokensecretCombination = false;
         do {
-
-            proposedCombinations[nAttempt] = getProposedCombination(
-                COMBINATION_LENGTH,
-                VALID_COLORS
-            );
-            proposedResults[nAttempt] = getProposedResults(
-                proposedCombinations[nAttempt],
-                secretCombination
-            );
-
+            proposedCombinations[nAttempt] = getProposedCombination();
+            proposedResults[nAttempt] = getProposedResults(proposedCombinations[nAttempt],secretCombination);
             showAttempMsg(nAttempt + 1);
             showBoard(proposedCombinations[nAttempt], proposedResults[nAttempt]);
             nAttempt++;
@@ -50,11 +42,11 @@ function playMastermind() {
             return proposedCombination;
 
             function isValidCombination(proposedCombination) {
-                if ( proposedCombination.length !== COMBINATION_LENGTH) {
-                    console.writeln(`La longitud de la combinación propuesta es incorrecta`);    
+                if (proposedCombination.length !== COMBINATION_LENGTH) {
+                    console.writeln(`La longitud de la combinación propuesta es incorrecta`);
                     return false
-                }                 
-                if (! isValidColor(proposedCombination)) {
+                }
+                if (!isValidColor(proposedCombination)) {
                     console.writeln(`Colores incorrectos, deben ser: rgybmc`);
                     return false
                 }
@@ -88,11 +80,6 @@ function playMastermind() {
         }
         return combination;
     }
-
-
-
-
-
 }
 
 
