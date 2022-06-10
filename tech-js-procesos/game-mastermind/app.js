@@ -16,6 +16,7 @@ function playMastermind() {
     
     console.writeln(`\n----- MASTERMIND -----\n`);
     const secretCombination = generateSecretCombination(COMBINATION_LENGTH, COLORS);
+    console.writeln(`Secret combination: ${secretCombination}\n`);
     let proposedCombinations = [];
     let proposedResults = [];
     let foundCombination = false;
@@ -107,20 +108,13 @@ function playMastermind() {
       let blacks = 0;
       let whites = 0;
       for (let i = 0; i < proposedCombination.length; i++) {
-        let match = false;
-        let j = 0;
-        do {
-          match = false;
-          if (proposedCombination[i] === secretCombination[j]) {
-            if (i === j) {
+        for (let j = 0; j < proposedCombination.length; j++) {
+          if (i === j && proposedCombination[i] === secretCombination[j]) {
               blacks++;
-              match = true;
-            } else {
+          } else if (proposedCombination[i] === secretCombination[j]) {
               whites++
-            }
           }
-          j++;
-        } while (!match && j < secretCombination.length);
+        }
       }
       return [blacks, whites];
     }
