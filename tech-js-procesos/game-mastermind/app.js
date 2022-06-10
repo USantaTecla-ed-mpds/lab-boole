@@ -22,7 +22,7 @@ function playMastermind() {
     let nAttempt = 0;
 
     do {
-      proposedCombinations[nAttempt] = getProposedCombination(COLORS, COMBINATION_LENGTH);
+      proposedCombinations[nAttempt] = getProposedCombination(COMBINATION_LENGTH, COLORS);
       proposedResults[nAttempt] = getProposedResults(proposedCombinations[nAttempt], secretCombination);
       foundCombination = isFoundCombination(proposedResults[nAttempt][0], COMBINATION_LENGTH);      
       showBoard(proposedCombinations, proposedResults, nAttempt);
