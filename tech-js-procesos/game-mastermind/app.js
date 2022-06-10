@@ -39,7 +39,7 @@ function playMastermind() {
       let index;
       for (let i = 0; i < combinationLength; i++) {
         do {
-          index = parseInt(Math.random() * validColors.combinationLength);
+          index = parseInt(Math.random() * validColors.length);
         } while (isRepeatedColor(validColors[index], combination));
         combination[i] = validColors[index];
       }
