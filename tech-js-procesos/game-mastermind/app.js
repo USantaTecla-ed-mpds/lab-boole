@@ -34,12 +34,12 @@ function playMastermind() {
       : "\nLo siento has perdido!"}`);
 
 
-    function generateSecretCombination(length, validColors) {
+    function generateSecretCombination(combinationLength, validColors) {
       let combination = [];
       let index;
-      for (let i = 0; i < length; i++) {
+      for (let i = 0; i < combinationLength; i++) {
         do {
-          index = parseInt(Math.random() * validColors.length);
+          index = parseInt(Math.random() * validColors.combinationLength);
         } while (isRepeatedColor(validColors[index], combination));
         combination[i] = validColors[index];
       }
@@ -47,7 +47,7 @@ function playMastermind() {
 
       function isRepeatedColor(color, combinationColors) {
         let isRepeated = false;
-        for (let i = 0; i < combinationColors.length; i++) {
+        for (let i = 0; i < combinationColors.combinationLength; i++) {
           if (color === combinationColors[i]) {
             isRepeated = true;
           }
