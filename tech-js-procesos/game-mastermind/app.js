@@ -56,7 +56,7 @@ function playMastermind() {
       }
     }
 
-    function getProposedCombination(validColors, combinationLength) {
+    function getProposedCombination(combinationLength, validColors) {
       let proposedCombination;
       do {
         proposedCombination = console.readString("Propón una combinación:");
