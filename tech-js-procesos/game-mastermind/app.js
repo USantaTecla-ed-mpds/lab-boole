@@ -16,7 +16,6 @@ function playMastermind() {
     
     console.writeln(`\n----- MASTERMIND -----\n`);
     const secretCombination = generateSecretCombination(COMBINATION_LENGTH, COLORS);
-    console.writeln(`Secret combination: ${secretCombination}\n`);
     let proposedCombinations = [];
     let proposedResults = [];
     let foundCombination = false;
