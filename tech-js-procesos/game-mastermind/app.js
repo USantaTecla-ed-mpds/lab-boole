@@ -16,6 +16,7 @@ function playMastermind() {
     
     console.writeln(`\n----- MASTERMIND -----\n`);
     const secretCombination = generateSecretCombination(COMBINATION_LENGTH, COLORS);
+    console.writeln(`Secret combination: ${secretCombination}`);
     let proposedCombinations = [];
     let proposedResults = [];
     let foundCombination = false;
@@ -24,7 +25,7 @@ function playMastermind() {
     do {
       proposedCombinations[nAttempt] = getProposedCombination(COMBINATION_LENGTH, COLORS);
       proposedResults[nAttempt] = getProposedResults(proposedCombinations[nAttempt], secretCombination);
-      foundCombination = isFoundCombination(proposedResults[nAttempt][0], COMBINATION_LENGTH);      
+      foundCombination = proposedResults[nAttempt][0] === COMBINATION_LENGTH;      
       showBoard(proposedCombinations, proposedResults, nAttempt);
       nAttempt++;
     } while (!foundCombination && nAttempt < MAX_ATTEMPTS);
@@ -116,10 +117,6 @@ function playMastermind() {
         }
       }
       return [blacks, whites];
-    }
-
-    function isFoundCombination(blacks, combinationLength) {
-      return blacks === combinationLength;
     }
 
     function showBoard(proposedCombination, result, nAttempt) {
