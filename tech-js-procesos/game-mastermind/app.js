@@ -47,7 +47,7 @@ function playMastermind() {
 
       function isRepeatedColor(color, combinationColors) {
         let isRepeated = false;
-        for (let i = 0; i < combinationColors.combinationLength; i++) {
+        for (let i = 0; i < combinationColors.length; i++) {
           if (color === combinationColors[i]) {
             isRepeated = true;
           }
