@@ -12,7 +12,6 @@ function playMastermind() {
   function playGame() {
     const COMBINATION_LENGTH = 4;
     const COLORS = ["r", "g", "b", "y", "c", "m"];
-    const MAX_ATTEMPTS = 10;
     
     const secretCombination = generateSecretCombination(COMBINATION_LENGTH, COLORS);
     console.writeln(`\n----- MASTERMIND -----\n\n****`);
@@ -20,6 +19,7 @@ function playMastermind() {
     let proposedResults = [];
     let foundCombination = false;
     let nAttempt = 0;
+    const MAX_ATTEMPTS = 10;
 
     do {
       proposedCombinations[nAttempt] = getProposedCombination(COMBINATION_LENGTH, COLORS);
