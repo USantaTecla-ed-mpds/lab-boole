@@ -157,18 +157,15 @@ function playTicTacToe() {
   }
 
   function isResumed() {
-    let result;
     let answer;
-    let error = false;
+    let error;
     do {
-      answer = console.readString(`¿Quieres jugar otra partida? `);
-      result = answer === `si`;
-      error = !result && answer !== `no`;
+      answer = console.readString(`¿Quieres jugar otra partida? (s/n)`);
+      error = answer !== "s" && answer !== "n";
       if (error) {
-        console.writeln(`Por favor, responda "si" o "no"`);
+        console.writeln(`\nPor favor, responda "si" o "no".`);
       }
     } while (error);
-    return result;
+    return answer === "s";
   }
-
 }
