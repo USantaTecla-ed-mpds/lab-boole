@@ -11,12 +11,12 @@ function playTicTacToe() {
 
   function playGame() {
     const MAX_PLAYERS = 2;
-    const MAX_TOKENS = 3;
-    const TOKEN_EMPTY = ` `;
+    const MAX_TOKENS_PER_PLAYER = 3;
+    const EMPTY_TOKEN = " ";
     let tokens = [
-      [TOKEN_EMPTY, TOKEN_EMPTY, TOKEN_EMPTY],
-      [TOKEN_EMPTY, TOKEN_EMPTY, TOKEN_EMPTY],
-      [TOKEN_EMPTY, TOKEN_EMPTY, TOKEN_EMPTY]
+      [EMPTY_TOKEN, EMPTY_TOKEN, EMPTY_TOKEN],
+      [EMPTY_TOKEN, EMPTY_TOKEN, EMPTY_TOKEN],
+      [EMPTY_TOKEN, EMPTY_TOKEN, EMPTY_TOKEN]
     ];
     let turn = 0;
     let winner;
@@ -36,7 +36,7 @@ function playTicTacToe() {
       let error;
       let originRow;
       let originColumn;
-      const movement = getNumTokens(tokens) === MAX_PLAYERS * MAX_TOKENS;
+      const movement = getNumTokens(tokens) === MAX_PLAYERS * MAX_TOKENS_PER_PLAYER;
       if (movement) {
         do {
           originRow = read(`Fila origen`);
@@ -58,7 +58,7 @@ function playTicTacToe() {
         }
       } while (error);
       if (movement) {
-        tokens[originRow][originColumn] = TOKEN_EMPTY;
+        tokens[originRow][originColumn] = EMPTY_TOKEN;
       }
       tokens[targetRow][targetColumn] = getToken(turn);
     }
@@ -72,7 +72,7 @@ function playTicTacToe() {
           }
         }
       }
-      return MAX_TOKENS ** 2 - empties;
+      return MAX_TOKENS_PER_PLAYER ** 2 - empties;
     }
 
     function read(title) {
@@ -82,14 +82,14 @@ function playTicTacToe() {
         position = console.readNumber(`${title}: `);
         error = position < 1 || 3 < position;
         if (error) {
-          console.writeln(`Por favor un numero entre 1 y ${MAX_TOKENS} inclusives`)
+          console.writeln(`Por favor un numero entre 1 y ${MAX_TOKENS_PER_PLAYER} inclusives`)
         }
       } while (error);
       return position - 1;
     }
 
     function isEmpty(tokens, row, column) {
-      return tokens[row][column] === TOKEN_EMPTY;
+      return tokens[row][column] === EMPTY_TOKEN;
     }
 
     function getToken(turn) {
@@ -134,20 +134,20 @@ function playTicTacToe() {
             if (i - j === 0) {
               countDiagonal++;
             }
-            if (i + j === MAX_TOKENS - 1) {
+            if (i + j === MAX_TOKENS_PER_PLAYER - 1) {
               countInverse++;
             }
           }
         }
       }
-      if (countDiagonal === MAX_TOKENS || countInverse === MAX_TOKENS) {
+      if (countDiagonal === MAX_TOKENS_PER_PLAYER || countInverse === MAX_TOKENS_PER_PLAYER) {
         return true;
       }
       for (let i = 0; i < countRows.length; i++) {
-        if (countRows[i] === MAX_TOKENS) {
+        if (countRows[i] === MAX_TOKENS_PER_PLAYER) {
           return true;
         }
-        if (countColumns[i] === MAX_TOKENS) {
+        if (countColumns[i] === MAX_TOKENS_PER_PLAYER) {
           return true;
         }
       }
