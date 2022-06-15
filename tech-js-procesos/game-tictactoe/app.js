@@ -28,14 +28,11 @@ function playTicTacToe() {
       if (!winner) {
         turn = nextTurn(turn);
       }
-    } while (!winner && !tiedGame(tokens, turn));
+    } while (!winner);
+    
     writelnTokens(tokens);
+    console.writeln(`Victoria para las fichas ${getActiveToken(turn)}`);
 
-    if (winner) {
-      console.writeln(`Victoria para las fichas ${getToken(turn)}`);
-    } else if (tiedGame(tokens)) {
-      console.writeln("Empate!");
-    }
 
     function writelnTokens(tokens) {
       const HORIZONTAL_SEPARATOR = `-------------`;
@@ -53,38 +50,43 @@ function playTicTacToe() {
     }
 
     function placeToken(tokens, turn) {
-      console.writeln(`Turno para las fichas ${getToken(turn)}`);
-      let error;
+      console.writeln(`Turno para las fichas ${getActiveToken(turn)}`);
+      let wrongToken;
       let originRow;
       let originColumn;
-      const movement = getNumTokens(tokens) === MAX_PLAYERS * MAX_TOKENS_PER_PLAYER;
-      if (movement) {
+      const allTokensPlaced = getPlacedTokens(tokens) === MAX_PLAYERS * MAX_TOKENS_PER_PLAYER;
+
+      if (allTokensPlaced) {
+        console.writeln(`No tienes más fichas. Elige que ficha quieres mover.`);
         do {
           originRow = read(`Fila origen`);
-          originColumn = read(`Columna destino`);
-          error = !isOccupied(tokens, originRow, originColumn, turn);
-          if (error) {
-            console.writeln(`No hay una ficha de la propiedad de ${getToken(turn)}`);
+          originColumn = read(`Columna origen`);
+          wrongToken = !isTokenOfActiveTurn(tokens, originRow, originColumn, turn);
+          if (wrongToken) {
+            console.writeln(`En esta celda no hay fichas de ${getActiveToken(turn)}`);
           }
-        } while (error);
+        } while (wrongToken);
       }
+
+      let fullCell;
       let targetRow;
       let targetColumn;
       do {
         targetRow = read(`Fila destino`);
         targetColumn = read(`Columna destino`);
-        error = !isEmpty(tokens, targetRow, targetColumn);
-        if (error) {
+        fullCell = isFullCell(tokens, targetRow, targetColumn);
+        if (fullCell) {
           console.writeln(`Indique una celda vacía`);
         }
-      } while (error);
-      if (movement) {
+      } while (fullCell);
+      
+      if (allTokensPlaced) {
         tokens[originRow][originColumn] = EMPTY_TOKEN;
       }
-      tokens[targetRow][targetColumn] = getToken(turn);
+      tokens[targetRow][targetColumn] = getActiveToken(turn);
     }
     
-    function getNumTokens(tokens) {
+    function getPlacedTokens(tokens) {
       let empties = 0;
       for (let row of tokens) {
         for (let token of row) {
@@ -109,11 +111,11 @@ function playTicTacToe() {
       return position - 1;
     }
 
-    function isEmpty(tokens, row, column) {
-      return tokens[row][column] === EMPTY_TOKEN;
+    function isFullCell(tokens, row, column) {
+      return tokens[row][column] !== EMPTY_TOKEN;
     }
 
-    function getToken(turn) {
+    function getActiveToken(turn) {
       const TOKEN_X = `X`;
       const TOKEN_Y = `Y`;
       return turn === 0 ? TOKEN_X : TOKEN_Y;
@@ -123,47 +125,42 @@ function playTicTacToe() {
       return (turn + 1) % MAX_PLAYERS;
     }
 
-    function tiedGame(tokens, turn) {
-      return !isTicTacToe(tokens, turn) && getNumTokens(tokens) === MAX_TOKENS_PER_PLAYER * MAX_PLAYERS;
-    }
-
-    function isOccupied(tokens, row, column, turn) {
-      return tokens[row][column] === getToken(turn);
+    function isTokenOfActiveTurn(tokens, row, column, turn) {
+      return tokens[row][column] === getActiveToken(turn);
     }
 
     function isTicTacToe(tokens, turn) {
-      let countRows = [0, 0, 0];
-      let countColumns = [0, 0, 0];
-      let countDiagonal = 0;
-      let countInverse = 0;
+      let tokensInRow = [0, 0, 0];
+      let tokensInColumn = [0, 0, 0];
+      let tokensInDiagonal = 0;
+      let tokensInDiagonalInverse = 0;
       for (let i = 0; i < tokens.length; i++) {
         for (let j = 0; j < tokens[i].length; j++) {
-          if (tokens[i][j] === getToken(turn)) {
-            countRows[i]++;
-            countColumns[j]++;
+          if (tokens[i][j] === getActiveToken(turn)) {
+            tokensInRow[i]++;
+            tokensInColumn[j]++;
             if (i - j === 0) {
-              countDiagonal++;
+              tokensInDiagonal++;
             }
             if (i + j === MAX_TOKENS_PER_PLAYER - 1) {
-              countInverse++;
+              tokensInDiagonalInverse++;
             }
           }
         }
       }
-      if (countDiagonal === MAX_TOKENS_PER_PLAYER || countInverse === MAX_TOKENS_PER_PLAYER) {
+      if (tokensInDiagonal === MAX_TOKENS_PER_PLAYER || tokensInDiagonalInverse === MAX_TOKENS_PER_PLAYER) {
         return true;
       }
-      for (let i = 0; i < countRows.length; i++) {
-        if (countRows[i] === MAX_TOKENS_PER_PLAYER) {
+      for (let i = 0; i < tokensInRow.length; i++) {
+        if (tokensInRow[i] === MAX_TOKENS_PER_PLAYER) {
           return true;
         }
-        if (countColumns[i] === MAX_TOKENS_PER_PLAYER) {
+        if (tokensInColumn[i] === MAX_TOKENS_PER_PLAYER) {
           return true;
         }
       }
       return false;
     }
-
   }
 
   function isResumed() {
