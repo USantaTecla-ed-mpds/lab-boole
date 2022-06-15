@@ -29,7 +29,20 @@ function playTicTacToe() {
       }
     } while (!winner);
     writelnTokens(tokens);
-    console.writeln(`Victoria para ${getToken(turn)}`);
+    function writelnTokens(tokens) {
+      const HORIZONTAL_SEPARATOR = `-------------`;
+      const VERTICAL_SEPARATOR = `|`;
+      let msg = ``;
+      for (let row of tokens) {
+        msg += `${HORIZONTAL_SEPARATOR}\n`;
+        for (let token of row) {
+          msg += `${VERTICAL_SEPARATOR} ${token} `;
+        }
+        msg += `${VERTICAL_SEPARATOR}\n`;
+      }
+      msg += HORIZONTAL_SEPARATOR;
+      console.writeln(msg);
+    }
 
     function placeToken(tokens, turn) {
       console.writeln(`Turno para ${getToken(turn)}`);
@@ -96,21 +109,6 @@ function playTicTacToe() {
       const TOKEN_X = `X`;
       const TOKEN_Y = `Y`;
       return turn === 0 ? TOKEN_X : TOKEN_Y;
-    }
-
-    function writelnTokens(tokens) {
-      const HORIZONTAL_SEPARTOR = `-------------`;
-      const VERTICAL_SEPARATOR = `|`;
-      let msg = ``;
-      for (let i = 0; i < tokens.length; i++) {
-        msg += `${HORIZONTAL_SEPARTOR}\n`;
-        for (let j = 0; j < tokens[i].length; j++) {
-          msg += `${VERTICAL_SEPARATOR} ${tokens[i][j]} `;
-        }
-        msg += `${VERTICAL_SEPARATOR}\n`;
-      }
-      msg += HORIZONTAL_SEPARTOR;
-      console.writeln(msg);
     }
 
     function nextTurn(turn) {
