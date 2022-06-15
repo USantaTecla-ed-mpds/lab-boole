@@ -10,6 +10,20 @@ function playTicTacToe() {
   } while (isResumed());
 
   function playGame() {
+    // ask for game mode (player vs player, player vs computer, computer vs computer)
+    const GAME_MODE_NAMES = [
+      "Jugador contra Jugador",
+      "Jugador contra Computador",
+      "Computador contra Computador"
+    ];
+    console.writeln(`\n----- TIC TAC TOE -----\
+                    \n\nMODOS DE JUEGO\
+                    \n1. ${GAME_MODE_NAMES[0]}\
+                    \n2. ${GAME_MODE_NAMES[1]}\
+                    \n3. ${GAME_MODE_NAMES[2]}`);
+    const GAME_MODE = (console.readNumber(`\nElige un modo de juego (1, 2 o 3): `)) - 1;
+    console.writeln(`\nModo de juego: ${GAME_MODE_NAMES[GAME_MODE]}\n`);
+
     const MAX_PLAYERS = 2;
     const MAX_TOKENS_PER_PLAYER = 3;
     const EMPTY_TOKEN = " ";
@@ -23,7 +37,12 @@ function playTicTacToe() {
 
     do {
       writelnTokens(tokens);
-      placeToken(tokens, turn);
+      const PLACE_TOKEN_FUNCTION = [
+        [placeTokenPlayer, placeTokenPlayer],
+        [placeTokenPlayer, placeTokenComputer],
+        [placeTokenComputer, placeTokenComputer]
+      ]
+      PLACE_TOKEN_FUNCTION[GAME_MODE][turn](tokens, turn);
       winner = isTicTacToe(tokens, turn);
       if (!winner) {
         turn = nextTurn(turn);
@@ -49,7 +68,7 @@ function playTicTacToe() {
       console.writeln(msg);
     }
 
-    function placeToken(tokens, turn) {
+    function placeTokenPlayer(tokens, turn) {
       console.writeln(`Turno para las fichas ${getActiveToken(turn)}`);
       let wrongToken;
       let originRow;
@@ -84,6 +103,10 @@ function playTicTacToe() {
         tokens[originRow][originColumn] = EMPTY_TOKEN;
       }
       tokens[targetRow][targetColumn] = getActiveToken(turn);
+    }
+
+    function placeTokenComputer(tokens, turn) {
+      console.writeln(`Turno de la computadora`);
     }
     
     function getPlacedTokens(tokens) {
