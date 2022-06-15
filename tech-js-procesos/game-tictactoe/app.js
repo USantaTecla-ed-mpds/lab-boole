@@ -86,9 +86,9 @@ function playTicTacToe() {
     
     function getNumTokens(tokens) {
       let empties = 0;
-      for (let i = 0; i < tokens.length; i++) {
-        for (let j = 0; j < tokens[i].length; j++) {
-          if (tokens[i][j] === TOKEN_EMPTY) {
+      for (let row of tokens) {
+        for (let token of row) {
+          if (token === EMPTY_TOKEN) {
             empties++;
           }
         }
