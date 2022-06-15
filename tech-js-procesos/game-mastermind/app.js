@@ -14,10 +14,9 @@ function playMastermind() {
     const COLORS = ["r", "g", "b", "y", "c", "m"];
     const MAX_ATTEMPTS = 10;
     
-    console.writeln(`\n----- MASTERMIND -----\n`);
     const secretCombination = generateSecretCombination(COMBINATION_LENGTH, COLORS);
+    console.writeln(`\n----- MASTERMIND -----\n\n****`);
     let proposedCombinations = [];
-    console.writeln(`****`);
     let proposedResults = [];
     let foundCombination = false;
     let nAttempt = 0;
@@ -122,8 +121,8 @@ function playMastermind() {
     function showBoard(proposedCombination, result, nAttempt) {
       const indexBlacks = 0;
       const indexWhites = 1;
-      let msg = `\n${nAttempt + 1} intento${nAttempt + 1 == 1 ? '' : 's'}:
-****\n`;
+      let msg = `\n${nAttempt + 1} intento${nAttempt + 1 == 1 ? '' : 's'}:\
+                 \n****\n`;
       for (let i = 0; i < proposedCombination.length; i++) {
         msg += `${proposedCombination[i]} --> ${result[i][indexBlacks]} negras y ${result[i][indexWhites]} blancas\n`;
       }
