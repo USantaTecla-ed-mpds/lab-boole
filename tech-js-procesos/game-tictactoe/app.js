@@ -20,6 +20,7 @@ function playTicTacToe() {
     ];
     let turn = 0;
     let winner;
+
     do {
       writelnTokens(tokens);
       placeToken(tokens, turn);
@@ -27,8 +28,15 @@ function playTicTacToe() {
       if (!winner) {
         turn = nextTurn(turn);
       }
-    } while (!winner);
+    } while (!winner && !tiedGame(tokens, turn));
     writelnTokens(tokens);
+
+    if (winner) {
+      console.writeln(`Victoria para las fichas ${getToken(turn)}`);
+    } else if (tiedGame(tokens)) {
+      console.writeln("Empate!");
+    }
+
     function writelnTokens(tokens) {
       const HORIZONTAL_SEPARATOR = `-------------`;
       const VERTICAL_SEPARATOR = `|`;
@@ -45,7 +53,7 @@ function playTicTacToe() {
     }
 
     function placeToken(tokens, turn) {
-      console.writeln(`Turno para ${getToken(turn)}`);
+      console.writeln(`Turno para las fichas ${getToken(turn)}`);
       let error;
       let originRow;
       let originColumn;
@@ -113,6 +121,10 @@ function playTicTacToe() {
 
     function nextTurn(turn) {
       return (turn + 1) % MAX_PLAYERS;
+    }
+
+    function tiedGame(tokens, turn) {
+      return !isTicTacToe(tokens, turn) && getNumTokens(tokens) === MAX_TOKENS_PER_PLAYER * MAX_PLAYERS;
     }
 
     function isOccupied(tokens, row, column, turn) {
