@@ -10,19 +10,9 @@ function playTicTacToe() {
   } while (isResumed());
 
   function playGame() {
-    // ask for game mode (player vs player, player vs computer, computer vs computer)
-    const GAME_MODE_NAMES = [
-      "Jugador contra Jugador",
-      "Jugador contra Computador",
-      "Computador contra Computador"
-    ];
-    console.writeln(`\n----- TIC TAC TOE -----\
-                    \n\nMODOS DE JUEGO\
-                    \n1. ${GAME_MODE_NAMES[0]}\
-                    \n2. ${GAME_MODE_NAMES[1]}\
-                    \n3. ${GAME_MODE_NAMES[2]}`);
-    const GAME_MODE = (console.readNumber(`\nElige un modo de juego (1, 2 o 3): `)) - 1;
-    console.writeln(`\nModo de juego: ${GAME_MODE_NAMES[GAME_MODE]}\n`);
+    const GAME_MODE_NAMES = ["Jugador contra Jugador", "Jugador contra Computador", "Computador contra Computador"];
+    const GAME_MODE_ID = askGameMode(GAME_MODE_NAMES);
+    console.writeln(`\n# ${GAME_MODE_NAMES[GAME_MODE_ID]} #\n`);
 
     const MAX_PLAYERS = 2;
     const MAX_TOKENS_PER_PLAYER = 3;
@@ -36,24 +26,30 @@ function playTicTacToe() {
     let winner;
 
     do {
-      writelnTokens(tokens);
-      const PLACE_TOKEN_FUNCTION = [
-        [placeTokenPlayer, placeTokenPlayer],
-        [placeTokenPlayer, placeTokenComputer],
-        [placeTokenComputer, placeTokenComputer]
-      ]
-      PLACE_TOKEN_FUNCTION[GAME_MODE][turn](tokens, turn);
+      showBoard(tokens);
+      placeToken(GAME_MODE_ID, turn)(tokens, turn);
       winner = isTicTacToe(tokens, turn);
       if (!winner) {
         turn = nextTurn(turn);
       }
     } while (!winner);
     
-    writelnTokens(tokens);
+    showBoard(tokens);
     console.writeln(`Victoria para las fichas ${getActiveToken(turn)}`);
 
 
-    function writelnTokens(tokens) {
+    function askGameMode(gameModeNames) {
+      let msg = (`\n----- TIC TAC TOE -----\ \n\nMODOS DE JUEGO`);
+      let i = 1;
+      for (mode of gameModeNames) {
+        msg += `\n${i}. ${gameModeNames[i-1]}`;
+        i++;
+      }
+      console.writeln(msg);
+      return console.readNumber(`Elige un modo de juego (1, 2 o 3): `) - 1;
+    }
+
+    function showBoard(tokens) {
       const HORIZONTAL_SEPARATOR = `-------------`;
       const VERTICAL_SEPARATOR = `|`;
       let msg = ``;
@@ -68,45 +64,57 @@ function playTicTacToe() {
       console.writeln(msg);
     }
 
-    function placeTokenPlayer(tokens, turn) {
-      console.writeln(`Turno para las fichas ${getActiveToken(turn)}`);
-      let wrongToken;
-      let originRow;
-      let originColumn;
-      const allTokensPlaced = getPlacedTokens(tokens) === MAX_PLAYERS * MAX_TOKENS_PER_PLAYER;
+    function placeToken(gameModeId, turn) {
+      const PLACE_TOKEN_FUNCTIONS = [placeTokenPlayer, placeTokenComputer];
+      return PLACE_TOKEN_FUNCTIONS[getPlaceTokenFunctionIndex(gameModeId, turn)];
 
-      if (allTokensPlaced) {
-        console.writeln(`No tienes más fichas. Elige que ficha quieres mover.`);
-        do {
-          originRow = read(`Fila origen`);
-          originColumn = read(`Columna origen`);
-          wrongToken = !isTokenOfActiveTurn(tokens, originRow, originColumn, turn);
-          if (wrongToken) {
-            console.writeln(`En esta celda no hay fichas de ${getActiveToken(turn)}`);
-          }
-        } while (wrongToken);
+      function getPlaceTokenFunctionIndex(gameModeId, turn) {
+        const PLAYER = 0;
+        const COMPUTER = 1;
+        const INDEX_BY_MODE_AND_PLAYER = [[PLAYER, PLAYER], [PLAYER, COMPUTER], [COMPUTER, COMPUTER]];
+        return INDEX_BY_MODE_AND_PLAYER[gameModeId][turn];
       }
 
-      let fullCell;
-      let targetRow;
-      let targetColumn;
-      do {
-        targetRow = read(`Fila destino`);
-        targetColumn = read(`Columna destino`);
-        fullCell = isFullCell(tokens, targetRow, targetColumn);
-        if (fullCell) {
-          console.writeln(`Indique una celda vacía`);
+      function placeTokenPlayer(tokens, turn) {
+        console.writeln(`Turno para las fichas ${getActiveToken(turn)}`);
+        let wrongToken;
+        let originRow;
+        let originColumn;
+        const allTokensPlaced = getPlacedTokens(tokens) === MAX_PLAYERS * MAX_TOKENS_PER_PLAYER;
+
+        if (allTokensPlaced) {
+          console.writeln(`No tienes más fichas. Elige que ficha quieres mover.`);
+          do {
+            originRow = read(`Fila origen`);
+            originColumn = read(`Columna origen`);
+            wrongToken = !isTokenOfActiveTurn(tokens, originRow, originColumn, turn);
+            if (wrongToken) {
+              console.writeln(`En esta celda no hay fichas de ${getActiveToken(turn)}`);
+            }
+          } while (wrongToken);
         }
-      } while (fullCell);
-      
-      if (allTokensPlaced) {
-        tokens[originRow][originColumn] = EMPTY_TOKEN;
-      }
-      tokens[targetRow][targetColumn] = getActiveToken(turn);
-    }
 
-    function placeTokenComputer(tokens, turn) {
-      console.writeln(`Turno de la computadora`);
+        let fullCell;
+        let targetRow;
+        let targetColumn;
+        do {
+          targetRow = read(`Fila destino`);
+          targetColumn = read(`Columna destino`);
+          fullCell = isFullCell(tokens, targetRow, targetColumn);
+          if (fullCell) {
+            console.writeln(`Indique una celda vacía`);
+          }
+        } while (fullCell);
+        
+        if (allTokensPlaced) {
+          tokens[originRow][originColumn] = EMPTY_TOKEN;
+        }
+        tokens[targetRow][targetColumn] = getActiveToken(turn);
+      }
+
+      function placeTokenComputer(tokens, turn) {
+        console.writeln(`Turno de la computadora`);
+      }
     }
     
     function getPlacedTokens(tokens) {
