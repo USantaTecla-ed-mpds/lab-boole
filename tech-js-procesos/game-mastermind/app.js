@@ -88,17 +88,15 @@ function playMastermind() {
           }
           return nValidColors === proposedCombination.length;
         }
-  
+
         function hasRepeatedColors(proposedCombination) {
-          let repeatedColors = false;
-          for (let i = 0; i < proposedCombination.length; i++) {
-            for (let j = 0; j < proposedCombination.length; j++) {
-              if (i !== j && proposedCombination[i] === proposedCombination[j]) {
-                repeatedColors = true;
-              }
+          let uniqueColors = [];
+          for (let color of proposedCombination) {
+            if (uniqueColors.indexOf(color) === -1) {
+              uniqueColors[uniqueColors.length] = color;
             }
           }
-          return repeatedColors;
+          return uniqueColors.length < proposedCombination.length;
         }
       }
     }
