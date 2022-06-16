@@ -10,10 +10,7 @@ function playTicTacToe() {
   } while (isResumed());
 
   function playGame() {
-    const GAME_MODE_NAMES = ["Jugador contra Jugador", "Jugador contra Computador", "Computador contra Computador"];
-    const GAME_MODE_ID = askGameMode(GAME_MODE_NAMES);
-    console.writeln(`\n# ${GAME_MODE_NAMES[GAME_MODE_ID]} #\n`);
-
+    const GAME_MODE = askGameMode();
     const MAX_PLAYERS = 2;
     const MAX_TOKENS_PER_PLAYER = 3;
     const EMPTY_TOKEN = " ";
@@ -27,7 +24,7 @@ function playTicTacToe() {
 
     do {
       showBoard(tokens);
-      placeToken(GAME_MODE_ID, turn)(tokens, turn);
+      getPlaceTokenFunction(GAME_MODE, turn)(tokens, turn);
       winner = isTicTacToe(tokens, turn);
       if (!winner) {
         turn = nextTurn(turn);
@@ -38,12 +35,11 @@ function playTicTacToe() {
     console.writeln(`Victoria para las fichas ${getActiveToken(turn)}`);
 
 
-    function askGameMode(gameModeNames) {
+    function askGameMode() {
+      const GAME_MODE_NAMES = ["Jugador contra Jugador", "Jugador contra Computador", "Computador contra Computador"];
       let msg = (`\n----- TIC TAC TOE -----\ \n\nMODOS DE JUEGO`);
-      let i = 1;
-      for (mode of gameModeNames) {
-        msg += `\n${i}. ${gameModeNames[i-1]}`;
-        i++;
+      for (let i = 0; i < GAME_MODE_NAMES.length; i++) {
+        msg += `\n${i}. ${GAME_MODE_NAMES[i-1]}`;
       }
       console.writeln(msg);
       return console.readNumber(`Elige un modo de juego (1, 2 o 3): `) - 1;
@@ -64,7 +60,7 @@ function playTicTacToe() {
       console.writeln(msg);
     }
 
-    function placeToken(gameModeId, turn) {
+    function getPlaceTokenFunction(gameModeId, turn) {
       const PLACE_TOKEN_FUNCTIONS = [placeTokenPlayer, placeTokenComputer];
       return PLACE_TOKEN_FUNCTIONS[getPlaceTokenFunctionIndex(gameModeId, turn)];
 
@@ -121,8 +117,8 @@ function playTicTacToe() {
 
         if (allTokensPlaced) {
           do {
-            originRow = parseInt(Math.random() * 3);
-            originColumn = parseInt(Math.random() * 3);
+            originRow = generateRandomPosition();
+            originColumn = generateRandomPosition();
           } while (wrongToken);
         }
 
@@ -130,8 +126,8 @@ function playTicTacToe() {
         let targetRow;
         let targetColumn;
         do {
-          targetRow = parseInt(Math.random() * 3);
-          targetColumn = parseInt(Math.random() * 3);
+          targetRow = generateRandomPosition();
+          targetColumn = generateRandomPosition();
           fullCell = isFullCell(tokens, targetRow, targetColumn);
         } while (fullCell);
         
@@ -139,6 +135,10 @@ function playTicTacToe() {
           tokens[originRow][originColumn] = EMPTY_TOKEN;
         }
         tokens[targetRow][targetColumn] = getActiveToken(turn);
+
+        function generateRandomPosition() {
+          return parseInt(Math.random() * MAX_TOKENS_PER_PLAYER);
+        }
       }
     }
     
