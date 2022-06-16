@@ -114,6 +114,31 @@ function playTicTacToe() {
 
       function placeTokenComputer(tokens, turn) {
         console.writeln(`Turno de la computadora`);
+        let wrongToken;
+        let originRow;
+        let originColumn;
+        const allTokensPlaced = getPlacedTokens(tokens) === MAX_PLAYERS * MAX_TOKENS_PER_PLAYER;
+
+        if (allTokensPlaced) {
+          do {
+            originRow = parseInt(Math.random() * 3);
+            originColumn = parseInt(Math.random() * 3);
+          } while (wrongToken);
+        }
+
+        let fullCell;
+        let targetRow;
+        let targetColumn;
+        do {
+          targetRow = parseInt(Math.random() * 3);
+          targetColumn = parseInt(Math.random() * 3);
+          fullCell = isFullCell(tokens, targetRow, targetColumn);
+        } while (fullCell);
+        
+        if (allTokensPlaced) {
+          tokens[originRow][originColumn] = EMPTY_TOKEN;
+        }
+        tokens[targetRow][targetColumn] = getActiveToken(turn);
       }
     }
     
