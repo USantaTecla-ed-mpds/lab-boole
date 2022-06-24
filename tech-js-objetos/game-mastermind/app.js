@@ -1,80 +1,72 @@
 const { Console } = require("console-mpds");
 const console = new Console();
 
-
 playMastermind();
 
 function playMastermind() {
   do {
-    playGame();
+    const game = initGame();
+    game.play();
   } while (isResumed());
+}
 
-  function playGame() {
-    let game = initGame();
-    do {
-      setProposedCombination(game);
-      setProposedResult(game);
-      showBoard(game);
-      setNextAttempt(game);
-    } while (!isGameOver);
+function initGame() {
+  console.writeln(`\n----- MASTERMIND -----\n\n****`);
+  let game = {
+    COMBINATION_LENGTH: 4,
+    COLORS: ["r", "g", "b", "y", "c", "m"],
+    MAX_ATTEMPTS: 10,
+    secretCombination: "",
+    proposedCombinations: [],
+    proposedResults: [],
+    nAttempt: 0,
+    combinationIsFound: false,
 
-    console.writeln(`${combinationIsFound === true
-      ? "\nEnhorabuena has ganado!"
-      : "\nLo siento has perdido!"}`);
+    play: function () {
+      this.secretCombination = this.generateSecretCombination();
+      do {
+        this.setProposedCombination();
+        this.setProposedResult();
+        this.showBoard();
+        this.setNextAttempt();
+      } while (!this.isGameOver());
+    },
 
-
+    generateSecretCombination: function () {
+      let secretCombination = [];
+      let j;
+      for (let i = 0; i < this.COMBINATION_LENGTH; i++) {
+        do {
+          j = parseInt(Math.random() * this.COLORS.length);
+        } while (isRepeatedColor(this.COLORS[j], secretCombination));
+        secretCombination[i] = this.COLORS[j];
+      }
+      return secretCombination;
     
-    function initGame() {
-      console.writeln(`\n----- MASTERMIND -----\n\n****`);
-      return {
-        COMBINATION_LENGTH: 4,
-        COLORS: ["r", "g", "b", "y", "c", "m"],
-        MAX_ATTEMPTS: 10,
-        SECRET_COMBINATION: generateSecretCombination(this.COMBINATION_LENGTH, this.COLORS),
-        proposedCombinations: [],
-        proposedResults: [],
-        nAttempt: 0,
-        combinationIsFound: false,
-      }
-
-      function generateSecretCombination(combinationLength, validColors) {
-        let secretCombination = [];
-        let j;
-        for (let i = 0; i < combinationLength; i++) {
-          do {
-            j = parseInt(Math.random() * validColors.length);
-          } while (isRepeatedColor(validColors[j], secretCombination));
-          secretCombination[i] = validColors[j];
-        }
-        return secretCombination;
-  
-        function isRepeatedColor(color, colorsArray) {
-          let isRepeated = false;
-          for (let i = 0; i < colorsArray.length; i++) {
-            if (color === colorsArray[i]) {
-              isRepeated = true;
-            }
+      function isRepeatedColor(validColor, secretCombinationColors) {
+        let isRepeated = false;
+        for (let i = 0; i < secretCombinationColors.length; i++) {
+          if (validColor === secretCombinationColors[i]) {
+            isRepeated = true;
           }
-          return isRepeated;
         }
+        return isRepeated;
       }
-    }  
+    },
 
-
-    function setProposedCombination(game) {
+    setProposedCombination: function () {
       let proposedCombination;
       do {
         proposedCombination = console.readString("Propón una combinación:");
-      } while (!isValidCombination(proposedCombination, game));
-      game.proposedCombinations[game.nAttempt] = proposedCombination;
+      } while (!isValidCombination(proposedCombination, this.COMBINATION_LENGTH, this.COLORS));
+      this.proposedCombinations[this.nAttempt] = proposedCombination;
 
-
-      function isValidCombination(proposedCombination, game) {
+      function isValidCombination(proposedCombination, combinationLength, validcolors) {
         let isValid = true;
-        if (proposedCombination.length !== game.COMBINATION_LENGTH) {
+        if (proposedCombination.length !== combinationLength) {
           isValid = false;
           console.writeln(`La longitud de la combinación propuesta es incorrecta`);
-        } else if (!areValidColors(proposedCombination, game.COLORS)) {
+        } else if (!areValidColors(proposedCombination, validcolors)) {
           isValid = false;
           console.writeln(`Colores incorrectos, deben ser: rgybmc`);
         } else if (hasRepeatedColors(proposedCombination)) {
@@ -105,58 +97,58 @@ function playMastermind() {
           return uniqueColors.length < proposedCombination.length;
         }
       }
-    }
+    },
 
-    function setProposedResult(game) {
-      let proposedCombination = game.proposedCombinations[game.nAttempt];
+    setProposedResult: function () {
+      let proposedCombination = this.proposedCombinations[this.nAttempt];
       let blacks = 0;
       let whites = 0;
       for (let i = 0; i < proposedCombination.length; i++) {
         for (let j = 0; j < proposedCombination.length; j++) {
-          if (i === j && proposedCombination[i] === game.SECRET_COMBINATION[j]) {
-              blacks++;
-          } else if (proposedCombination[i] === game.SECRET_COMBINATION[j]) {
-              whites++
+          if (i === j && proposedCombination[i] === this.secretCombination[j]) {
+            blacks++;
+          } else if (proposedCombination[i] === this.secretCombination[j]) {
+            whites++;
           }
         }
       }
-      game.proposedResults[game.nAttempt] = [blacks, whites]; // TODO: convert [blacks, whites] to object
-      game.combinationIsFound = game.proposedResults[game.nAttempt][0] === game.COMBINATION_LENGTH;
-    }    
+      this.proposedResults[this.nAttempt] = [blacks, whites]; // TODO: convert [blacks, whites] to object
+      this.combinationIsFound = this.proposedResults[this.nAttempt][0] === this.COMBINATION_LENGTH;
+    },
 
-    function showBoard(game) {
+    showBoard: function () {
       const indexBlacks = 0;
       const indexWhites = 1;
-      let msg = `\n${game.nAttempt + 1} intento${game.nAttempt + 1 == 1 ? '' : 's'}:\
-                 \n****\n`;
-      for (let i = 0; i < game.proposedCombinations.length; i++) {
-        msg += `${game.proposedCombinations[i]} --> ${game.proposedResults[i][indexBlacks]} negras y \
-                ${game.proposedResults[i][indexWhites]} blancas\n`;
+      let msg = `\n${this.nAttempt + 1} intento${this.nAttempt + 1 == 1 ? '' : 's'}:\
+                       \n****\n`;
+      for (let i = 0; i < this.proposedCombinations.length; i++) {
+        msg += `${this.proposedCombinations[i]} --> ${this.proposedResults[i][indexBlacks]} negras y ${this.proposedResults[i][indexWhites]} blancas\n`;
       }
       console.writeln(msg);
-    }
+    },
 
-    function setNextAttempt(game) {
-      game.nAttempt++;
-    }
+    setNextAttempt: function () {
+      this.nAttempt++;
+    },
 
-    function isGameOver(game) {
-      return game.combinationIsFound || game.nAttempt >= game.MAX_ATTEMPTS;
+    isGameOver: function () {
+      return this.combinationIsFound || this.nAttempt >= this.MAX_ATTEMPTS;
     }
   }
+  return game;
+}
 
-  function isResumed() {
-    let answer;
-    let error;
-    do {
-      answer = console.readString("Quieres jugar otra vez? (s/n)");
-      error = answer !== "s" && answer !== "n";
-      if (error) {
-        console.writeln("\nPor favor, introduce una respuesta correcta.");
-      } else if (answer === "n") {
-        console.writeln("\nFin del juego, hasta pronto!");
-      }
-    } while (error);
-    return answer === "s";
-  }
+function isResumed() {
+  let answer;
+  let error;
+  do {
+    answer = console.readString("Quieres jugar otra vez? (s/n)");
+    error = answer !== "s" && answer !== "n";
+    if (error) {
+      console.writeln("\nPor favor, introduce una respuesta correcta.");
+    } else if (answer === "n") {
+      console.writeln("\nFin del juego, hasta pronto!");
+    }
+  } while (error);
+  return answer === "s";
 }
