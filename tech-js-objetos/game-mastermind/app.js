@@ -1,9 +1,9 @@
 const { Console } = require("console-mpds");
 const console = new Console();
-let masterMind = initMasterMain();
+let masterMind = initMasterMind();
 masterMind.start();
 
-function initMasterMain() {
+function initMasterMind() {
     return {
         continueDialog: initYesNoDialog('Quieres jugar de nuevo?'),
         start() {
@@ -21,7 +21,7 @@ function initGame() {
             return'rgbycm';
         },
 
-        getMaxAttemps() {
+        getMaxAttempts() {
             return 10;
         },
 
@@ -52,8 +52,8 @@ function initGame() {
             return false;
         },
 
-        isGameOver(proposedAttemps) {
-            return proposedAttemps === this.getMaxAttemps();
+        isGameOver(proposedAttempts) {
+            return proposedAttempts === this.getMaxAttempts();
         }
     }
 
@@ -68,7 +68,7 @@ function initGame() {
                 board.addCombination(proposedCombination.getProposedCombination());
                 board.getResults();
                 board.show();
-            } while (!gameSettings.isGameOver(board.getProposedAttemps()) && !board.isWinner())
+            } while (!gameSettings.isGameOver(board.getProposedAttempts()) && !board.isWinner())
             if (board.isWinner()) {
                 console.writeln(`Enhorabuena, has ganado!!!!`);
             } else {
@@ -101,12 +101,12 @@ function initBoard(gameSettings) {
             console.writeln(combination)
         },
 
-        getProposedAttemps() {
+        getProposedAttempts() {
             return proposedCombinations.length;
         },
 
         getResults() {
-            results.push(this.secretCombination.getResults(proposedCombinations[this.getProposedAttemps() - 1]));
+            results.push(this.secretCombination.getResults(proposedCombinations[this.getProposedAttempts() - 1]));
         },
 
         isWinner() {
