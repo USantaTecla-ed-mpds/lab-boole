@@ -59,7 +59,7 @@ function initGame() {
 
 function initBoard(gameSettings) {
     let proposedCombinations = [];
-    let results;
+    let results =[];
     return {
         secretCombination: initSecretCombination(gameSettings),
         show() {
@@ -67,7 +67,7 @@ function initBoard(gameSettings) {
             for (let i = 0; i < proposedCombinations.length; i++) {
                 msg = `\n${i + 1} intento(s):\
                        \n****\n`;
-                msg += `${proposedCombinations[i]} --> ${results.blacks} negras y ${results.whites} blancas\n`;
+                msg += `${proposedCombinations[i]} --> ${results[i].blacks} negras y ${results[i].whites} blancas\n`;
             }
             console.writeln(msg);
         },
@@ -85,7 +85,7 @@ function initBoard(gameSettings) {
         },
 
         getResults() {
-            results = this.secretCombination.getResults(proposedCombinations[this.getProposedAttemps() - 1]);
+            results.push(this.secretCombination.getResults(proposedCombinations[this.getProposedAttemps() - 1]));
         },
     }
 }
