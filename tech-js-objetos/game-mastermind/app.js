@@ -1,9 +1,10 @@
 const { Console } = require("console-mpds");
 const console = new Console();
-let masterMind = initMasterMind();
-masterMind.start();
 
-function initMasterMind() {
+const mastermind = initMastermind();
+mastermind.start();
+
+function initMastermind() {
     return {
         continueDialog: initYesNoDialog('Quieres jugar de nuevo?'),
         start() {
@@ -18,10 +19,10 @@ function initMasterMind() {
 function initGame() {
     let gameSettings = {
         getColors() {
-            return'rgbycm';
+            return 'rgbycm';
         },
 
-        getMaxAttempts() {
+        getMaxAttemps() {
             return 10;
         },
 
@@ -31,45 +32,23 @@ function initGame() {
 
         getRandomColor() {
             return this.getColors()[parseInt(Math.random() * this.getColors().length)];
-        },
-
-        checkRepeatedColors(color, arrayColors) {
-            for (let i = 0; i < arrayColors.length; i++) {
-                if (arrayColors[i] === color) {
-                    return true;
-                }
-            }
-            return false;
-        },
-        
-        containsColor(color) {
-            for (let i = 0; i < this.getColors().length; i++) {
-                if (this.getColors()[i] === color) {
-
-                    return true;
-                }
-            }
-            return false;
-        },
-
-        isGameOver(proposedAttempts) {
-            return proposedAttempts === this.getMaxAttempts();
         }
     }
 
     return {
-        play: function () {
+        play() {
             console.writeln(`----- MASTERMIND -----`);
+            const result = initResult(gameSettings);
             const board = initBoard(gameSettings);
-            board.setSecretCombination();
+            board.secretCombination.setSecretCombination();
             let proposedCombination = initProposedCombination(gameSettings);
             do {
                 proposedCombination.read();
                 board.addCombination(proposedCombination.getProposedCombination());
                 board.getResults();
                 board.show();
-            } while (!gameSettings.isGameOver(board.getProposedAttempts()) && !board.isWinner())
-            if (board.isWinner()) {
+            } while (!result.isLooser(board.getProposedAttemps()) && !result.isWinner())
+            if (result.isWinner()) {
                 console.writeln(`Enhorabuena, has ganado!!!!`);
             } else {
                 console.writeln(`Lo siento, has perdido!!!!`);
@@ -80,71 +59,76 @@ function initGame() {
 
 function initBoard(gameSettings) {
     let proposedCombinations = [];
-    let results = [];
+    let results;
     return {
         secretCombination: initSecretCombination(gameSettings),
-        setSecretCombination() {
-            this.secretCombination.setSecretCombination();
-        },
         show() {
+            let msg;
             for (let i = 0; i < proposedCombinations.length; i++) {
-                console.writeln(`\n${i + 1} intentos(s):`);
-                console.writeln(`${proposedCombinations[i]}---->${results[i][0]} blacks + ${results[i][1]} whites`);
+                msg = `\n${i + 1} intento(s):\
+                       \n****\n`;
+                msg += `${proposedCombinations[i]} --> ${results.blacks} negras y ${results.whites} blancas\n`;
             }
+            console.writeln(msg);
         },
 
         addCombination(combination) {
             proposedCombinations.push(combination);
         },
 
-        showCombination: function (combination) {
+        showCombination(combination) {
             console.writeln(combination)
         },
 
-        getProposedAttempts() {
+        getProposedAttemps() {
             return proposedCombinations.length;
         },
 
         getResults() {
-            results.push(this.secretCombination.getResults(proposedCombinations[this.getProposedAttempts() - 1]));
+            results = this.secretCombination.getResults(proposedCombinations[this.getProposedAttemps() - 1]);
         },
-
-        isWinner() {
-            return results[results.length - 1][0] === gameSettings.getCombinationLength();
-        }
     }
 }
 
 function initSecretCombination(gameSettings) {
     let secretCombination;
     return {
-        setSecretCombination: function () {
+        setSecretCombination() {
             let arrayColors = [];
             let color;
             for (let i = 0; i < gameSettings.getCombinationLength(); i++) {
                 do {
                     color = gameSettings.getRandomColor();
-                } while (gameSettings.checkRepeatedColors(color, arrayColors));
+                } while (this.checkRepeatedColors(color, arrayColors));
                 arrayColors[i] = color;
             }
             secretCombination = arrayColors;
         },
+
         getResults(combination) {
-            let blacks = 0;
-            let whites = 0;
+            const result = initResult();
             for (let i = 0; i < combination.length; i++) {
                 for (let j = 0; j < secretCombination.length; j++) {
                     if (combination[i] === secretCombination[j]) {
                         if (i === j) {
-                            blacks++;
+                            result.blacks++;
                         } else {
-                            whites++;
+                            result.whites++;
                         }
                     }
                 }
             }
-            return [blacks, whites];
+            return result;
 
+        },
+
+        checkRepeatedColors(color, arrayColors) {
+            for (let i = 0; i < arrayColors.length; i++) {
+                if (arrayColors[i] === color) {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }
@@ -152,7 +136,7 @@ function initSecretCombination(gameSettings) {
 function initProposedCombination(gameSettings) {
     let proposedCombination;
     return {
-        read: function () {
+        read() {
             let combination;
             do {
                 combination = console.readString(`Propón una combinación: `);
@@ -168,7 +152,7 @@ function initProposedCombination(gameSettings) {
             return proposedCombination;
         },
 
-        isValidCombination: function (combination) {
+        isValidCombination(combination) {
             let isValid = true;
             if (combination.length !== gameSettings.getCombinationLength()) {
                 isValid = false;
@@ -186,10 +170,11 @@ function initProposedCombination(gameSettings) {
         isValidColors(combination) {
             let valid = true;
             for (let i = 0; valid && i < combination.length; i++) {
-                valid = gameSettings.containsColor(combination[i])
+                valid = this.checkContainsColor(combination[i])
             }
             return valid;
         },
+
         checkRepeatedColors(combination) {
             let repeated = false;
             for (let i = 0; !repeated && i < combination.length; i++) {
@@ -198,6 +183,31 @@ function initProposedCombination(gameSettings) {
                 }
             }
             return repeated;
+        },
+
+        checkContainsColor(color) {
+            for (let i = 0; i < gameSettings.getColors().length; i++) {
+                if (gameSettings.getColors()[i] === color) {
+
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+}
+
+function initResult(gameSettings) {
+    return {
+        blacks: 0,
+        whites: 0,
+
+        isWinner() {
+            return this.blacks === gameSettings.getCombinationLength();
+        },
+
+        isLooser(proposedAttemps) {
+            return proposedAttemps === gameSettings.getMaxAttemps();
         }
     }
 }
@@ -206,7 +216,7 @@ function initYesNoDialog(dialogText) {
     return {
         dialogText: dialogText,
         answer: '',
-        read: function () {
+        read() {
             let error = false;
             do {
                 this.answer = console.readString(`${this.dialogText} ("si/no"):`);
@@ -217,11 +227,11 @@ function initYesNoDialog(dialogText) {
             } while (error);
         },
 
-        isAfirmative: function () {
+        isAfirmative() {
             return this.answer === 'si';
         },
 
-        isNegative: function () {
+        isNegative() {
             return this.answer === 'no';
         }
     }
