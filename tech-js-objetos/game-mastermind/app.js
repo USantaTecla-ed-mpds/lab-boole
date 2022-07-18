@@ -39,7 +39,7 @@ function initGame() {
 
   return {
     play() {
-      console.writeln(`----- MASTERMIND -----`);
+      console.writeln(`\n----- MASTERMIND -----`);
       const result = initResult(gameSettings);
       const board = initBoard(gameSettings);
       board.secretCombination.setSecretCombination();
@@ -47,7 +47,7 @@ function initGame() {
       do {
         proposedCombination.read();
         board.addCombination(proposedCombination.getProposedCombination());
-        board.getResults();
+        board.setResults();
         board.show();
       } while (!board.isLooser() && !result.isWinner());
       if (result.isWinner()) {
@@ -82,7 +82,7 @@ function initBoard(gameSettings) {
       return proposedCombinations.length === gameSettings.getMaxAttemps();
     },
 
-    getResults() {
+    setResults() {
       results.push(this.secretCombination.getResults(proposedCombinations[proposedCombinations.length - 1]));
     },
   };
@@ -134,51 +134,45 @@ function initProposedCombination(gameSettings) {
   let proposedCombination;
   return {
     read() {
-      let combination;
       do {
-        combination = console.readString(`Propón una combinación: `);
-      } while (!this.isValidCombination(combination));
-      this.setProposedCombination(combination);
-    },
-
-    setProposedCombination(combination) {
-      proposedCombination = combination;
+        proposedCombination = console.readString(`Propón una combinación: `);
+      } while (!this.isValidCombination());
     },
 
     getProposedCombination() {
       return proposedCombination;
     },
 
-    isValidCombination(combination) {
+    isValidCombination() {
       let isValid = true;
-      if (combination.length !== gameSettings.getCombinationLength()) {
+      if (proposedCombination.length !== gameSettings.getCombinationLength()) {
         isValid = false;
         console.writeln(
           `La longitud de la combinación propuesta es incorrecta`
         );
-      } else if (!this.isValidColors(combination)) {
+      } else if (!this.isValidColors()) {
         isValid = false;
         console.writeln(`Colores incorrectos, deben ser: rgybmc`);
-      } else if (this.checkRepeatedColors(combination)) {
+      } else if (this.checkRepeatedColors()) {
         isValid = false;
         console.writeln(`La combinación propuesta contiene colores repetidos`);
       }
       return isValid;
     },
 
-    isValidColors(combination) {
+    isValidColors() {
       let valid = true;
-      for (let i = 0; valid && i < combination.length; i++) {
-        valid = this.checkContainsColor(combination[i]);
+      for (let i = 0; valid && i < proposedCombination.length; i++) {
+        valid = this.checkContainsColor(proposedCombination[i]);
       }
       return valid;
     },
 
-    checkRepeatedColors(combination) {
+    checkRepeatedColors() {
       let repeated = false;
-      for (let i = 0; !repeated && i < combination.length; i++) {
-        for (let j = i + 1; !repeated && j < combination.length; j++) {
-          repeated = combination[j] === combination[i];
+      for (let i = 0; !repeated && i < proposedCombination.length; i++) {
+        for (let j = i + 1; !repeated && j < proposedCombination.length; j++) {
+          repeated = proposedCombination[j] === proposedCombination[i];
         }
       }
       return repeated;
