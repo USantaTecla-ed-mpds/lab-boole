@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "console-input": "^1.0.2",
     "console-mpds": "^1.0.4"
   }
 }
