@@ -1,119 +1,191 @@
 const { Console } = require("./console");
 
-// Options
+class Dictio {
 
-class Option {
+    key;
+    txt;
 
-    static console = new Console();
-    #title;
+    static msg = {
+        QUIT: `Salir`,
+        ERROR: `Error!!!`,
+        LIST: `Listar`,
+        INVERSE_LIST: `Listar inverso`,
+        ADD: `Añadir`,
+        REMOVE: `Eliminar`,
+        BASE_MENU: `Model Menu`,
+        QUIT_MENU: `Model Quit Menu`,
+        ITERA_MENU: `Model Iterative Menu`,
+        DYNA_MENU: `Model Dynamic Menu`,
+        ITERA_DYNA_MENU: `Model Iterative Dynamic Menu`,
+        GIVE_STRING: `Dame una cadena de caracteres: `,
+        LINE: `***`,
+        DASH: `-`,
+        ASK_OPTION: `Opción? [1-%a0]:`, // replace %a0, %a1... with args
+    };
 
-    constructor(title) {
-        this.#title = title;
+    constructor(key) {
+        this.key = key;
+    }
+
+    static getTxt(key, ...args) {
+        this.txt = Dictio.msg[key.toUpperCase()];
+
+        if (!args.length) {
+            return this.txt;
+        }
+
+        Dictio.replaceArgs(...args);
+        return this.txt;
+    }
+
+    static replaceArgs(...args) {
+        for (let i = 0; i < args.length; i++) {
+            this.txt = this.txt.replace(`%a${[i]}`, args[i]);
+        }
+        return this.txt;
+    }
+}
+
+
+// Type of Abstract menu OPTIONS (menu items)
+
+class AbstractOption {
+
+    #optionName;
+
+    constructor(optionName) {
+        this.#optionName = optionName;
     }
 
     interact() {};
 
-    showTitle(index) {
-        Option.console.writeln(index + ". " + this.getTitle());
+    printOption(index) {
+        Console.writeln(`${index}. ${this.getOptionName()}`);
     }
 
-    getTitle() {
-        return this.#title;
+    getOptionName() {
+        return this.#optionName;
     }
-
 }
 
-class QuitOption extends Option {
+class QuitOption extends AbstractOption {
 
-    #executed;
+    #selected;
 
     constructor() {
-        super("Salir");
-        this.#executed = false;
+        super(Dictio.getTxt('quit'));
+        this.#selected = false;
     }
 
     interact() {
-        this.#executed = true;
+        this.#selected = true;
     }
 
-    isExecuted() {
-        return this.#executed;
+    isSelected() {
+        return this.#selected;
     }
-
 }
 
-// menus
+class ClosedInterval {
+    
+    #min;
+    #max;
 
-class Menu {
+    constructor(min, max) {
+        this.#min = min;
+        this.#max = max;
+    }
 
-    static console = new Console();
+    getMin() {
+        return this.#min;
+    }
+
+    getMax() {
+        return this.#max;
+    }
+
+    includes(value) {
+        return this.getMin() <= value && value <= this.getMax();
+    }
+}
+
+
+// Type of Abstract MENUS
+
+class AbstractMenu {
+
     #title;
     #options;
+    #choosedOption;
 
     constructor(title) {
         this.#title = title;
         this.#options = [];
     }
 
-    interact() {
+    init() {
         this.addOptions();
-        this.interact_();
+        this.createMenu();
     }
 
-    addOptions(){};
+    addOptions() {};
 
-    interact_() {
-        this.showTitles();
-        this.execChoosedOption();
+    createMenu() {
+        this.printMenu();
+        this.#chooseOption();
+        this.#execOption(this.#choosedOption);
     }
 
-    showTitles() {
-        this.#showTitle();
+    printMenu() {
+        this.#printMenuTitle();
         for (let i = 0; i < this.#options.length; i++) {
-            this.#options[i].showTitle(i + 1);
+            this.#options[i].printOption(i + 1);
         }
     }
 
-    #showTitle() {
-        let string = "\n" + this.#title + "\n";
+    #printMenuTitle() {
+        let title = `\n${this.#title}\n`;
         for (let i = 0; i < this.#title.length; i++) {
-            string += "-";
+            title += Dictio.getTxt('dash');
         }
-        Menu.console.writeln(string);
+        Console.writeln(title);
     }
 
-    execChoosedOption() {
+    #chooseOption() {
         let answer;
-        let ok;
+        let error;
         do {
-            answer = this.#readInt("Opción? [1-" + this.#options.length + "]: ") - 1;
-            ok = 0 <= answer && answer <= this.#options.length - 1;
-            if (!ok) {
-                Menu.console.writeln("Error!!!");
+            answer = this.#ask(Dictio.getTxt('ask_option', this.#options.length)) - 1;
+            error = !new ClosedInterval(0, this.#options.length - 1).includes(answer);
+            if (error) {
+                Console.writeln(Dictio.getTxt('error'));
             }
-        } while (!ok);
-        this.#options[answer].interact();
+        } while (error);
+        this.#choosedOption = answer;
     }
 
-    #readInt(prompt){
-        return Number.parseInt(Menu.console.readNumber(prompt));
+    #execOption(option) {
+        this.#options[option].interact();
+    }
+
+    #ask(question){
+        return Number.parseInt(Console.readNumber(question));
     }
 
     add(option) {
         this.#options.push(option);
     }
 
-    removeOptions() {
+    clearOptions() {
         this.#options = [];
     }
 
-    hasOption(option) {
+    has(option) {
         return this.#options.includes(option);
     }
-
 }
 
-class QuitMenu extends Menu {
+class AbstractQuitMenu extends AbstractMenu {
 
     #quitOption;
 
@@ -122,281 +194,288 @@ class QuitMenu extends Menu {
         this.#quitOption = new QuitOption();
     }
 
-    showTitles() {
-        if (!this.hasOption(this.#quitOption)) {
+    printMenu() {
+        if (!this.has(this.#quitOption)) {
             this.add(this.#quitOption);
         }
-        super.showTitles();
+        super.printMenu();
     }
 
-    isExecutedquitOption() {
-        return this.#quitOption.isExecuted();
+    isSelectedQuitOption() {
+        return this.#quitOption.isSelected();
     }
-
 }
 
-class IterativeMenu extends QuitMenu {
+class AbstractIterativeMenu extends AbstractQuitMenu {
 
     constructor(title) {
         super(title);
     }
 
-    interact() {
+    init() {
         this.addOptions();
         do {
-            this.interact_();
-        } while (!this.isExecutedquitOption());
+            this.createMenu();
+        } while (!this.isSelectedQuitOption());
     }
-
 }
 
-class DynamicMenu extends IterativeMenu {
+class AbstractDynamicMenu extends AbstractIterativeMenu {
 
     constructor(title) {
         super(title);
     }
 
-    interact() {
+    init() {
         do {
-            this.removeOptions();
+            this.clearOptions();
             this.addOptions();
-            this.interact_();
-        } while (!this.isExecutedquitOption());
+            this.createMenu();
+        } while (!this.isSelectedQuitOption());
     }
-
 }
 
-// model
 
-class Model {
+// Data model for a given menu
+
+class DataModel {
 
     #strings;
 
-    constructor() {
-        this.#strings = [];
-        for (let string of [`Ana`, `Bea`, `Cio`])
-            this.#strings.push(string);
+    constructor(array) {
+        this.#strings = array;
     }
 
-    add(string) {
+    addEntry(string) {
         this.#strings.push(string);
     }
 
-    remove(index) {
+    removeEntry(index) {
         this.#strings.splice(index, 1);
     }
 
-    get(index) {
+    getEntry(index) {
         return this.#strings[index];
     }
 
     size() {
         return this.#strings.length;
     }
-
 }
 
-// ModelOptions
 
-class ModelOption extends Option {
+// Type of menu OPTIONS
 
-    model;
+class MenuOption extends AbstractOption {
 
-    constructor(string, model) {
-        super(string);
-        this.model = model;
+    constructor(optionName) {
+        super(optionName);
     }
 
-    interact() {};
-
+    interact() { 
+        Console.writeln();
+    };
 }
 
-class ListModelOption extends ModelOption {
+class ListOption extends MenuOption {
+
+    #model;
 
     constructor (model) {
-        super("Listar", model);
+        super(Dictio.getTxt('list'), model);
+        this.#model = model;
     }
 
     interact() {
-        for (let i = 0; i < this.model.size(); i++) {
-            Option.console.writeln((i + 1) + ". " + this.model.get(i));
+        super.interact();
+        for (let i = 0; i < this.#model.size(); i++) {
+            Console.writeln(`${i+1}. ${this.#model.getEntry(i)}`);
         }
-        Option.console.writeln();
+        Console.writeln();
     }
-
 }
 
-class InverseListModelOption extends ModelOption {
+class InverseListOption extends MenuOption {
+
+    #model;
 
     constructor(model) {
-        super("Listar inverso", model);
+        super(Dictio.getTxt('inverse_list'), model);
+        this.#model = model;
     }
 
     interact() {
-        for (let i = this.model.size() - 1; i >= 0; i--) {
-            Option.console.writeln((i + 1) + ". " + this.model.get(i));
+        super.interact();
+        for (let i = this.#model.size() - 1; i >= 0; i--) {
+            Console.writeln(`${i+1}. ${this.#model.getEntry(i)}`);
         }
-        Option.console.writeln();
+        Console.writeln();
     }
-
 }
 
-class AddModelOption extends ModelOption {
+class AddOption extends MenuOption {
+
+    #model;
 
     constructor(model) {
-        super("Añadir", model);
+        super(Dictio.getTxt('add'), model);
+        this.#model = model;
     }
 
     interact() {
+        super.interact();
         let string;
         do {
-            string = Option.console.readString("Dame una cadena de caracteres: ");
-        } while (string.trim() ==="");
-        this.model.add(string.trim());
+            string = Console.readString(Dictio.getTxt('give_string'));
+        } while (string.trim() === ''); 
+        this.#model.addEntry(string.trim());
     }
-
 }
 
-class DuplicationModelOption extends ModelOption {
+class RemoveOptions extends MenuOption {
+
+    #model;
 
     constructor(model) {
-        super("Añadir", model);
+        super(Dictio.getTxt('remove'), model);
+        this.#model = model;
     }
 
     interact() {
-        const SIZE = this.model.size();
-        for(let i=0; i< SIZE; i++){
-            this.model.add(this.model.get(i));
-        }
+        super.interact();
+        new DynamicMenu(this.#model).init();
     }
-
 }
 
-class RemoveModelsOption extends ModelOption {
+class RemoveOption extends MenuOption {
 
-    constructor(model) {
-        super("Eliminar", model);
-    }
-
-    interact() {
-        new ModelDynamicMenu(this.model).interact();
-    }
-
-}
-
-class RemoveModelOption extends ModelOption {
-
+    #model;
     #index;
 
     constructor(model, index) {
-        super("Eliminar ", model);
-        this.model = model;
-        this.index = index;
+        super(Dictio.getTxt('remove'), model);
+        this.#model = model;
+        this.#index = index;
     }
 
-    getTitle() {
-        return super.getTitle() + ": " + this.model.get(this.index);
+    getOptionName() {
+        return `${super.getOptionName()}: ${this.#model.getEntry(this.#index)}`;
     }
 
     interact() {
-        this.model.remove(this.index);
+        super.interact();
+        this.#model.removeEntry(this.#index);
     }
-
 }
 
-// ModelMenus
 
-class ModelMenu extends Menu {
+// Type of MENUS
+
+class Menu extends AbstractMenu {
 
     #model;
 
     constructor(model) {
-        super("Model Menu");
-        this.model = model;
-    }
-
-    addOptions() {
-        this.add(new ListModelOption(this.model));
-        this.add(new InverseListModelOption(this.model));
-    }
-
-}
-
-Option.console.writeln("***");
-new ModelMenu(new Model()).interact();
-
-class ModelQuitMenu extends QuitMenu {
-
-    #model;
-
-    constructor(model) {
-        super("Model Quit Menu");
+        super(Dictio.getTxt('base_menu'));
         this.#model = model;
     }
 
     addOptions() {
-        this.add(new ListModelOption(this.#model));
-        this.add(new InverseListModelOption(this.#model));
+        this.add(new ListOption(this.#model));
+        this.add(new InverseListOption(this.#model));
     }
-
 }
 
-Option.console.writeln("***");
-new ModelQuitMenu(new Model()).interact();
-
-class ModelIterativeMenu extends IterativeMenu {
+class QuitMenu extends AbstractQuitMenu {
 
     #model;
 
     constructor(model) {
-        super("Model Iterative Menu");
-        this.model = model;
+        super(Dictio.getTxt('quit_menu'));
+        this.#model = model;
     }
 
     addOptions() {
-        this.add(new ListModelOption(this.model));
-        this.add(new InverseListModelOption(this.model));
+        this.add(new ListOption(this.#model));
+        this.add(new InverseListOption(this.#model));
     }
-
 }
 
-Option.console.writeln("***");
-new ModelIterativeMenu(new Model()).interact();
-
-class ModelDynamicMenu extends DynamicMenu {
+class IterativeMenu extends AbstractIterativeMenu {
 
     #model;
 
     constructor(model) {
-        super("Model Dynamic Menu");
-        this.model = model;
+        super(Dictio.getTxt('itera_menu'));
+        this.#model = model;
     }
 
     addOptions() {
-        for (let i = 0; i < this.model.size(); i++) {
-            this.add(new RemoveModelOption(this.model, i));
+        this.add(new ListOption(this.#model));
+        this.add(new InverseListOption(this.#model));
+    }
+}
+
+class DynamicMenu extends AbstractDynamicMenu {
+
+    #model;
+
+    constructor(model) {
+        super(Dictio.getTxt('dyna_menu'));
+        this.#model = model;
+    }
+
+    addOptions() {
+        for (let i = 0; i < this.#model.size(); i++) {
+            this.add(new RemoveOption(this.#model, i));
         }
     }
-
 }
 
-class ModelIterativeDynamicMenu extends IterativeMenu {
+class IterativeDynamicMenu extends AbstractIterativeMenu {
 
     #model;
 
     constructor(model) {
-        super("Model Iterative Dynamic Menu");
-        this.model = model;
+        super(Dictio.getTxt('itera_dyna_menu'));
+        this.#model = model;
     }
 
     addOptions() {
-        this.add(new ListModelOption(this.model));
-        this.add(new InverseListModelOption(this.model));
-        this.add(new AddModelOption(this.model));
-        this.add(new RemoveModelsOption(this.model));
+        this.add(new ListOption(this.#model));
+        this.add(new InverseListOption(this.#model));
+        this.add(new AddOption(this.#model));
+        this.add(new RemoveOptions(this.#model));
     }
-
 }
 
-Option.console.writeln("***");
-new ModelIterativeDynamicMenu(new Model()).interact();
+
+
+// Run App
+
+class App {
+
+    #model;
+
+    constructor(array) {
+        this.#model = new DataModel(array);
+        this.run();
+    }
+
+    run() {
+        Console.writeln(Dictio.getTxt('line'));
+        new Menu(this.#model).init();
+
+        Console.writeln(Dictio.getTxt('line'));
+        new QuitMenu(this.#model).init();
+
+        Console.writeln(Dictio.getTxt('line'));
+        new IterativeMenu(this.#model).init();
+
+        Console.writeln(Dictio.getTxt('line'));
+        new IterativeDynamicMenu(this.#model).init();
+    }
+}
+
+
+new App(['Ana', 'Bea', 'Cio']);

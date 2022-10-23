@@ -5,23 +5,23 @@ class Console {
   constructor() {
   }
 
-  write(value) {
+  static write(value) {
     if (value !== undefined) {
       process.stdout.write(`${value}`);
     }
   }
 
-  writeln(value) {
+  static writeln(value) {
     this.write(value);
     this.write(`\n`);
   }
 
-  readString(title) {
+  static readString(title) {
     this.write(title);
     return input(" ");
   }
 
-  readNumber(title) {
+  static readNumber(title) {
     let input;
     do {
       input = parseInt(this.readString(title));
@@ -35,4 +35,3 @@ class Console {
 }
 
 module.exports.Console = Console;
-
