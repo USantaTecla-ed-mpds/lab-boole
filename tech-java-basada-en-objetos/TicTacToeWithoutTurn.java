@@ -31,13 +31,13 @@ class TicTacToeWithoutTurn {
 		Message.TITLE.writeln();
 		this.board.write();
 		do {
-			this.iteract();
+			this.interact();
 			this.board.write();
 		} while (!this.board.isTicTacToe(this.getActiveColor()));
 		this.players[this.activePlayer].writeWinner();
 	}
 
-	private void iteract(){
+	private void interact(){
 		this.players[this.activePlayer].play();
 		if (!this.board.isTicTacToe(this.getActiveColor())) {
 			this.activePlayer = (this.activePlayer + 1) % NUMBER_PLAYERS;
