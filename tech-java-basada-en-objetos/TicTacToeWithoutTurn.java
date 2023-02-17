@@ -1,6 +1,6 @@
 package es.usantatecla.tictactoe;
 
-class TicTacToe {
+class TicTacToeWithoutTurn {
 
 	private Board board;
 	private Player[] players;
@@ -8,7 +8,7 @@ class TicTacToe {
 	private String answer;
 	private static final int NUMBER_PLAYERS = 2;
 
-	private TicTacToe() {
+	private TicTacToeWithoutTurn() {
 		this.board = new Board();
 		this.players = new Player[NUMBER_PLAYERS];
 		this.reset();
@@ -82,7 +82,7 @@ class TicTacToe {
 	}
 
 	public static void main(String[] args) {
-		new TicTacToe().play();
+		new TicTacToeWithoutTurn().play();
 	}
 
 }
