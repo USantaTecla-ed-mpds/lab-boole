@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import utils.Console;
 
 class Date {
@@ -22,6 +25,12 @@ class Date {
 	public Date() {
 		this(1, 1, 1900);
 	}
+
+	public static String getDateDMA(){
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		LocalDateTime now = LocalDateTime.now();
+		return dtf.format(now);
+	  }
 
 	public Date clone() {
 		return new Date(this);
@@ -309,6 +318,7 @@ class MenuContracts{
 			double scale;
 			double shift;
 			console.writeln("\033[32m ");
+			console.writeln(Date.getDateDMA());
 			String name = console.readString("Nombre de la empresa: ");
 			console.writeln();
 			int yearContract = console.readInt("Ano: ");
