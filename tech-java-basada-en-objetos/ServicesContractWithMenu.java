@@ -295,8 +295,11 @@ enum Message{
 	ANNUAL_COST("Coste anual del contrato: "),
 	ANNUAL_REPORT("Informe anual"),
 	CANCEL("Se cancelo el "),
-	SCALE("Escala: "),
-	SHIFT("Cambio: "),
+	ASK_SCALE("Escala: "),
+	ASK_SHIFT("Cambio: "),
+	ASK_PER_DAY("Ingrese el dia: "),
+	ASK_PER_MONTH("Ingrese el mes: "),
+	WRONG_DATA("Debe ingresar un valor correcto."),
 	CHOOSE_OPTION("Seleccione una opcion: "),
 	COLOR_TEXT_WHITE("\033[31m"),
 	COLOR_TEXT_GREEN("\033[32m");
@@ -327,7 +330,8 @@ enum Option{
 		this.option = option;
 	}
 
-	public String valor(){
+	@Override
+	public String toString(){
 		return this.option;
 	}
 }
@@ -348,10 +352,9 @@ class Menu{
 			int selectOption;
 			do{
 
-				for(Option options : Option.values()){
-					new Console().writeln(options.ordinal()+1 + ") " + options.valor());
-				}
-				selectOption = console.readInt(" " + Message.CHOOSE_OPTION);
+				showOptions();
+
+				selectOption = console.readInt(Message.CHOOSE_OPTION + "");
 				
 				switch(selectOption){
 					case 1:{
@@ -366,23 +369,23 @@ class Menu{
 					}
 					case 3:{
 						console.writeln();
-
+						servicesContract.cancel(read(Message.ASK_PER_DAY, Message.ASK_PER_MONTH));
 						break;
 					}
 					case 4:{
 						double cost = servicesContract.getCost();
 						console.writeln();
-						console.writeln("Coste anual del contrato: " + cost);
+						console.writeln(Message.ANNUAL_COST.toString() + cost);
 						console.writeln();
 						break;
 					}
 					case 5:{
 						double cost = servicesContract.getCost();
 						console.writeln();
-						console.writeln("Informe anual");
+						console.writeln(Message.ANNUAL_REPORT.toString());
 						servicesContract.writeln();
 						console.writeln();
-						console.writeln("Coste anual del contrato: " + cost);
+						console.writeln(Message.ANNUAL_COST.toString() + cost);
 						console.writeln();
 						break;
 					}
@@ -391,8 +394,32 @@ class Menu{
 
 	}
 
+	private Date read(Message perDay, Message perMonth){
+		int day;
+		int month;
+		boolean error;
+
+		do{
+			error = false;
+			day = console.readInt(perDay.toString());
+			month = console.readInt(perMonth.toString());
+			if(!daysInterval.includes(day) || !monthsInterval.includes(month)){
+				error = true;
+				console.writeln(Message.WRONG_DATA.toString());
+			}
+		}while(error);
+
+		return new Date(day, month, YEAR);
+	}
+
 	private void showTitle(){
 		console.writeln(Message.ANNUAL_REPORT + " con fecha " + Date.getDateDMA());
+	}
+
+	private void showOptions(){
+		for(Option options : Option.values()){
+			new Console().writeln(options.ordinal()+1 + ") " + options.toString());
+		}
 	}
 
 	private ServicesContract createNewContract(){
