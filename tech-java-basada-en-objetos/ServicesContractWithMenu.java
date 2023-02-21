@@ -173,20 +173,6 @@ class Interval {
 		return intersection;
 	}
 
-	// public Interval intersection(Interval intervalo) {
-	// if (this.includes(intervalo)) {
-	// return intervalo.clone();
-	// } else if (intervalo.includes(this)) {
-	// return this.clone();
-	// } else if (this.includes(intervalo.min)) {
-	// return new Interval(intervalo.min, this.max);
-	// } else if (this.includes(intervalo.max)) {
-	// return new Interval(this.min, intervalo.max);
-	// } else {
-	// return null;
-	// }
-	// }
-
 	public Interval union(Interval interval) {
 		Interval union = this.clone();
 		if (interval.min < this.min) {
@@ -304,78 +290,81 @@ class ServicesContract {
 	}
 }
 
-class MenuContracts{
-		int day = 1;
-		int month = 1;
-		int option;
+enum Mesagge{
+	TITLE("Service Contracts"),
+	ANNUAL_COST("Coste anual del contrato: "),
+	ANNUAL_REPORT("Informe anual"),
+	CANCEL("Se cancelo el "),
+	SCALE("Escala: "),
+	SHIFT("Cambio: "),
+	CHOOSE_OPTION("Seleccione una opcion: "),
+	COLOR_TEXT_WHITE("\033[31m"),
+	COLOR_TEXT_GREEN("\033[32m");
+
+	private String message;
+
+	Mesagge(String message){
+		this.message = message;
+	}
+
+	@Override
+	public String toString(){
+		return this.message;
+	}
+}
+
+enum Option{
+	OPTION_1("Escalar"),
+	OPTION_2("Mover"),
+	OPTION_3("Cancelar"),
+	OPTION_4("Costo Total"),
+	OPTION_5("Informe"),
+	OPTION_6("Salir");	
+
+	private String option;
+
+	Option(String option){
+		this.option = option;
+	}
+
+	public String valor(){
+		return this.option;
+	}
+}
+
+class Menu{
 		final int YEAR = 2022;
 		private Date date = new Date();
 		private Interval daysInterval = new Interval(date.DAYS_PER_MONTH);
 		private Interval monthsInterval = new Interval(date.MONTHS_PER_YEAR);
-		Console console = new Console();
+		private Console console = new Console();
 
-		public void menu(){
-			double scale;
-			double shift;
-			console.writeln("\033[32m ");
-			console.writeln(Date.getDateDMA());
-			String name = console.readString("Nombre de la empresa: ");
-			console.writeln();
-			int yearContract = console.readInt("Ano: ");
-			console.writeln("\033[37m") ;
-			ServicesContract servicesContract = new ServicesContract(name, yearContract);
+		public void interact(){
+
+			ServicesContract servicesContract = createNewContract();
+
+			int selectOption;
 			do{
 
-				console.writeln("1) Escalar");
-				console.writeln("2) Mover");
-				console.writeln("3) Cancelar");
-				console.writeln("4) Costo Total");
-				console.writeln("5) Informe");
-				console.write("\033[31m");
-				console.writeln("0) Salir");
-				console.write("\033[37m");
-				option = console.readInt("Seleccione una opcion: ");
+				for(Option options : Option.values()){
+					new Console().writeln(options.ordinal()+1 + ") " + options.valor());
+				}
+				selectOption = console.readInt(" " + Mesagge.CHOOSE_OPTION);
 				
-				switch(option){
+				switch(selectOption){
 					case 1:{
 						console.writeln();
-						do{
-							scale = console.readInt("Escala: ");
-					
-						}while(!daysInterval.includes(day));
-						servicesContract.enlarge(new Date(this.day, this.month, yearContract), scale);
-						double cost = servicesContract.getCost();
-						console.writeln("Se escalo en "+ scale + " dias.");
-						console.writeln();
-						console.writeln("Coste anual del contrato: " + cost);
+
 						break;
 					}
 					case 2:{
 						console.writeln();
 			
-						do{
-							shift = console.readInt("Cambio: ");
-					
-						}while(!daysInterval.includes(day) || !monthsInterval.includes(month));
-						servicesContract.shift(new Date(this.day, this.month, yearContract), shift);
-						double cost = servicesContract.getCost();
-						console.writeln("Se movio en "+ shift + " dias.");
-						console.writeln();
-						console.writeln("Coste anual del contrato: " + cost);
 						break;
 					}
 					case 3:{
 						console.writeln();
-						do{
-							day = console.readInt("Dia: ");
-							month = console.readInt("Mes: ");
-					
-						}while(!daysInterval.includes(day) || !monthsInterval.includes(month));
-						servicesContract.cancel(new Date(day, month, YEAR));
-						double cost = servicesContract.getCost();
-						console.writeln("Se cancelo el " + day + "/" + month);
-						console.writeln();
-						console.writeln("Coste anual del contrato: " + cost);
+
 						break;
 					}
 					case 4:{
@@ -396,13 +385,22 @@ class MenuContracts{
 						break;
 					}
 				}
-			}while(option!=0);
+			}while(selectOption!=Option.values().length);
+
 	}
 
+	private ServicesContract createNewContract(){
+		System.out.println(Mesagge.ANNUAL_REPORT);
+		console.writeln(Mesagge.ANNUAL_REPORT + " con fecha " + Date.getDateDMA());
 
+		String name = console.readString("Nombre de la empresa: ");
+		int yearContract = console.readInt("Ano: ");
+		console.writeln();
+		return new ServicesContract(name, yearContract);
+	}
 
 	public static void main(String[] args) {
-		new MenuContracts().menu();
-
+		new Menu().interact();
 	}
 }
+
