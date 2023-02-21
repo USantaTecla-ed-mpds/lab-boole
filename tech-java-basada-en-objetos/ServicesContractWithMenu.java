@@ -290,7 +290,7 @@ class ServicesContract {
 	}
 }
 
-enum Mesagge{
+enum Message{
 	TITLE("Service Contracts"),
 	ANNUAL_COST("Coste anual del contrato: "),
 	ANNUAL_REPORT("Informe anual"),
@@ -303,7 +303,7 @@ enum Mesagge{
 
 	private String message;
 
-	Mesagge(String message){
+	Message(String message){
 		this.message = message;
 	}
 
@@ -341,6 +341,8 @@ class Menu{
 
 		public void interact(){
 
+			showTitle();
+
 			ServicesContract servicesContract = createNewContract();
 
 			int selectOption;
@@ -349,7 +351,7 @@ class Menu{
 				for(Option options : Option.values()){
 					new Console().writeln(options.ordinal()+1 + ") " + options.valor());
 				}
-				selectOption = console.readInt(" " + Mesagge.CHOOSE_OPTION);
+				selectOption = console.readInt(" " + Message.CHOOSE_OPTION);
 				
 				switch(selectOption){
 					case 1:{
@@ -389,9 +391,11 @@ class Menu{
 
 	}
 
+	private void showTitle(){
+		console.writeln(Message.ANNUAL_REPORT + " con fecha " + Date.getDateDMA());
+	}
+
 	private ServicesContract createNewContract(){
-		System.out.println(Mesagge.ANNUAL_REPORT);
-		console.writeln(Mesagge.ANNUAL_REPORT + " con fecha " + Date.getDateDMA());
 
 		String name = console.readString("Nombre de la empresa: ");
 		int yearContract = console.readInt("Ano: ");
