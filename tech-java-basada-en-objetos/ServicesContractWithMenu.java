@@ -204,23 +204,6 @@ class Interval {
 		return intervals;
 	}
 
-	public void read() {
-		Console console = new Console();
-		boolean error;
-		do {
-			this.min = console.readFloat("Dame el mínimo del intervalo: ");
-			this.max = console.readFloat("Dame el máximo del intervalo: ");
-			error = this.min <= this.max;
-			if (error) {
-				console.writeln("El minimo no puede ser mayor que el maximo");
-			}
-		} while (error);
-	}
-
-	public void writeln() {
-		new Console().writeln(this.toString());
-	}
-
 	public String toString() {
 		return "[" + this.min + ", " + this.max + "]";
 	}
@@ -257,19 +240,16 @@ class ServicesContract {
 		intervals[date.daysElapsedYear()].shift(shiftment);
 	}
 
-	public void writeln() {
-		Console console = new Console();
-		console.writeln("Contrato de limpieza: " + name + "-" + year);
-		Date date = new Date(1, 1, year);
-		for (int i = 0; i < intervals.length; i++) {
-			console.write("(" + (i + 1) + ") " + date + " - ");
-			if (intervals[i] == null) {
-				console.writeln("Anulado");
-			} else {
-				console.writeln(intervals[i].toString());
-			}
-			date = date.next();
-		}
+	public Interval[] getIntervals() {
+		return intervals;
+	}
+
+	public int getYear(){
+		return this.year;
+	}
+
+	public String getName(){
+		return this.name;
 	}
 
 	public double getCost() {
@@ -291,10 +271,11 @@ class ServicesContract {
 }
 
 enum Message{
-	TITLE("Service Contracts"),
+	TITLE("Contrato de limpieza: "),
 	ANNUAL_COST("Coste anual del contrato: "),
 	ANNUAL_REPORT("Informe anual"),
 	CANCEL("Se cancelo el "),
+	NULL("Anulado"),
 	ASK_SCALE("Escala: "),
 	ASK_SHIFT("Cambio: "),
 	ASK_PER_DAY("Ingrese el dia: "),
@@ -335,11 +316,14 @@ enum Option{
 }
 
 class Menu{
-		final int YEAR = 2022;
 		private Console console = new Console();
+		private ServicesContract servicesContract;
+
+		Menu(){
+			this.servicesContract = createNewContract();
+		}
 
 		public void interact(){
-			ServicesContract servicesContract = createNewContract();
 
 			int selectOption;
 			do{
@@ -369,7 +353,23 @@ class Menu{
 						break;
 					}
 					case 5:{
-						servicesContract.writeln();
+						Interval[] intervals = servicesContract.getIntervals();
+						console.writeln(Message.TITLE + 
+										servicesContract.getName() + 
+										"-" + 
+										servicesContract.getYear());
+
+						Date date = new Date(1, 1, servicesContract.getYear());
+
+						for (int i = 0; i < intervals.length; i++) {
+							console.write("(" + (i + 1) + ") " + date + " - ");
+							if (intervals[i] == null) {
+								console.writeln(Message.NULL.toString());
+							} else {
+								console.writeln(intervals[i].toString());
+							}
+							date = date.next();
+						}
 						break;
 					}
 				}
@@ -399,7 +399,7 @@ class Menu{
 			}
 		}while(error);
 
-		return new Date(day, month, YEAR);
+		return new Date(day, month, servicesContract.getYear());
 	}
 
 	private void showOptions(){
@@ -411,9 +411,9 @@ class Menu{
 	private ServicesContract createNewContract(){
 
 		String name = console.readString("Nombre de la empresa: ");
-		int yearContract = console.readInt("Ano: ");
+		int year = console.readInt("Ano: ");
 		console.writeln();
-		return new ServicesContract(name, yearContract);
+		return new ServicesContract(name, year);
 	}
 
 	public static void main(String[] args) {
