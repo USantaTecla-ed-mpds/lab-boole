@@ -300,9 +300,7 @@ enum Message{
 	ASK_PER_DAY("Ingrese el dia: "),
 	ASK_PER_MONTH("Ingrese el mes: "),
 	WRONG_DATA("Debe ingresar un valor correcto."),
-	CHOOSE_OPTION("Seleccione una opcion: "),
-	COLOR_TEXT_WHITE("\033[31m"),
-	COLOR_TEXT_GREEN("\033[32m");
+	CHOOSE_OPTION("Seleccione una opcion: ");
 
 	private String message;
 
@@ -338,55 +336,40 @@ enum Option{
 
 class Menu{
 		final int YEAR = 2022;
-		private Date date = new Date();
-		private Interval daysInterval = new Interval(date.DAYS_PER_MONTH);
-		private Interval monthsInterval = new Interval(date.MONTHS_PER_YEAR);
 		private Console console = new Console();
 
 		public void interact(){
-
-			showTitle();
-
 			ServicesContract servicesContract = createNewContract();
 
 			int selectOption;
 			do{
-
 				showOptions();
-
-				selectOption = console.readInt(Message.CHOOSE_OPTION + "");
+				selectOption = console.readInt(Message.CHOOSE_OPTION.toString());
 				
 				switch(selectOption){
 					case 1:{
-						console.writeln();
-
+						servicesContract.enlarge(
+							readDate(Message.ASK_PER_DAY, Message.ASK_PER_MONTH), 	
+							readValue(Message.ASK_SCALE));
 						break;
 					}
 					case 2:{
-						console.writeln();
-			
+						servicesContract.shift(
+							readDate(Message.ASK_PER_DAY, Message.ASK_PER_MONTH), 	
+							readValue(Message.ASK_SHIFT));
 						break;
 					}
 					case 3:{
-						console.writeln();
-						servicesContract.cancel(read(Message.ASK_PER_DAY, Message.ASK_PER_MONTH));
+						servicesContract.cancel(readDate(Message.ASK_PER_DAY, Message.ASK_PER_MONTH));
 						break;
 					}
 					case 4:{
-						double cost = servicesContract.getCost();
-						console.writeln();
-						console.writeln(Message.ANNUAL_COST.toString() + cost);
+						console.writeln(Message.ANNUAL_COST.toString() + servicesContract.getCost());
 						console.writeln();
 						break;
 					}
 					case 5:{
-						double cost = servicesContract.getCost();
-						console.writeln();
-						console.writeln(Message.ANNUAL_REPORT.toString());
 						servicesContract.writeln();
-						console.writeln();
-						console.writeln(Message.ANNUAL_COST.toString() + cost);
-						console.writeln();
 						break;
 					}
 				}
@@ -394,10 +377,17 @@ class Menu{
 
 	}
 
-	private Date read(Message perDay, Message perMonth){
+	private double readValue(Message message){
+		return console.readDouble(message.toString());
+	}
+
+	private Date readDate(Message perDay, Message perMonth){
 		int day;
 		int month;
 		boolean error;
+		Date date = new Date();
+		Interval daysInterval = new Interval(date.DAYS_PER_MONTH);
+		Interval monthsInterval = new Interval(date.MONTHS_PER_YEAR);
 
 		do{
 			error = false;
@@ -410,10 +400,6 @@ class Menu{
 		}while(error);
 
 		return new Date(day, month, YEAR);
-	}
-
-	private void showTitle(){
-		console.writeln(Message.ANNUAL_REPORT + " con fecha " + Date.getDateDMA());
 	}
 
 	private void showOptions(){
