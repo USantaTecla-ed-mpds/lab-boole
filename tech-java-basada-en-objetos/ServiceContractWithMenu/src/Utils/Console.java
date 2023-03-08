@@ -1,9 +1,8 @@
-package es.usantatecla.aX_menu.a4_extends.a1_modelMenu;
-
+package Utils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-class Console {
+public class Console {
 
 	private static Console instance = null;
 

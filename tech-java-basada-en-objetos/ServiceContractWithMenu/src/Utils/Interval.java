@@ -1,8 +1,6 @@
-package es.usantatecla.aX_managers.services.a1_classes;
-
-class Interval {
-
-	private double min;
+package Utils;
+public class Interval {
+    private double min;
 	private double max;
 
 	public Interval(double min, double max) {
@@ -77,20 +75,6 @@ class Interval {
 		return intersection;
 	}
 
-	// public Interval intersection(Interval intervalo) {
-	// if (this.includes(intervalo)) {
-	// return intervalo.clone();
-	// } else if (intervalo.includes(this)) {
-	// return this.clone();
-	// } else if (this.includes(intervalo.min)) {
-	// return new Interval(intervalo.min, this.max);
-	// } else if (this.includes(intervalo.max)) {
-	// return new Interval(this.min, intervalo.max);
-	// } else {
-	// return null;
-	// }
-	// }
-
 	public Interval union(Interval interval) {
 		Interval union = this.clone();
 		if (interval.min < this.min) {
@@ -141,5 +125,4 @@ class Interval {
 	public String toString() {
 		return "[" + this.min + ", " + this.max + "]";
 	}
-
 }

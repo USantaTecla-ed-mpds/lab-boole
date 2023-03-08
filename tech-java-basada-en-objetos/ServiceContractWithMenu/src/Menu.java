@@ -1,7 +1,6 @@
-package es.usantatecla.aX_menu.a4_extends.a1_modelMenu;
-
 import java.util.ArrayList;
 import java.util.List;
+import Utils.Console;
 
 abstract class Menu {
 

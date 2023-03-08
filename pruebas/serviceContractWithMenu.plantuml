@@ -1,0 +1,95 @@
+@startuml serviceContract
+
+class Date {
+    int day
+    int month
+    int year
+    {static} DAYS_PER_YEAR
+    {static} DAYS_PER_MONTH
+    {static} MONTHS_PER_YEAR
+    clone()
+    equals()
+    after()
+    before()
+    getDateDMA()
+    next()
+    daysElapsedYear()
+    getDay()
+    getMonth()
+    getYear()
+    toString()
+}
+class Interval {
+    double min
+    double max
+    clone()
+    length()
+    middlePoint()
+    scale()
+    scaled()
+    shift()
+    shifted()
+    opposite()
+    includes()
+    isIntersected()
+    intersection()
+    union()
+    split()
+    toString()
+}
+class Console{
+    readInt()
+    writeln()
+}
+class ServiceContract {
+    String name
+    int year
+    {static} PRESET_INTERVAL
+    {static} PRESET_COST_PER_HOUR
+    {static} EXTRAORDINARY_COST_PER_HOUR
+    cancel()
+    enlarge()
+    shift()
+    getIntervals()
+    getYear()
+    getCost()
+}
+enum Message {
+	TITLE
+	ANNUAL_COST
+	ANNUAL_REPORT
+	CANCEL
+	ASK_SCALE
+	ASK_SHIFT
+	ASK_PER_DAY
+	ASK_PER_MONTH
+	WRONG_DATA
+	CHOOSE_OPTION
+    Message()
+    toString()
+}
+enum Option {
+    OPTION_1
+    OPTION_2
+    OPTION_3
+    OPTION_4
+    OPTION_5
+    OPTION_6
+    Option()
+    toString()
+}
+class Menu {
+    interact()
+    readValue()
+    readDate()
+    showOptions()
+    createServiceContract()
+}
+
+Menu *-down-> "1" ServiceContract
+Menu .-down-.> Console
+ServiceContract -down-> Date
+ServiceContract -down-> Interval
+Menu .down.> Option
+Menu ..down.> Message
+@enduml

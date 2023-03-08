@@ -1,8 +1,7 @@
-package es.usantatecla.aX_managers.services.a1_classes;
-
-class Date {
-
-	private int day;
+package Utils;
+public class Date {
+    
+    private int day;
 	private int month;
 	private int year;
 	public final int DAYS_PER_YEAR = 360;
@@ -86,4 +85,3 @@ class Date {
 	}
 
 }
-
