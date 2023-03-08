@@ -1,12 +1,14 @@
-import Utils.Date;
+import Utils.Console;
 
 public class ShiftModelOption extends ServiceContractOption{
 
     public ShiftModelOption(ServiceContractModel model){
-        super("Mover", model);
+        super(Message.OPTION_SHIFT.toString(), model);
     }
 
     public void interact(){
-        model.shift(new Date(2,2,2), 3.2);;
+        model.shift(Console.getInstance().readInt(Message.ASK_PER_DAY.toString()),
+                    Console.getInstance().readInt(Message.ASK_PER_MONTH.toString()),
+                    Console.getInstance().readDouble(Message.ASK_SCALE.toString()));
     }
 }

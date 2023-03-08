@@ -3,7 +3,7 @@ class ServiceContractMenu extends IterativeMenu {
     private ServiceContractModel model;
 
     public ServiceContractMenu(ServiceContractModel model) {
-        super("Contrato de servicios");
+        super(Message.TITLE.toString());
         this.model = model;
     }
 

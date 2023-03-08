@@ -3,7 +3,7 @@ class QuitOption extends Option {
     private boolean executed;
 
     public QuitOption() {
-        super("Salir");
+        super(Message.OPTION_QUIT.toString());
         this.executed = false;
     }
 

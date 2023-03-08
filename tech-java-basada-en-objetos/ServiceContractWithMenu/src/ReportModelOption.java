@@ -2,7 +2,7 @@
 
 public class ReportModelOption extends ServiceContractOption{
     public ReportModelOption(ServiceContractModel model){
-        super("Reporte", model);
+        super(Message.OPTION_REPORT.toString(), model);
     }
 
     public void interact(){

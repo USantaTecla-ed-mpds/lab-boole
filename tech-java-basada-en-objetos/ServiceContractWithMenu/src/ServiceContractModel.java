@@ -20,21 +20,25 @@ class ServiceContractModel {
 		}
 	}
 
-	public void enlarge(Date date, double scale) {
-		this.intervals[date.daysElapsedYear()].scale(scale);
+	public void enlarge(int day, int month, double scale) {
+		this.intervals[new Date(day, month, year).daysElapsedYear()].scale(scale);
 	}
 
-	public void shift(Date date, double shiftment) {
-		this.intervals[date.daysElapsedYear()].shift(shiftment);
+	public void shift(int day, int month, double shiftment) {
+		this.intervals[new Date(day, month, year).daysElapsedYear()].shift(shiftment);
+	}
+
+	public void cancel(int day, int month) {
+		this.intervals[new Date(day, month, year).daysElapsedYear()] = null;
 	}
 
 	public void writeln() {
-		Console.getInstance().writeln("Contrato de limpieza: " + name + "-" + year);
+		Console.getInstance().writeln(Message.TITLE.toString() + name + " - " + year);
 		Date date = new Date(1, 1, year);
 		for (int i = 0; i < intervals.length; i++) {
 			Console.getInstance().write("(" + (i + 1) + "º) " + date + " - ");
 			if (intervals[i] == null) {
-				Console.getInstance().writeln("Cancelado");
+				Console.getInstance().writeln(Message.CANCEL.toString());
 			} else {
 				Console.getInstance().writeln(intervals[i].toString());
 			}

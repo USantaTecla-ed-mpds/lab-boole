@@ -4,12 +4,12 @@ import Utils.Interval;
 public class CostModelOption extends ServiceContractOption{
 
     public CostModelOption(ServiceContractModel model){
-        super("Costo", model);
+        super(Message.OPTION_COST.toString(), model);
     }
 
     @Override
     public void interact(){
-        Console.getInstance().writeln("Soy un costo y lo muestro " + this.getCost());
+        Console.getInstance().writeln(Message.ANNUAL_COST.toString() + this.getCost());
     }
 
     public double getCost() {
