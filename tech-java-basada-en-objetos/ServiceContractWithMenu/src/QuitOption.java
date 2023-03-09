@@ -7,7 +7,6 @@ class QuitOption extends Option {
         this.executed = false;
     }
 
-    @Override
     public void interact() {
         this.executed = true;
     }

@@ -1,4 +1,3 @@
-import Utils.Console;
 
 public class ScaleModelOption extends ServiceContractOption {
     
@@ -7,8 +6,8 @@ public class ScaleModelOption extends ServiceContractOption {
     }
 
     public void interact(){
-        model.enlarge(Console.getInstance().readInt(Message.ASK_PER_DAY.toString()),
-                      Console.getInstance().readInt(Message.ASK_PER_MONTH.toString()),
-                      Console.getInstance().readDouble(Message.ASK_SCALE.toString()));
+        model.shift((int)model.readValue(Message.ASK_PER_DAY.toString()),
+                    (int)model.readValue(Message.ASK_PER_MONTH.toString()),
+                         model.readValue(Message.ASK_SCALE.toString()));
     }
 }

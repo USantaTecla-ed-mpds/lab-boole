@@ -7,7 +7,6 @@ abstract class QuitMenu extends Menu {
         this.quitOption = new QuitOption();
     }
 
-    @Override
     protected void showTitles() {
         this.addquitOption();
         super.showTitles();

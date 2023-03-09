@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 
 public class Date {
     
@@ -6,8 +6,8 @@ public class Date {
 	private int month;
 	private int year;
 	public final int DAYS_PER_YEAR = 360;
-	private final int DAYS_PER_MONTH = 30;
-	private final int MONTHS_PER_YEAR = 12;
+	public final int DAYS_PER_MONTH = 30;
+	public final int MONTHS_PER_YEAR = 12;
 
 	public Date(int day, int month, int year) {
 		this.day = day;
@@ -84,5 +84,14 @@ public class Date {
 	public String toString() {
 		return this.day + "/" + this.month + "/" + this.year;
 	}
+
+	public boolean isValidDay(double day){
+		return day > 0 && day < 31;
+	}
+
+	public boolean isValidMonth(double day){
+		return day > 0 && day < 13;
+	}
+
 
 }

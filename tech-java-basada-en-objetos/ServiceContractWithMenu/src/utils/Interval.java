@@ -1,4 +1,4 @@
-package Utils;
+package utils;
 public class Interval {
     private double min;
 	private double max;

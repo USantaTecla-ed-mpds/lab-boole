@@ -1,15 +1,16 @@
-import java.util.ArrayList;
-import java.util.List;
-import Utils.Console;
+import utils.Console;
 
 abstract class Menu {
 
     private String title;
-    private List<Option> options;
+    private Option[] options;
+    private static final int MAX = 100;
+    private int size;
 
     public Menu(String title) {
         this.title = title;
-        this.options = new ArrayList<Option>();
+        this.options = new Option[Menu.MAX];
+        this.size = 0;
     }
 
     public void interact() {
@@ -26,8 +27,8 @@ abstract class Menu {
 
     protected void showTitles() {
         this.showTitle();
-        for (int i = 0; i < this.options.size(); i++) {
-            this.options.get(i).showTitle(i + 1);
+        for (int i = 0; i < this.size; i++) {
+            this.options[i].showTitle(i + 1);
         }
     }
 
@@ -43,25 +44,29 @@ abstract class Menu {
         int answer;
         boolean ok;
         do {
-            answer = Console.getInstance().readInt("Opción? [1-" + this.options.size() + "]: ") - 1;
-            ok = 0 <= answer && answer <= this.options.size() - 1;
+            answer = Console.getInstance().readInt("Opción? [1-" + this.size + "]: ") - 1;
+            ok = 0 <= answer && answer < this.size;
             if (!ok) {
-                Console.getInstance().writeln("Error!!!");
+                Console.getInstance().writeln(Message.ERROR.toString());
             }
         } while (!ok);
-        this.options.get(answer).interact();
+        this.options[answer].interact();
     }
 
     protected void add(Option option) {
-        this.options.add(option);
-    }
+        assert this.size < Menu.MAX;
 
-    protected void removeOptions() {
-        this.options.clear();
+        this.options[this.size] = option;
+        this.size++;
     }
 
     protected boolean hasOption(Option option) {
-        return this.options.contains(option);
+        for (int i = 0; i < this.size; i++) {
+            if (this.options[i] == option) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

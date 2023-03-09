@@ -1,0 +1,37 @@
+@startuml ServiceContractWithMenu
+
+abstract class Menu {}
+
+Menu *--down-> Option
+Menu -down-|> QuitMenu
+
+abstract class QuitMenu{}
+
+QuitMenu -down-|> IterativeMenu
+
+abstract class IterativeMenu{}
+
+IterativeMenu -down-|> ServiceContractMenu
+
+class ServiceContractMenu{}
+
+ServiceContractMenu *-down-> ServiceContractModel
+
+abstract class Option{}
+
+Option -down-|> QuitOption
+Option -down-|> ServiceContractOption
+
+class QuitOption{}
+class ServiceContractOption{}
+class CancelModelOption{}
+class CostModelOption{}
+class ReportModelOption{}
+class ScaleModelOption{}
+class ShiftModelOption{}
+
+class ServiceContractModel{}
+
+enum Message{}
+
+@enduml

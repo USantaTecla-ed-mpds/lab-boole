@@ -1,18 +1,21 @@
-## Getting Started
+## Práctica de la clase n° 40
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Agregar un menu al Service Contract visto en la clase 39, según el modelo propuesto por el profe Luis.
 
-## Folder Structure
+## Estructura de archivos
 
-The workspace contains two folders by default, where:
+Carpetas principales:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+-   `src`: contiene todas las clases de funcionalidad.
+-   `Utils`: carpeta con clases de utilidad.
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+## Ejecución
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+Desde `App.java` puede iniciar la ejecución.
 
-## Dependency Management
+### Códigos de referencia
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+-   [ServiceContract](https://github.com/USantaTecla-tech-java/src/tree/main/src/main/java/es/usantatecla/aX_managers/services/a1_classes)
+-   [IterativeMenu](https://github.com/USantaTecla-tech-java/src/tree/main/src/main/java/es/usantatecla/aX_menu/a4_extends/*a3_modelIterativeMenu)
+
+## Diagrama de clases
