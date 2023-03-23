@@ -1,7 +1,10 @@
+package connect4.views;
+
+import connect4.Connect4;
 import connect4.utils.Message;
 import connect4.utils.menu.IterativeMenu;
 
-class Connect4Menu extends IterativeMenu {
+public class Connect4Menu extends IterativeMenu {
 
     private Connect4 connect4;
 
@@ -11,7 +14,7 @@ class Connect4Menu extends IterativeMenu {
     }
 
     protected void addOptions() {
-        // this.add(new ScaleModelOption(this.serviceContract));
+        this.add(new PlayWithHumanOption(this.connect4));
         // this.add(new ShiftModelOption(this.serviceContract));
         // this.add(new CancelModelOption(this.serviceContract));
         // this.add(new CostModelOption(this.serviceContract));
