@@ -1,0 +1,33 @@
+@startuml menuDiagram
+package views.menu{
+class SelectPlayersMenu{}
+class PlayersManager{}
+class SubMenuModoPc{}
+class HumanPcPlayersOption{}
+class HumansPlayersOption{}
+class RandomPlayerOption{}
+class PcPlayersOption{}
+class IAPlayerOption{}
+
+SelectPlayersMenu *-down----> PlayersManager
+SelectPlayersMenu -down--> HumanPcPlayersOption
+SelectPlayersMenu -down-> HumansPlayersOption
+SelectPlayersMenu -down--> PcPlayersOption
+
+PcPlayersOption -down--> SubMenuModoPc
+HumanPcPlayersOption -down--> SubMenuModoPc
+SubMenuModoPc -down--> IAPlayerOption
+SubMenuModoPc -down--> RandomPlayerOption
+
+PlayersManager <--. RandomPlayerOption
+PlayersManager <--. IAPlayerOption
+PlayersManager <--. HumansPlayersOption
+}
+
+package models {}
+
+PlayersManager .-left-> models
+
+class Connect4{}
+Connect4 o-down-> SelectPlayersMenu
+@enduml

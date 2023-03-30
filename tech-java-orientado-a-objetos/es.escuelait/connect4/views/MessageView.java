@@ -3,7 +3,6 @@ package connect4.views;
 import java.text.MessageFormat;
 
 import connect4.utils.Console;
-import connect4.utils.Message;
 
 public class MessageView {
 

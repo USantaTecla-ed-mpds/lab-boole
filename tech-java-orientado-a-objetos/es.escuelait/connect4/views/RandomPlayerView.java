@@ -1,7 +1,6 @@
 package connect4.views;
 
 import connect4.models.RandomPlayer;
-import connect4.utils.Message;
 
 public class RandomPlayerView extends PlayerView {
 

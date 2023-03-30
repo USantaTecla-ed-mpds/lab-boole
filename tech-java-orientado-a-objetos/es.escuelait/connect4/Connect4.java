@@ -1,13 +1,13 @@
 package connect4;
 
-import connect4.utils.Console;
-import connect4.utils.Message;
-// import connect4.utils.YesNoDialog;
+import connect4.utils.YesNoDialog;
 import connect4.models.Board;
 import connect4.models.Turn;
 import connect4.views.BoardView;
+import connect4.views.Message;
 import connect4.views.MessageView;
 import connect4.views.TurnView;
+import connect4.views.menu.SelectPlayersMenu;
 
 public class Connect4 {
 
@@ -17,23 +17,20 @@ public class Connect4 {
     private final TurnView turnView;
 
     public Connect4() {
-
         this.board = new Board();
         this.boardView = new BoardView(this.board);
         this.turn = new Turn(this.board);
         this.turnView = new TurnView(this.turn);
-
     }
 
-    // private void run() {
-    //     do {
-    //         this.playGame();
-    //     } while (this.isResumed());
-    // }
+    private void run() {
+        do {
+            new SelectPlayersMenu(this.turn).interact();
+            this.playGame();
+        } while (this.isResumed());
+    }
 
-    public void playGame(int nunHumanPlayers) {
-        Console.getInstance().writeln("Numero: " + nunHumanPlayers);
-        this.turnView.initPlayers();
+    private void playGame() {
         MessageView.getInstance().writeln(Message.GAME_TITLE);
         this.boardView.paintBoard();
 
@@ -44,17 +41,17 @@ public class Connect4 {
         this.turnView.writeResult();
     }
 
-    // private boolean isResumed() {
-    //     final YesNoDialog yesNoDialog = new YesNoDialog();
-    //     yesNoDialog.read(Message.RESUME.toString());
-    //     if (yesNoDialog.isAffirmative()) {
-    //         this.board.reset();
-    //     }
-    //     return yesNoDialog.isAffirmative();
-    // }
+    private boolean isResumed() {
+        final YesNoDialog yesNoDialog = new YesNoDialog();
+        yesNoDialog.read(Message.RESUME.toString());
+        if (yesNoDialog.isAffirmative()) {
+            this.board.reset();
+        }
+        return yesNoDialog.isAffirmative();
+    }
 
-    // public static void main(final String[] args) {
-    //     new Connect4().run();
-    // }
+    public static void main(final String[] args) {
+        new Connect4().run();
+    }
 
 }

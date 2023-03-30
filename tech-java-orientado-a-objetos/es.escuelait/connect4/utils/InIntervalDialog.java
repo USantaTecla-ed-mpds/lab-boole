@@ -1,5 +1,7 @@
 package connect4.utils;
 
+import connect4.views.Message;
+
 public class InIntervalDialog extends IntDialog {
     private int min;
     private int max;

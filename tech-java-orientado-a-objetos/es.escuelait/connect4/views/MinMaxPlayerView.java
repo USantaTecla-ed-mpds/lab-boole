@@ -1,7 +1,6 @@
 package connect4.views;
 
 import connect4.models.MinMaxPlayer;
-import connect4.utils.Message;
 
 public class MinMaxPlayerView extends PlayerView {
 

@@ -1,0 +1,70 @@
+@startuml connect4
+
+class Connect4{
+    private board
+    private turn
+    private boardView
+    private turnView
+    private run()
+    private playGame()
+    private isResumed()
+}
+
+
+Connect4 *-down-> TurnView
+Connect4 *--down-> "1" Board
+Connect4 *-down-> Turn
+Connect4 *--down-> BoardView
+Connect4 .left.> YesNoDialog
+
+
+class TurnView{}
+
+TurnView -right-> Turn
+
+class Turn{
+    +NUMBER_PLAYERS=2
+    -players[]
+    -activePlayer
+    -board
+    +reset()
+    +play()
+    +getActivePlayer()
+    +getBoard()
+}
+
+Turn -down-> Board
+Turn *-down--> "2" Player
+
+class BoardView{}
+
+BoardView -> Board
+
+class Board{}
+
+Board *-down-> Color
+Board -down-> Coordinate
+Board .-right-> Direction
+
+class Player{}
+class HumanPlayer{}
+class RandomPlayer{}
+class MinMaxPlayer{}
+
+Player <|-down- HumanPlayer
+Player <|-down- RandomPlayer
+Player <|-down- MinMaxPlayer
+
+enum Color{
+    RED
+    YELLOW
+    NULL
+}
+enum Direction{}
+
+class Coordinate{}
+
+
+class YesNoDialog{}
+
+@enduml

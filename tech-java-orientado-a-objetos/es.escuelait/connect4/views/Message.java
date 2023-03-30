@@ -1,4 +1,4 @@
-package connect4.utils;
+package connect4.views;
 
 import java.text.MessageFormat;
 
@@ -20,7 +20,15 @@ public enum Message {
     PLAYER_WIN("{0} WIN!!!"),
     PLAYERS_TIED("TIED!!!"),
     RESUME("Do you want to continue"),
-    ASK_MACHINE_TYPE("Enter Random (1) or IA Machine Player (2) for Player {0}: ");
+    ASK_MACHINE_TYPE("Enter Random (1) or IA Machine Player (2) for Player {0}: "),
+    SELECT_PLAYER_TO_COLOR("Select player to color: "),
+    SELECT_GAME_MODE("Select game mode"),
+    IA_PLAYER("IA player"),
+    HUMAN_PLAYER("Human player"),
+    RANDOM_PLAYER("Random player"),
+    OPTION_HUMAN_HUMAN("Human vs Human"),
+    OPTION_DEMO("Demo"),
+    OPTION_HUMAN_PC("Human vs PC");
 
     private String message;
 

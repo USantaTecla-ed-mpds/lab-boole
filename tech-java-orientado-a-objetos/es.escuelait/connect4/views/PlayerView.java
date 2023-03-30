@@ -1,7 +1,6 @@
 package connect4.views;
 
 import connect4.models.Player;
-import connect4.utils.Message;
 
 public abstract class PlayerView {
     protected Player player;

@@ -1,7 +1,6 @@
 package connect4.views;
 
 import connect4.models.Color;
-import connect4.utils.Message;
 
 public class ColorView {
     private final Color color;
