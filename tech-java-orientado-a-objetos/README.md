@@ -10,4 +10,4 @@
 
 ## Diagrama de clases
 
-![ClassDiagram](es.escuelait/connect4/doc/out/menuDiagram.png)
+![ClassDiagram](es.escuelait/connect4/doc/img/menuDiagram.png)
