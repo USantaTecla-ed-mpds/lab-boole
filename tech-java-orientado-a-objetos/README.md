@@ -1,6 +1,6 @@
 ## Juego del Conecta 4 con menu de consola
 
-![Connect4](/es.escuelait/connect4/doc/img/conncet4.jpeg)
+![Connect4](es.escuelait/connect4/doc/img/conncet4.jpeg)
 
 #### Se agregó un menu de consola en la vista, respetando el modelo propuesto por Xavi, Jose y Ponc del laboratorio Turing.
 
@@ -10,4 +10,4 @@
 
 ## Diagrama de clases
 
-![ClassDiagram](/es.escuelait/connect4/doc/out/menuDiagram.png)
+![ClassDiagram](es.escuelait/connect4/doc/out/menuDiagram.png)
