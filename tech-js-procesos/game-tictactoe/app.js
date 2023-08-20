@@ -39,7 +39,7 @@ function playTicTacToe() {
       const GAME_MODE_NAMES = ["Jugador contra Jugador", "Jugador contra Computador", "Computador contra Computador"];
       let msg = (`\n----- TIC TAC TOE -----\ \n\nMODOS DE JUEGO`);
       for (let i = 0; i < GAME_MODE_NAMES.length; i++) {
-        msg += `\n${i}. ${GAME_MODE_NAMES[i]}`;
+        msg += `\n${i}. ${GAME_MODE_NAMES[i-1]}`;
       }
       console.writeln(msg);
       return console.readNumber(`Elige un modo de juego (1, 2 o 3): `) - 1;
